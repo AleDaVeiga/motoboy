@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>..:: Motoboy ::..</title>
+</head>
+<body>
+	<h2>Acessar sua conta:</h2>
+	<form th:action="@{/login}" method="POST">
+		<label>E-mail: <input type="text" name="username"
+			placeholder="Informe seu e-mail aqui..." />
+		</label> <label>Senha: <input type="password" name="password"
+			placeholder="Informe sua senha aqui..." />
+		</label>
+		<button type="submit">Acessar</button>
+	</form>
+</body>
+</html>
