@@ -1,5 +1,7 @@
 package com.wgsistemas.motoboy.service;
 
+import static com.wgsistemas.motoboy.model.RoleValues.USER;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -9,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.wgsistemas.motoboy.model.RoleValues;
 import com.wgsistemas.motoboy.model.User;
 import com.wgsistemas.motoboy.repository.RoleRepository;
 import com.wgsistemas.motoboy.repository.UserRepository;
@@ -17,19 +18,17 @@ import com.wgsistemas.motoboy.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private BCryptPasswordEncoder bycrpt;
-
-	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private RoleRepository roleRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Transactional
 	public void save(User user) {
-		user.setPassword(bycrpt.encode(user.getPassword()));
-		user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByName(RoleValues.USER.name()))));
-		userRepository.save(user);
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByName(USER.name()))));
+        userRepository.save(user);
 	}
 
 	@Transactional

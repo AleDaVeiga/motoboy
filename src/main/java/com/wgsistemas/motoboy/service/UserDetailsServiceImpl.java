@@ -18,20 +18,20 @@ import com.wgsistemas.motoboy.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
 	@Autowired
-	private UserRepository userRepository;
-	
+    private UserRepository userRepository;
+
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user  = userRepository.findByUsername(username);		
+		User user = userRepository.findByUsername(username);
 		final String PREFIX = "ROLE_";
-		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();		
+		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
 		for (Role roleUser : user.getRoles()) {
-            String role = PREFIX + roleUser.getName();
-			grantedAuthorities.add(new SimpleGrantedAuthority(role));
-		}		
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+			String role = PREFIX + roleUser.getName();
+            grantedAuthorities.add(new SimpleGrantedAuthority(role));
+        }
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 	}
 }

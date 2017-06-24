@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "user")
@@ -21,6 +22,7 @@ public class User {
 	private String username;
 	@Column
 	private String password;
+	private String passwordConfirm;
 	@Column
 	private Set<Role> roles;
 
@@ -50,10 +52,19 @@ public class User {
 		this.password = password;
 	}
 
+	@Transient
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	public Set<Role> getRoles() {
-		return this.roles;
+		return roles;
 	}
 
 	public void setRoles(Set<Role> roles) {
