@@ -40,11 +40,9 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-		<!-- Runtime -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.4-1201-jdbc4</version>
 		</dependency>
 		<!-- Provided -->
 		<dependency>
