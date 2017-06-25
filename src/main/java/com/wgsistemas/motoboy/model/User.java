@@ -2,7 +2,6 @@ package com.wgsistemas.motoboy.model;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +16,10 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "user")
 public class User {
-	@Column
 	private Long id;
-	@Column
 	private String username;
-	@Column
 	private String password;
 	private String passwordConfirm;
-	@Column
 	private Set<Role> roles;
 
 	@Id
