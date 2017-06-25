@@ -13,7 +13,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		
-		<title>Create an account</title>
+		<title>..:: Motoboy ::..</title>
 		
 		<!-- Bootstrap Core CSS -->
 	    <!-- Latest compiled and minified CSS -->
@@ -42,12 +42,10 @@
 		<div class="container">
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 				<h2>
-					Welcome ${pageContext.request.userPrincipal.name} | <a
-						onclick="document.forms['logoutForm'].submit()">Logout</a>
+					Bem-vindo ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Sair</a>
 				</h2>
 			</c:if>
 		</div>

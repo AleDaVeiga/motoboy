@@ -48,10 +48,10 @@ public class UsersController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {
-        	model.addAttribute("error", "Your username and password is invalid.");
+        	model.addAttribute("error", "Seu usuário e senha estão invalidos.");
         }
         if (logout != null) {
-        	model.addAttribute("message", "You have been logged out successfully.");
+        	model.addAttribute("message", "Desconectado com sucesso.");
         }
         return "login";
     }

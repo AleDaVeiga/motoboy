@@ -14,7 +14,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		
-		<title>Log in with your account</title>
+		<title>Acessar sua conta</title>
 		
 		<!-- Bootstrap Core CSS -->
 	    <!-- Latest compiled and minified CSS -->
@@ -34,17 +34,16 @@
 	<body>
 		<div class="container">
 			<form method="POST" action="${contextPath}/login" class="form-signin">
-				<h2 class="form-heading">Log in</h2>
+				<h2 class="form-heading">Acessar</h2>
 				<div class="form-group ${error != null ? 'has-error' : ''}">
-					<span>${message}</span> <input name="username" type="text"
-						class="form-control" placeholder="Username" autofocus="true" /> <input
-						name="password" type="password" class="form-control"
-						placeholder="Password" /> <span>${error}</span> <input
-						type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Log
-						In</button>
+					<span>${message}</span>
+					<input name="username" type="text" class="form-control" placeholder="Usuário" autofocus="true" />
+					<input name="password" type="password" class="form-control" placeholder="Senha" />
+					<span>${error}</span>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
 					<h4 class="text-center">
-						<a href="${contextPath}/registration">Create an account</a>
+						<a href="${contextPath}/registration">Criar uma conta</a>
 					</h4>
 				</div>
 			</form>
