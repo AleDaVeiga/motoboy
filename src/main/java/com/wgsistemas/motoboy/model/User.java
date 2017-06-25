@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -27,7 +28,8 @@ public class User {
 	private Set<Role> roles;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "get_user_id", sequenceName = "seq_user_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "get_user_id")
 	public Long getId() {
 		return id;
 	}
