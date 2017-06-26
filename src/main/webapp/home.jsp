@@ -39,16 +39,111 @@
 	    <![endif]-->
 	</head>
 	<body id="page-top">
-		<div class="container">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<form id="logoutForm" method="POST" action="${contextPath}/logout">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				</form>
-				<h2>
-					Bem-vindo ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Sair</a>
-				</h2>
-			</c:if>
-		</div>
+		<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+	        <div class="container-fluid">
+	            <ul class="navbar-header">
+	                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+	                </button>
+	                <c:if test="${pageContext.request.userPrincipal.name != null}">
+		                <a class="navbar-brand page-scroll" href="#page-top">${pageContext.request.userPrincipal.name}</a>
+					</c:if>
+	            </ul>
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	                <ul class="nav navbar-nav navbar-right">
+	                    <li>
+	                        <a class="page-scroll" href="#cadastre">Cadastro</a>
+	                    </li>
+	                    <li>
+	                        <a class="page-scroll" href="#consult">Consulta</a>
+	                    </li>
+	                    <li>
+	                        <a class="page-scroll" href="#report">Relatório</a>
+	                    </li>
+	                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+		                    <li>
+			                	<form id="logoutForm" method="POST" action="${contextPath}/logout">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								</form>
+		                        <a class="page-scroll" onclick="document.forms['logoutForm'].submit()">Sair</a>
+		                    </li>
+	                    </c:if>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+	    <header>
+	        <div class="header-content">
+	            <div class="header-content-inner">
+	                <h1 id="homeHeading">Escrever algo aqui</h1>
+	                <hr>
+	                <p>Complementar com outra frase aqui!</p>
+	                <a href="#cadastre" class="btn btn-primary btn-xl page-scroll">Utilizando o sistema</a>
+	            </div>
+	        </div>
+	    </header>
+	    <section class="bg-primary" id="cadastre">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-8 col-lg-offset-2 text-center">
+	                    <h2 class="section-heading">Frase de impacto para os cadastros</h2>
+	                    <hr class="light">
+	                    <p class="text-faded">Texto demonstrativo dos cadastros</p>
+	                    <a href="#consult" class="page-scroll btn btn-default btn-xl sr-button">Veja o que passou!</a>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    <section id="consult">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <h2 class="section-heading">Lista de corridas</h2>
+	                    <hr class="primary">
+	                </div>
+	            </div>
+	        </div>
+	        <div class="container">
+	            <div class="row">
+	            </div>
+	        </div>
+	    </section>
+	    <section class="no-padding" id="report">
+	        <div class="container-fluid">
+	            <div class="row no-gutter popup-gallery">
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/resources/img/portfolio/fullsize/1.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Relatório
+	                                </div>
+	                                <div class="project-name">
+	                                    Corridas
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/resources/img/portfolio/fullsize/2.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Relatório
+	                                </div>
+	                                <div class="project-name">
+	                                    Pendencias
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
 		
 		<!-- Bootstrap Core JavaScript -->
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
