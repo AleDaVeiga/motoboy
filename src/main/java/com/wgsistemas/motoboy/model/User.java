@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "user")
+@Table(name = "tb_user")
 public class User {
 	private Long id;
 	private String username;
@@ -23,8 +23,8 @@ public class User {
 	private Set<Role> roles;
 
 	@Id
-	@SequenceGenerator(name = "get_user_id", sequenceName = "seq_user_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "get_user_id")
+	@SequenceGenerator(name = "gen_user_id", sequenceName = "seq_user_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_user_id")
 	public Long getId() {
 		return id;
 	}
@@ -59,7 +59,7 @@ public class User {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	public Set<Role> getRoles() {
 		return roles;
 	}

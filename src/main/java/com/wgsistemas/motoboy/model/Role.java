@@ -11,15 +11,15 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "role")
+@Table(name = "tb_role")
 public class Role {
 	private Long id;
 	private String name;
 	private Set<User> users;
 
 	@Id
-	@SequenceGenerator(name = "get_role_id", sequenceName = "seq_role_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "get_role_id")
+	@SequenceGenerator(name = "gen_role_id", sequenceName = "seq_role_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_role_id")
 	public Long getId() {
 		return this.id;
 	}
