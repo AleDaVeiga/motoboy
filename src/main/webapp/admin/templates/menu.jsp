@@ -10,13 +10,13 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-            	<a class="navbar-brand page-scroll" href="${contextPath}/admin/home">${pageContext.request.userPrincipal.name}</a>
+            	<a class="navbar-brand page-scroll" href="#page-top">${pageContext.request.userPrincipal.name}</a>
             </c:if>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${contextPath}/admin/deliveries">Corridas</a></li>
+                <li><a href="#">Corridas</a></li>
                 <li><a href="#">Clientes</a></li>
                 <li><a href="#">Motoboys</a></li>
                 <li><a href="#">Usuários</a></li>

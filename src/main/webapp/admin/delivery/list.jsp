@@ -29,7 +29,7 @@
 	                                    <th style="width: 10px">#</th>
 	                                    <th>Origem</th>
 	                                    <th class="text-right">
-	                                    	<a class="btn btn-success" href="${contextPath}/admin/delivery/">Nova</a>
+	                                    	<a class="btn btn-success">Nova</a>
 	                                    </th>
 	                                </tr>
 	                                </thead>

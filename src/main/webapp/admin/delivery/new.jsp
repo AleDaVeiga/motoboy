@@ -30,7 +30,7 @@
 	                            </div>
                             </spring:bind>
                             <button type="submit" class="btn btn-danger">Salvar</button>
-                            <a href="${contextPath}/admin/deliveries" class="btn btn-default">Listar</a>
+                            <a href="#" class="btn btn-default">Listar</a>
                         </form:form>
                     </div>
                 </div>
