@@ -1,0 +1,41 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Motoboy - Controle das informações</title>
+		<jsp:include page="../templates/header.jsp"/>
+	</head>
+    <body>
+		<jsp:include page="../templates/menu.jsp"/>
+		<div class="container">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Nova corrida
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form:form method="POST" modelAttribute="deliveryForm" class="form-signin" action="/">
+                        	<spring:bind path="delivery_from">
+	                            <div class="form-group">
+	                                <label class="control-label">Origem</label>
+	                                <form:input type="text" path="delivery_from" class="form-control" placeholder="Origem" autofocus="true"></form:input>
+									<form:errors path="delivery_from"></form:errors>
+	                            </div>
+                            </spring:bind>
+                            <button type="submit" class="btn btn-danger">Salvar</button>
+                            <a href="${contextPath}/admin/deliveries" class="btn btn-default">Listar</a>
+                        </form:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+	    <jsp:include page="../templates/footer.jsp"/>
+	</body>
+</html>
