@@ -17,7 +17,7 @@
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <h3 class="panel-title">
-	                        Administração de corridas
+	                        Administração de motoboys
 	                    </h3>
 	                </div>
 	                <div class="panel-body">
@@ -27,23 +27,21 @@
 	                                <thead>
 	                                <tr>
 	                                    <th style="width: 10px">#</th>
-	                                    <th>Origem</th>
-	                                    <th>Destino</th>
+	                                    <th>Nome</th>
 	                                    <th class="text-right">
-	                                    	<a href="${contextPath}/admin/delivery/" class="btn btn-success">
+	                                    	<a href="${contextPath}/admin/deliveryman/" class="btn btn-success">
 	                                    		<span class="glyphicon glyphicon-plus"></span>
 	                                    	</a>
 	                                    </th>
 	                                </tr>
 	                                </thead>
 	                                <tbody>
-	                                	<c:forEach var="delivery" items="${deliveries}" >
+	                                	<c:forEach var="deliveryMan" items="${deliveryMans}" >
 		                                    <tr>
-		                                        <td>${delivery.id}</td>
-		                                        <td>${delivery.delivery_from}</td>
-		                                        <td>${delivery.delivery_to}</td>
+		                                        <td>${deliveryMan.id}</td>
+		                                        <td>${deliveryMan.name}</td>
 		                                        <td class="text-right">
-		                                        	<a href="${contextPath}/admin/delivery/${delivery.id}" class="btn btn-warning">
+		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
 		                                        	<a href="#" class="btn btn-danger">

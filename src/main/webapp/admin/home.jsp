@@ -97,15 +97,19 @@
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+	                        <a href="${contextPath}/admin/customers">
+	                        	<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+	                        </a>
 	                        <h3>Clientes</h3>
 	                        <p class="text-muted">Cadastre quem pode pedir corridas.</p>
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-	                        <h3>Motoboys</h3>
+	                        <a href="${contextPath}/admin/deliverymans">
+	                        	<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+	                        	<h3>Motoboys</h3>
+	                        </a>
 	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corrigas.</p>
 	                    </div>
 	                </div>
