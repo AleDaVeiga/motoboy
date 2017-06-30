@@ -59,6 +59,9 @@
 		                <li>
 		                    <a class="page-scroll" href="#report">Relatório</a>
 		                </li>
+	                    <li>
+	                        <a class="page-scroll" href="#contact">Contato</a>
+	                    </li>
 						<c:if test="${pageContext.request.userPrincipal.name != null}">
 							<li>
 								<form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -81,6 +84,113 @@
 	            </div>
 	        </div>
 	    </header>
+	    <section id="cadastre">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <h2 class="section-heading">Ao seu serviço</h2>
+	                    <hr class="primary">
+	                </div>
+	            </div>
+	        </div>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+	                        <h3>Clientes</h3>
+	                        <p class="text-muted">Cadastre quem pode pedir corridas.</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+	                        <h3>Motoboys</h3>
+	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corrigas.</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                		<a href="${contextPath}/admin/deliveries">
+	                        	<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+							</a>
+	                        <h3>Corridas</h3>
+	                        <p class="text-muted">Cadastre o que será entregue.</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    <section class="no-padding" id="consult">
+	        <div class="container-fluid">
+	            <div class="row no-gutter popup-gallery">
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/resources/img/portfolio/fullsize/1.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Clientes
+	                                </div>
+	                                <div class="project-name">
+	                                    Consultar clientes
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/resources/img/portfolio/fullsize/2.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Motoboys
+	                                </div>
+	                                <div class="project-name">
+	                                    Consultar motoboys
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/resources/img/portfolio/fullsize/3.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Corridas
+	                                </div>
+	                                <div class="project-name">
+	                                    Consultar corridas
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    <section id="contact">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-8 col-lg-offset-2 text-center">
+	                    <h2 class="section-heading">Vamos entrar em contato</h2>
+	                    <hr class="primary">
+	                    <p>Pronto para iniciar uma entrega conosco? Muito bem! Dê-nos um telefonema ou envie um e-mail que nós daremos um retorno assim que possível!</p>
+	                </div>
+	                <div class="col-lg-4 col-lg-offset-2 text-center">
+	                    <i class="fa fa-phone fa-3x sr-contact"></i>
+	                    <p>(48) 99999-9999</p>
+	                </div>
+	                <div class="col-lg-4 text-center">
+	                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+	                    <p><a href="mailto:contato@motoboys.com">contato@motoboys.com</a></p>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
 	    <!-- Bootstrap Core JavaScript -->
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
