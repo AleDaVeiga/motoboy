@@ -17,14 +17,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            Nova corrida
+                            Editar cliente
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <form:form method="POST" modelAttribute="deliveryForm" class="form-signin" action="${contextPath}/admin/delivery/">
+                        <form:form method="PUT" modelAttribute="customerForm" class="form-signin" action="${contextPath}/admin/customer/${customerForm.id}">
                         	<jsp:include page="_form.jsp"/>
-                            <button type="submit" class="btn btn-danger">Salvar</button>
-                            <a href="#" class="btn btn-default">Listar</a>
+                            <button type="submit" class="btn btn-danger">Atualizar</button>
+                            <a href="${contextPath}/admin/customers" class="btn btn-default">Listar</a>
                         </form:form>
                     </div>
                 </div>

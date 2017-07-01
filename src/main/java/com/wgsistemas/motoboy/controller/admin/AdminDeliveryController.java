@@ -1,5 +1,7 @@
 package com.wgsistemas.motoboy.controller.admin;
 
+import java.util.ArrayList;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wgsistemas.motoboy.model.Delivery;
+import com.wgsistemas.motoboy.model.DeliveryMan;
 import com.wgsistemas.motoboy.service.DeliveryService;
 
 @Controller
@@ -23,6 +26,7 @@ public class AdminDeliveryController {
 	@RequestMapping(value = "/delivery/", method = RequestMethod.GET)
 	public String create(Model model) {
 		model.addAttribute("deliveryForm", new Delivery());
+		model.addAttribute("deliveryManList", new ArrayList<DeliveryMan>());
 		return "admin/delivery/new";
 	}
 	
@@ -30,7 +34,7 @@ public class AdminDeliveryController {
 	@Transactional
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model) {
 		deliveryService.create(deliveryForm);		
-		return "redirect:/admin/home";
+		return "redirect:/admin/deliveries";
 	}
 	
 	@RequestMapping(path = "/delivery/{id}", method = RequestMethod.GET)
@@ -44,7 +48,7 @@ public class AdminDeliveryController {
 	@Transactional
 	public String update(@PathVariable Integer id, @ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model) {
 		deliveryService.update(deliveryForm);			
-		return "redirect:/admin/home";
+		return "redirect:/admin/deliveries";
 	}
 	
 	@RequestMapping(path = "/delivery/{id}", method = RequestMethod.DELETE)
@@ -52,14 +56,14 @@ public class AdminDeliveryController {
 	public String remove(@PathVariable Long id) {
 		Delivery delivery = deliveryService.findOne(id);		
 		deliveryService.remove(delivery);		
-		return "redirect:/admin/home";
+		return "redirect:/admin/deliveries";
 	}
 
 	@RequestMapping(path = "/deliveries", method = RequestMethod.GET)
 	@Transactional
 	public String findAll(Model model) {
-		Iterable<Delivery> deliverys = deliveryService.findAll();		
-		model.addAttribute("deliverys", deliverys);		
+		Iterable<Delivery> deliveries = deliveryService.findAll();		
+		model.addAttribute("deliveries", deliveries);		
 		return "admin/delivery/list";
 	}
 }
