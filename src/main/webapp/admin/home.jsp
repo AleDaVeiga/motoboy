@@ -176,6 +176,47 @@
 	            </div>
 	        </div>
 	    </section>
+	    <section id="report">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <h2 class="section-heading">Histórico de serviços</h2>
+	                    <hr class="primary">
+	                </div>
+	            </div>
+	        </div>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                        <a href="${contextPath}/admin/report/customers" target="_blank">
+	                        	<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+	                        </a>
+	                        <h3>Clientes</h3>
+	                        <p class="text-muted">Veja quem pediu corridas.</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                        <a href="${contextPath}/admin/report/deliverymans" target="_blank">
+	                        	<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+	                        </a>
+                        	<h3>Motoboys</h3>
+	                        <p class="text-muted">Veja as pessoas que realizaram corridas.</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                		<a href="${contextPath}/admin/report/deliveries" target="_blank">
+	                        	<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+							</a>
+	                        <h3>Corridas</h3>
+	                        <p class="text-muted">Veja o que já foi entregue.</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
 	    <section id="contact">
 	        <div class="container">
 	            <div class="row">

@@ -46,7 +46,7 @@
 		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
-		                                        	<a href="#" class="btn btn-danger">
+		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-danger">
 		                                        		<span class="glyphicon glyphicon-remove"></span>
 		                                        	</a>
 		                                        </td>
