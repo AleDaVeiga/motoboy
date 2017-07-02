@@ -9,7 +9,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <c:if test="${pageContext.request.userPrincipal.name != null}"s>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
             	<a class="navbar-brand page-scroll" href="#page-top">${pageContext.request.userPrincipal.name}</a>
             </c:if>
         </div>
