@@ -3,24 +3,20 @@ package com.wgsistemas.motoboy.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
 
 @Service
-public class DeliveryServiceImpl implements DeliveryService {
+public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> implements DeliveryService {
 	@Autowired
 	private DeliveryRepository deliveryRepository;
 
-	@Transactional
-	public Delivery create(Delivery delivery) {
-		return deliveryRepository.save(delivery);
-	}
-
-	@Transactional
-	public Delivery update(Delivery delivery) {
-		return deliveryRepository.save(delivery);
+	@Override
+	protected JpaRepository<Delivery, Long> getRepository() {
+		return deliveryRepository;
 	}
 
 	@Transactional

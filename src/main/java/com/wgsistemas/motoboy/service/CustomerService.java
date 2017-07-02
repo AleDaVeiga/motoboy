@@ -3,11 +3,11 @@ package com.wgsistemas.motoboy.service;
 import com.wgsistemas.motoboy.model.Customer;
 
 public interface CustomerService {
-	Customer create(Customer deliveryMan);
+	Customer create(Customer customer, String username);
 
-	Customer update(Customer deliveryMan);
+	Customer update(Customer customer, String username);
 
-	void remove(Customer deliveryMan);
+	void remove(Customer customer);
 
 	Customer findOne(Long id);
 

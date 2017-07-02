@@ -40,8 +40,8 @@
 	                                	<c:forEach var="delivery" items="${deliveries}" >
 		                                    <tr>
 		                                        <td>${delivery.id}</td>
-		                                        <td>${delivery.delivery_from}</td>
-		                                        <td>${delivery.delivery_to}</td>
+		                                        <td>${delivery.deliveryFrom}</td>
+		                                        <td>${delivery.deliveryTo}</td>
 		                                        <td class="text-right">
 		                                        	<a href="${contextPath}/admin/delivery/${delivery.id}" class="btn btn-warning">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>

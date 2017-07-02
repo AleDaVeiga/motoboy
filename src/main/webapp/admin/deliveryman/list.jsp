@@ -28,6 +28,7 @@
 	                                <tr>
 	                                    <th style="width: 10px">#</th>
 	                                    <th>Nome</th>
+	                                    <th>Telefone</th>
 	                                    <th class="text-right">
 	                                    	<a href="${contextPath}/admin/deliveryman/" class="btn btn-success">
 	                                    		<span class="glyphicon glyphicon-plus"></span>
@@ -39,7 +40,8 @@
 	                                	<c:forEach var="deliveryMan" items="${deliveryMans}" >
 		                                    <tr>
 		                                        <td>${deliveryMan.id}</td>
-		                                        <td>${deliveryMan.name}</td>
+		                                        <td>${deliveryMan.fullName}</td>
+		                                        <td>${deliveryMan.phones}</td>
 		                                        <td class="text-right">
 		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>

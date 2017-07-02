@@ -1,41 +1,27 @@
 package com.wgsistemas.motoboy.model;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_delivery_man")
-public class DeliveryMan {
-	private Long id;
-	private String name;
+public class DeliveryMan extends BaseEntity {
+	private String fullName;
 	private String document;
 	private String note;
-	private Date created_at;
-	private Date updated_at;
+	private String phones;
+	private User owner;
 
-	@Id
-	@SequenceGenerator(name = "gen_delivery_man_id", sequenceName = "seq_delivery_man_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_delivery_man_id")
-	public Long getId() {
-		return id;
+	@Column(name="full_name", nullable = false, length = 250)
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getDocument() {
@@ -54,19 +40,21 @@ public class DeliveryMan {
 		this.note = note;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public String getPhones() {
+		return phones;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setPhones(String phones) {
+		this.phones = phones;
 	}
 
-	public Date getUpdated_at() {
-		return updated_at;
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+	public User getOwner() {
+		return owner;
 	}
 
-	public void setUpdated_at(Date updated_at) {
-		this.updated_at = updated_at;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 }

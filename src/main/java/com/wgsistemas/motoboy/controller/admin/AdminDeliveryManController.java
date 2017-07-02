@@ -3,6 +3,7 @@ package com.wgsistemas.motoboy.controller.admin;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +30,7 @@ public class AdminDeliveryManController {
 	@RequestMapping(path = "/deliveryman/", method = RequestMethod.POST)
 	@Transactional
 	public String create(@ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
-		deliveryManService.create(deliveryManForm);		
+		deliveryManService.create(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());		
 		return "redirect:/admin/deliverymans";
 	}
 	
@@ -43,7 +44,7 @@ public class AdminDeliveryManController {
 	@RequestMapping(path = "/deliveryman/{id}", method = RequestMethod.PUT)
 	@Transactional
 	public String update(@PathVariable Integer id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
-		deliveryManService.update(deliveryManForm);			
+		deliveryManService.update(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());			
 		return "redirect:/admin/deliverymans";
 	}
 	

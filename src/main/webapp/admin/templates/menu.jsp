@@ -16,7 +16,7 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Corridas</a></li>
+                <li><a href="${contextPath}/admin/deliveries">Corridas</a></li>
                 <li><a href="${contextPath}/admin/customers">Clientes</a></li>
                 <li><a href="${contextPath}/admin/deliverymans">Motoboys</a></li>
                 <li><a href="#">Usuários</a></li>

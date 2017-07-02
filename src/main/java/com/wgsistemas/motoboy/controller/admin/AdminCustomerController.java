@@ -3,6 +3,7 @@ package com.wgsistemas.motoboy.controller.admin;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +30,7 @@ public class AdminCustomerController {
 	@RequestMapping(path = "/customer/", method = RequestMethod.POST)
 	@Transactional
 	public String create(@ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
-		customerService.create(customerForm);		
+		customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());		
 		return "redirect:/admin/customers";
 	}
 	
@@ -43,7 +44,7 @@ public class AdminCustomerController {
 	@RequestMapping(path = "/customer/{id}", method = RequestMethod.PUT)
 	@Transactional
 	public String update(@PathVariable Integer id, @ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
-		customerService.update(customerForm);			
+		customerService.update(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());			
 		return "redirect:/admin/customers";
 	}
 	

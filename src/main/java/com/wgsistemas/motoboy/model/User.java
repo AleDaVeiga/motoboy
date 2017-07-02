@@ -2,6 +2,7 @@ package com.wgsistemas.motoboy.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,8 +23,8 @@ public class User {
 	private Set<Role> roles;
 
 	@Id
-	@SequenceGenerator(name = "gen_user_id", sequenceName = "seq_user_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_user_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
 	public Long getId() {
 		return id;
 	}

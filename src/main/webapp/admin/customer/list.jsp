@@ -40,8 +40,8 @@
 	                                	<c:forEach var="customer" items="${customers}" >
 		                                    <tr>
 		                                        <td>${customer.id}</td>
-		                                        <td>${customer.name}</td>
-		                                        <td>${customer.phone}</td>
+		                                        <td>${customer.fullName}</td>
+		                                        <td>${customer.phones}</td>
 		                                        <td class="text-right">
 		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>

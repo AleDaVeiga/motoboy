@@ -1,21 +1,17 @@
 package com.wgsistemas.motoboy.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_role")
-public class Role {
+@Table(name = "tb_payment_method")
+public class PaymentMethod {
 	private Long id;
-	private String name;
-	private Set<User> users;
+	private String description;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,20 +24,11 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@ManyToMany(mappedBy = "roles")
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -108,8 +108,8 @@
 	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/deliverymans">
 	                        	<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-	                        	<h3>Motoboys</h3>
 	                        </a>
+                        	<h3>Motoboys</h3>
 	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corrigas.</p>
 	                    </div>
 	                </div>
