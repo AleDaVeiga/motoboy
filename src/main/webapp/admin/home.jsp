@@ -44,9 +44,7 @@
 		            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 		                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
 		            </button>
-					<c:if test="${pageContext.request.userPrincipal.name != null}">
-						<a class="navbar-brand page-scroll" href="#page-top">${pageContext.request.userPrincipal.name}</a>
-					</c:if>
+					<a class="navbar-brand page-scroll" href="#page-top">Pratiko</a>
 		        </ul>
 		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		            <ul class="nav navbar-nav navbar-right">
@@ -77,9 +75,8 @@
 		<header>
 	        <div class="header-content">
 	            <div class="header-content-inner">
-	                <h1 id="homeHeading">Escrever algo aqui</h1>
+	                <h1 id="homeHeading">Bem vindo ao Pratiko</h1>
 	                <hr>
-	                <p>Complementar com outra frase aqui!</p>
 	                <a href="#cadastre" class="btn btn-primary btn-xl page-scroll">Utilizando o sistema</a>
 	            </div>
 	        </div>
@@ -88,7 +85,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-12 text-center">
-	                    <h2 class="section-heading">Ao seu serviço</h2>
+	                    <h2 class="section-heading">Cadastros</h2>
 	                    <hr class="primary">
 	                </div>
 	            </div>
@@ -98,7 +95,7 @@
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/customers">
-	                        	<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+	                        	<i class="fa fa-4x fa-user text-primary sr-icons"></i>
 	                        </a>
 	                        <h3>Clientes</h3>
 	                        <p class="text-muted">Cadastre quem pode pedir corridas.</p>
@@ -107,7 +104,7 @@
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/deliverymans">
-	                        	<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+	                        	<i class="fa fa-4x fa-motorcycle text-primary sr-icons"></i>
 	                        </a>
                         	<h3>Motoboys</h3>
 	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corrigas.</p>
@@ -116,7 +113,7 @@
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                		<a href="${contextPath}/admin/deliveries">
-	                        	<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+	                        	<i class="fa fa-4x fa-list-ol text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>
 	                        <p class="text-muted">Cadastre o que será entregue.</p>
@@ -180,7 +177,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-12 text-center">
-	                    <h2 class="section-heading">Histórico de serviços</h2>
+	                    <h2 class="section-heading">Relatórios</h2>
 	                    <hr class="primary">
 	                </div>
 	            </div>
@@ -190,7 +187,7 @@
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/report/customers" target="_blank">
-	                        	<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+	                        	<i class="fa fa-4x fa-file-pdf-o text-primary sr-icons"></i>
 	                        </a>
 	                        <h3>Clientes</h3>
 	                        <p class="text-muted">Veja quem pediu corridas.</p>
@@ -199,7 +196,7 @@
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/report/deliverymans" target="_blank">
-	                        	<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+	                        	<i class="fa fa-4x fa-file-o text-primary sr-icons"></i>
 	                        </a>
                         	<h3>Motoboys</h3>
 	                        <p class="text-muted">Veja as pessoas que realizaram corridas.</p>
@@ -208,7 +205,7 @@
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                		<a href="${contextPath}/admin/report/deliveries" target="_blank">
-	                        	<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+	                        	<i class="fa fa-4x fa-file-text text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>
 	                        <p class="text-muted">Veja o que já foi entregue.</p>
@@ -227,11 +224,11 @@
 	                </div>
 	                <div class="col-lg-4 col-lg-offset-2 text-center">
 	                    <i class="fa fa-phone fa-3x sr-contact"></i>
-	                    <p>(48) 99999-9999</p>
+	                    <p>48 99999 9999</p>
 	                </div>
 	                <div class="col-lg-4 text-center">
 	                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-	                    <p><a href="mailto:contato@motoboys.com">contato@motoboys.com</a></p>
+	                    <p><a href="mailto:contato@pratiko.com">contato@pratiko.com</a></p>
 	                </div>
 	            </div>
 	        </div>

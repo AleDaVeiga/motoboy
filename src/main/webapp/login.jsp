@@ -41,7 +41,7 @@
 					<input name="password" type="password" class="form-control" placeholder="Senha" />
 					<span>${error}</span>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+					<button class="btn btn-lg btn-danger btn-block" type="submit">Acessar</button>
 					<h4 class="text-center">
 						<a href="${contextPath}/registration">Criar uma conta</a>
 					</h4>

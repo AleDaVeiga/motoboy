@@ -53,7 +53,7 @@
 						<form:errors path="passwordConfirm"></form:errors>
 					</div>
 				</spring:bind>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Criar</button>
+				<button class="btn btn-lg btn-danger btn-block" type="submit">Criar</button>
 			</form:form>
 		</div>
 		<!-- Bootstrap Core JavaScript -->
