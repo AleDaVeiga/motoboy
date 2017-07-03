@@ -12,4 +12,8 @@ public interface DeliveryService {
 	Delivery findOne(Long id);
 
 	Iterable<Delivery> findAll();
+
+	Iterable<Delivery> findAllOrderByCustomer_FullNameAsc();
+
+	Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc();
 }

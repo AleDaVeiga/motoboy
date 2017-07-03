@@ -29,7 +29,7 @@ public class AdminReportCustomerController {
 		view.setApplicationContext(applicationContext);
 
 		Map<String, Object> params = new HashMap<>();
-		params.put("datasource", deliveryService.findAll());
+		params.put("datasource", deliveryService.findAllOrderByCustomer_FullNameAsc());
 		params.put("format", "pdf");
 
 		return new ModelAndView(view, params);
