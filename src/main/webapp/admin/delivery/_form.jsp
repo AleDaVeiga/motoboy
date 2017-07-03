@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <spring:bind path="customer">
 	<div class="form-group">
 		<label class="control-label">Cliente</label>
@@ -58,3 +59,14 @@
 		<form:errors path="deliveryAt"></form:errors>
 	</div>
 </spring:bind>
+<div class="text-right">
+	<a href="${contextPath}/admin/" class="btn btn-default">
+		<span class="glyphicon glyphicon-home"></span>
+	</a>
+	<a href="${contextPath}/admin/deliveries" class="btn btn-default">
+		<span class="glyphicon glyphicon-th-list"></span>
+	</a>
+	<button type="submit" class="btn btn-success">
+		<span class="glyphicon glyphicon-floppy-disk"></span>
+	</button>
+</div>

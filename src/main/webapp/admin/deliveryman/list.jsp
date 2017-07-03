@@ -23,10 +23,9 @@
 	                <div class="panel-body">
 	                    <div class="row">
 	                        <div class="col-md-12">
-	                            <table class="table table-striped">
+	                            <table class="table table-condensed table-striped">
 	                                <thead>
 	                                <tr>
-	                                    <th style="width: 10px">#</th>
 	                                    <th>Nome</th>
 	                                    <th>Telefone</th>
 	                                    <th class="text-right">
@@ -39,7 +38,6 @@
 	                                <tbody>
 	                                	<c:forEach var="deliveryMan" items="${deliveryMans}" >
 		                                    <tr>
-		                                        <td>${deliveryMan.id}</td>
 		                                        <td>${deliveryMan.fullName}</td>
 		                                        <td>${deliveryMan.phones}</td>
 		                                        <td class="text-right">

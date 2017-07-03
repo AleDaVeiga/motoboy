@@ -23,8 +23,6 @@
                     <div class="panel-body">
                         <form:form method="PUT" modelAttribute="customerForm" class="form-signin" action="${contextPath}/admin/customer/${customerForm.id}">
                         	<jsp:include page="_form.jsp"/>
-                            <button type="submit" class="btn btn-danger">Atualizar</button>
-                            <a href="${contextPath}/admin/customers" class="btn btn-default">Listar</a>
                         </form:form>
                     </div>
                 </div>

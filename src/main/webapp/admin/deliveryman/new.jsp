@@ -23,8 +23,6 @@
                     <div class="panel-body">
                         <form:form method="POST" modelAttribute="deliveryManForm" class="form-signin" action="${contextPath}/admin/deliveryman/">
                         	<jsp:include page="_form.jsp"/>
-                            <button type="submit" class="btn btn-danger">Salvar</button>
-                            <a href="${contextPath}/admin/deliverymans" class="btn btn-default">Listar</a>
                         </form:form>
                     </div>
                 </div>

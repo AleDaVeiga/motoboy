@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <ul class="nav nav-tabs">
 	<li class="active">
 		<a href="#customerFormInfo" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Informações</a>
@@ -100,4 +101,15 @@
 			</div>
 		</spring:bind>
 	</div>
+</div>
+<div class="text-right">
+	<a href="${contextPath}/admin/" class="btn btn-default">
+		<span class="glyphicon glyphicon-home"></span>
+	</a>
+	<a href="${contextPath}/admin/customers" class="btn btn-default">
+		<span class="glyphicon glyphicon-th-list"></span>
+	</a>
+	<button type="submit" class="btn btn-success">
+		<span class="glyphicon glyphicon-floppy-disk"></span>
+	</button>
 </div>
