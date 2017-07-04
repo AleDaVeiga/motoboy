@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.service.CustomerService;
@@ -58,9 +59,9 @@ public class AdminCustomerController {
 
 	@RequestMapping(path = "/customers", method = RequestMethod.GET)
 	@Transactional
-	public String findAll(Model model) {
-		Iterable<Customer> customers = customerService.findAll();		
-		model.addAttribute("customers", customers);		
+	public String findAll(@RequestParam(value = "search", required = false) String search, Model model) {
+		Iterable<Customer> customers = customerService.findAll(search);
+		model.addAttribute("customers", customers);
 		return "admin/customer/list";
 	}
 }

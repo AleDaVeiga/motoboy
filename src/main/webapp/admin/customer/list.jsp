@@ -22,6 +22,18 @@
 	                </div>
 	                <div class="panel-body">
 	                    <div class="row">
+		                	<form id="customerSearchForm" method="GET" action="${contextPath}/admin/customers">
+			                	<div class="form-group">
+			                		<div class="input-group input-sm">
+			                			<input class="form-control input-md" type="text" placeholder="Buscar por nome do cliente..." name="search" value="${param.search}">
+			                			<a class="input-group-addon" onclick="document.forms['customerSearchForm'].submit()">
+			                				<span class="glyphicon glyphicon-search"></span>
+			                			</a>
+			                		</div>
+			                	</div>
+		                	</form>
+	                	</div>
+	                    <div class="row">
 	                        <div class="col-md-12">
 	                            <table class="table table-condensed table-striped">
 	                                <thead>

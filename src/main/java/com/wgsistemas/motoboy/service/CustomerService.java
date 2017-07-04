@@ -10,6 +10,8 @@ public interface CustomerService {
 	void remove(Customer customer);
 
 	Customer findOne(Long id);
-
+	
 	Iterable<Customer> findAll();
+
+	Iterable<Customer> findAll(String search);
 }

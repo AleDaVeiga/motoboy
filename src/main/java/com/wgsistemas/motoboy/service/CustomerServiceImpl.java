@@ -28,9 +28,17 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	public Customer findOne(Long id) {
 		return customerRepository.findOne(id);
 	}
-
+	
 	@Transactional
 	public Iterable<Customer> findAll() {
 		return customerRepository.findAll();
+	}
+
+	@Transactional
+	public Iterable<Customer> findAll(String search) {
+		if (search == null || search.trim().isEmpty()) {
+			return findAll();
+		}
+		return customerRepository.findByFullNameContainingIgnoreCase(search);
 	}
 }
