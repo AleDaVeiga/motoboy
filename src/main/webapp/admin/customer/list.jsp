@@ -56,9 +56,11 @@
 		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
-		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-danger">
-		                                        		<span class="glyphicon glyphicon-remove"></span>
-		                                        	</a>
+		                                        	<form:form method="DELETE" action="${contextPath}/admin/customer/${customer.id}" style="display:inline">
+		                                        		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir cliente" data-message="Deseja realmente excluir este cliente?">
+		                                        			<span class="glyphicon glyphicon-trash"></span>
+		                                        		</button>
+		                                        	</form:form>
 		                                        </td>
 		                                    </tr>
 	                                	</c:forEach>
@@ -71,5 +73,8 @@
 	        </div>
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
+	    <jsp:include page="../templates/confirm_remove.jsp"/>
+	    <!-- Custom JS - (Remove) -->
+	    <script src="${contextPath}/resources/js/remove.js"></script>
 	</body>
 </html>
