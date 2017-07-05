@@ -126,8 +126,8 @@
 	        <div class="container-fluid">
 	            <div class="row no-gutter popup-gallery">
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/fullsize/1.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+	                    <a href="${contextPath}/resources/img/portfolio/customer.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/customer.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
 	                                <div class="project-category text-faded">
@@ -141,8 +141,8 @@
 	                    </a>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/fullsize/2.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+	                    <a href="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
 	                                <div class="project-category text-faded">
@@ -156,8 +156,8 @@
 	                    </a>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/fullsize/3.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+	                    <a href="${contextPath}/resources/img/portfolio/delivery.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
 	                                <div class="project-category text-faded">
@@ -224,7 +224,7 @@
 	                </div>
 	                <div class="col-lg-4 col-lg-offset-2 text-center">
 	                    <i class="fa fa-phone fa-3x sr-contact"></i>
-	                    <p>48 99999 9999</p>
+	                    <p>48 98411 6516</p>
 	                </div>
 	                <div class="col-lg-4 text-center">
 	                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>

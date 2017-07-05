@@ -52,9 +52,6 @@
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav navbar-right">
 	                    <li>
-	                        <a class="page-scroll" href="#cadastre">Cadastro</a>
-	                    </li>
-	                    <li>
 	                        <a class="page-scroll" href="#consult">Consulta</a>
 	                    </li>
 	                    <li>
@@ -75,25 +72,13 @@
 	    <header>
 	        <div class="header-content">
 	            <div class="header-content-inner">
-	                <h1 id="homeHeading">Escrever algo aqui</h1>
+	                <h1 id="homeHeading">Bem vindo ao Pratiko</h1>
 	                <hr>
-	                <p>Complementar com outra frase aqui!</p>
-	                <a href="#cadastre" class="btn btn-primary btn-xl page-scroll">Utilizando o sistema</a>
+	                <p>Área do cliente</p>
+	                <a href="#cadastre" class="btn btn-success btn-xl page-scroll">Utilizando o sistema</a>
 	            </div>
 	        </div>
 	    </header>
-	    <section class="bg-primary" id="cadastre">
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-lg-8 col-lg-offset-2 text-center">
-	                    <h2 class="section-heading">Frase de impacto para os cadastros</h2>
-	                    <hr class="light">
-	                    <p class="text-faded">Texto demonstrativo dos cadastros</p>
-	                    <a href="#consult" class="page-scroll btn btn-default btn-xl sr-button">Veja o que passou!</a>
-	                </div>
-	            </div>
-	        </div>
-	    </section>
 	    <section id="consult">
 	        <div class="container">
 	            <div class="row">
@@ -108,34 +93,49 @@
 	            </div>
 	        </div>
 	    </section>
-	    <section class="no-padding" id="report">
+	    <section class="no-padding" id="consult">
 	        <div class="container-fluid">
 	            <div class="row no-gutter popup-gallery">
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/fullsize/1.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+	                    <a href="${contextPath}/resources/img/portfolio/customer.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/customer.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
 	                                <div class="project-category text-faded">
-	                                    Relatório
+	                                    Clientes
 	                                </div>
 	                                <div class="project-name">
-	                                    Corridas
+	                                    Consultar clientes
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </a>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/fullsize/2.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+	                    <a href="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
 	                                <div class="project-category text-faded">
-	                                    Relatório
+	                                    Motoboys
 	                                </div>
 	                                <div class="project-name">
-	                                    Pendencias
+	                                    Consultar motoboys
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/resources/img/portfolio/delivery.jpg" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Corridas
+	                                </div>
+	                                <div class="project-name">
+	                                    Consultar corridas
 	                                </div>
 	                            </div>
 	                        </div>
