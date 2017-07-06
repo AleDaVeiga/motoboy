@@ -29,7 +29,7 @@
 	                                    <th>Nome</th>
 	                                    <th>Telefone</th>
 	                                    <th class="text-right">
-	                                    	<a href="${contextPath}/admin/deliveryman/" class="btn btn-success">
+	                                    	<a href="${contextPath}/admin/deliveryman/" class="btn btn-success btn-sm">
 	                                    		<span class="glyphicon glyphicon-plus"></span>
 	                                    	</a>
 	                                    </th>
@@ -41,12 +41,14 @@
 		                                        <td>${deliveryMan.fullName}</td>
 		                                        <td>${deliveryMan.phones}</td>
 		                                        <td class="text-right">
-		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning">
+		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
-		                                        	<a href="#" class="btn btn-danger">
-		                                        		<span class="glyphicon glyphicon-remove"></span>
-		                                        	</a>
+		                                        	<form:form method="DELETE" action="${contextPath}/admin/deliveryman/${deliveryMan.id}" style="display:inline">
+		                                        		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir motoboy" data-message="Deseja realmente excluir este motoboy">
+		                                        			<span class="glyphicon glyphicon-trash"></span>
+		                                        		</button>
+		                                        	</form:form>
 		                                        </td>
 		                                    </tr>
 	                                	</c:forEach>
@@ -59,5 +61,6 @@
 	        </div>
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
+	    <jsp:include page="../templates/confirm_remove.jsp"/>
 	</body>
 </html>

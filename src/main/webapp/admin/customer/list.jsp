@@ -41,7 +41,7 @@
 	                                    <th>Nome</th>
 	                                    <th>Telefone</th>
 	                                    <th class="text-right">
-	                                    	<a href="${contextPath}/admin/customer/" class="btn btn-success">
+	                                    	<a href="${contextPath}/admin/customer/" class="btn btn-success btn-sm">
 	                                    		<span class="glyphicon glyphicon-plus"></span>
 	                                    	</a>
 	                                    </th>
@@ -53,11 +53,11 @@
 		                                        <td>${customer.fullName}</td>
 		                                        <td>${customer.phones}</td>
 		                                        <td class="text-right">
-		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning">
+		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
 		                                        	<form:form method="DELETE" action="${contextPath}/admin/customer/${customer.id}" style="display:inline">
-		                                        		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir cliente" data-message="Deseja realmente excluir este cliente?">
+		                                        		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir cliente" data-message="Deseja realmente excluir este cliente?">
 		                                        			<span class="glyphicon glyphicon-trash"></span>
 		                                        		</button>
 		                                        	</form:form>
@@ -74,7 +74,5 @@
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
 	    <jsp:include page="../templates/confirm_remove.jsp"/>
-	    <!-- Custom JS - (Remove) -->
-	    <script src="${contextPath}/resources/js/remove.js"></script>
 	</body>
 </html>
