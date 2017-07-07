@@ -31,8 +31,8 @@ public class AdminCustomerController {
 	@RequestMapping(path = "/customer/", method = RequestMethod.POST)
 	@Transactional
 	public String create(@ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
-		customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());		
-		return "redirect:/admin/customers";
+		Customer customer = customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		return "redirect:/admin/customer/" + customer.getId();
 	}
 	
 	@RequestMapping(path = "/customer/{id}", method = RequestMethod.GET)
@@ -46,7 +46,7 @@ public class AdminCustomerController {
 	@Transactional
 	public String update(@PathVariable Integer id, @ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
 		customerService.update(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());			
-		return "redirect:/admin/customers";
+		return "redirect:/admin/customer/" + id;
 	}
 	
 	@RequestMapping(path = "/customer/{id}", method = RequestMethod.DELETE)

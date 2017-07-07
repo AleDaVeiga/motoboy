@@ -30,8 +30,8 @@ public class AdminDeliveryManController {
 	@RequestMapping(path = "/deliveryman/", method = RequestMethod.POST)
 	@Transactional
 	public String create(@ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
-		deliveryManService.create(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());		
-		return "redirect:/admin/deliverymans";
+		DeliveryMan deliveryMan = deliveryManService.create(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		return "redirect:/admin/deliveryman/" + deliveryMan.getId();
 	}
 	
 	@RequestMapping(path = "/deliveryman/{id}", method = RequestMethod.GET)
@@ -45,7 +45,7 @@ public class AdminDeliveryManController {
 	@Transactional
 	public String update(@PathVariable Integer id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
 		deliveryManService.update(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());			
-		return "redirect:/admin/deliverymans";
+		return "redirect:/admin/deliveryman/" + id;
 	}
 	
 	@RequestMapping(path = "/deliveryman/{id}", method = RequestMethod.DELETE)

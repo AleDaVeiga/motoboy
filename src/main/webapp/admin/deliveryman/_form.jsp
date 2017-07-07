@@ -32,7 +32,7 @@
 	</div>
 </spring:bind>
 <div class="text-right">
-	<a href="${contextPath}/admin/" class="btn btn-default">
+	<a href="${contextPath}/admin/#cadastre" class="btn btn-default">
 		<span class="glyphicon glyphicon-home"></span>
 	</a>
 	<a href="${contextPath}/admin/deliverymans" class="btn btn-default">
