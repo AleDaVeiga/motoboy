@@ -1,5 +1,8 @@
 package com.wgsistemas.motoboy.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryService {
@@ -11,7 +14,10 @@ public interface DeliveryService {
 
 	Delivery findOne(Long id);
 
+	@Deprecated
 	Iterable<Delivery> findAll();
+
+	Page<Delivery> findAll(Pageable pageable);
 
 	Iterable<Delivery> findAllOrderByCustomer_FullNameAsc();
 

@@ -1,10 +1,11 @@
 package com.wgsistemas.motoboy.controller.admin;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.service.CustomerService;
 import com.wgsistemas.motoboy.service.DeliveryManService;
@@ -67,10 +69,10 @@ public class AdminDeliveryController {
 	}
 
 	@RequestMapping(path = "/deliveries", method = RequestMethod.GET)
-	@Transactional
-	public String findAll(Model model) {
-		Iterable<Delivery> deliveries = deliveryService.findAll();		
-		model.addAttribute("deliveries", deliveries);		
+	@Transactional(readOnly=true)
+	public String findAll(@PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
+		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findAll(pageable));
+		model.addAttribute("page", page);	
 		return "admin/delivery/list";
 	}
 }

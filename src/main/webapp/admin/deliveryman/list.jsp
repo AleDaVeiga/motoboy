@@ -39,7 +39,7 @@
 	                                </tr>
 	                                </thead>
 	                                <tbody>
-	                                	<c:forEach var="deliveryMan" items="${deliveryMans}" >
+	                                	<c:forEach var="deliveryMan" items="${page.content}" >
 		                                    <tr>
 		                                        <td>${deliveryMan.fullName}</td>
 		                                        <td>${deliveryMan.phones}</td>
@@ -59,6 +59,9 @@
 	                            </table>
 	                        </div>
 	                    </div>
+						<jsp:include page="../templates/pagination.jsp">
+							<jsp:param name="paginationUrl" value="${contextPath}/admin/deliverymans?"/>
+						</jsp:include>
 	                </div>
 	            </div>
 	        </div>

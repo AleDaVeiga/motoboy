@@ -1,10 +1,11 @@
 package com.wgsistemas.motoboy.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.repository.CustomerRepository;
@@ -24,21 +25,21 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 		customerRepository.delete(deliveryMan);
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Customer findOne(Long id) {
 		return customerRepository.findOne(id);
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Iterable<Customer> findAll() {
 		return customerRepository.findAll();
 	}
 
-	@Transactional
-	public Iterable<Customer> findAll(String search) {
+	@Transactional(readOnly=true)
+	public Page<Customer> findAllByPage(String search, Pageable pageable) {
 		if (search == null || search.trim().isEmpty()) {
-			return findAll();
+			return customerRepository.findAll(pageable);
 		}
-		return customerRepository.findByFullNameContainingIgnoreCase(search);
+		return customerRepository.findByFullNameContainingIgnoreCase(search, pageable);
 	}
 }

@@ -35,42 +35,45 @@
 	                	</div>
 	                    <div class="row">
 	                        <div class="col-md-12">
-	                            <table class="table table-condensed table-striped">
-	                                <thead>
-	                                <tr>
-	                                    <th>Nome</th>
-	                                    <th>Telefone</th>
-	                                    <th class="text-right">
-	                                    	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
-	                                    		<span class="glyphicon glyphicon-home"></span>
-	                                    	</a>
-	                                    	<a href="${contextPath}/admin/customer/" class="btn btn-success btn-sm">
-	                                    		<span class="glyphicon glyphicon-plus"></span>
-	                                    	</a>
-	                                    </th>
-	                                </tr>
-	                                </thead>
-	                                <tbody>
-	                                	<c:forEach var="customer" items="${customers}" >
-		                                    <tr>
-		                                        <td>${customer.fullName}</td>
-		                                        <td>${customer.phones}</td>
-		                                        <td class="text-right">
-		                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning btn-sm">
-		                                        		<span class="glyphicon glyphicon-pencil"></span>
-		                                        	</a>
-		                                        	<form:form method="DELETE" action="${contextPath}/admin/customer/${customer.id}" style="display:inline">
-		                                        		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir cliente" data-message="Deseja realmente excluir este cliente?">
-		                                        			<span class="glyphicon glyphicon-trash"></span>
-		                                        		</button>
-		                                        	</form:form>
-		                                        </td>
-		                                    </tr>
-	                                	</c:forEach>
-	                                </tbody>
-	                            </table>
-	                        </div>
-	                    </div>
+								<table class="table table-condensed table-striped">
+								    <thead>
+								    <tr>
+								        <th>Nome</th>
+								        <th>Telefone</th>
+								        <th class="text-right">
+								        	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
+								        		<span class="glyphicon glyphicon-home"></span>
+								        	</a>
+								        	<a href="${contextPath}/admin/customer/" class="btn btn-success btn-sm">
+								        		<span class="glyphicon glyphicon-plus"></span>
+								        	</a>
+								        </th>
+								    </tr>
+								    </thead>
+								    <tbody>
+								    	<c:forEach var="customer" items="${page.content}" >
+								         <tr>
+								             <td>${customer.fullName}</td>
+								             <td>${customer.phones}</td>
+								             <td class="text-right">
+								             	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning btn-sm">
+								             		<span class="glyphicon glyphicon-pencil"></span>
+								             	</a>
+								             	<form:form method="DELETE" action="${contextPath}/admin/customer/${customer.id}" style="display:inline">
+								             		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir cliente" data-message="Deseja realmente excluir este cliente?">
+								             			<span class="glyphicon glyphicon-trash"></span>
+								             		</button>
+								             	</form:form>
+								             </td>
+								         </tr>
+								    	</c:forEach>
+								    </tbody>
+								</table>
+							</div>
+						</div>
+						<jsp:include page="../templates/pagination.jsp">
+							<jsp:param name="paginationUrl" value="${contextPath}/admin/customers?search=${param.search}"/>
+						</jsp:include>
 	                </div>
 	            </div>
 	        </div>
