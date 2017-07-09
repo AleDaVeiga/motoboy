@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryService {
+	Delivery newDelivery();
+	
 	Delivery create(Delivery delivery, String username);
 
 	Delivery update(Delivery delivery, String username);

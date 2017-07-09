@@ -17,16 +17,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.service.CustomerService;
+import com.wgsistemas.motoboy.service.StateService;
 
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminCustomerController {
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private StateService stateService;
 	
 	@RequestMapping(value = "/customer/", method = RequestMethod.GET)
 	public String create(Model model) {
-		model.addAttribute("customerForm", new Customer());
+		model.addAttribute("customerForm", customerService.newCustomer());
+		model.addAttribute("stateList", stateService.findAll());
 		return "admin/customer/new";
 	}
 	
@@ -40,7 +44,8 @@ public class AdminCustomerController {
 	@RequestMapping(path = "/customer/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable Long id, Model model) {
 		Customer customer = customerService.findOne(id);		
-		model.addAttribute("customerForm", customer);		
+		model.addAttribute("customerForm", customer);	
+		model.addAttribute("stateList", stateService.findAll());	
 		return "admin/customer/edit";
 	}
 	

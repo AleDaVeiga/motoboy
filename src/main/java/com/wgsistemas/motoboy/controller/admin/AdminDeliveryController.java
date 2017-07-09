@@ -18,6 +18,7 @@ import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.service.CustomerService;
 import com.wgsistemas.motoboy.service.DeliveryManService;
 import com.wgsistemas.motoboy.service.DeliveryService;
+import com.wgsistemas.motoboy.service.PaymentMethodService;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -28,12 +29,15 @@ public class AdminDeliveryController {
 	private DeliveryManService deliveryManService;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private PaymentMethodService paymentMethodService;
 	
 	@RequestMapping(value = "/delivery/", method = RequestMethod.GET)
 	public String create(Model model) {
-		model.addAttribute("deliveryForm", new Delivery());
+		model.addAttribute("deliveryForm", deliveryService.newDelivery());
 		model.addAttribute("deliveryManList", deliveryManService.findAll());
 		model.addAttribute("customerList", customerService.findAll());
+		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
 		return "admin/delivery/new";
 	}
 	
@@ -50,6 +54,7 @@ public class AdminDeliveryController {
 		model.addAttribute("deliveryForm", delivery);
 		model.addAttribute("deliveryManList", deliveryManService.findAll());
 		model.addAttribute("customerList", customerService.findAll());	
+		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
 		return "admin/delivery/edit";
 	}
 	

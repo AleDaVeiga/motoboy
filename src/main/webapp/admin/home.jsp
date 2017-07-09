@@ -89,8 +89,6 @@
 	                    <hr class="primary">
 	                </div>
 	            </div>
-	        </div>
-	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
@@ -124,6 +122,12 @@
 	    </section>
 	    <section id="consult">
 	        <div class="container-fluid">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <h2 class="section-heading">Consultas</h2>
+	                    <hr class="primary">
+	                </div>
+	            </div>
 	            <div class="row no-gutter">
 	                <div class="col-lg-4 col-sm-6">
 	                    <a href="${contextPath}/admin/customers" class="portfolio-box">
@@ -181,8 +185,6 @@
 	                    <hr class="primary">
 	                </div>
 	            </div>
-	        </div>
-	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">

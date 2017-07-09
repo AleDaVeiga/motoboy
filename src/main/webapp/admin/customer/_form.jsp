@@ -89,7 +89,10 @@
 		<spring:bind path="customerAddress.state">
 			<div class="form-group">
 				<label class="control-label">Estado</label>
-				<form:input path="customerAddress.state" class="form-control" placeholder="Estado" autofocus="true"></form:input>
+				<form:select path="customerAddress.state" class="form-control">
+					<form:option value="0" label="Selecione" />
+					<form:options items="${stateList}" itemValue="id" itemLabel="stateName" />
+				</form:select>
 				<form:errors path="customerAddress.state"></form:errors>
 			</div>
 		</spring:bind>

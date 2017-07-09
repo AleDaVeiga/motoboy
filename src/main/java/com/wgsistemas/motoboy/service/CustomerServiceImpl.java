@@ -8,12 +8,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wgsistemas.motoboy.model.Customer;
+import com.wgsistemas.motoboy.model.datatype.Address;
 import com.wgsistemas.motoboy.repository.CustomerRepository;
+import com.wgsistemas.motoboy.repository.StateRepository;
 
 @Service
 public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> implements CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
+    @Autowired
+    private StateRepository stateRepository;
+	
+	@Override
+	public Customer newCustomer() {
+		Customer customer = new Customer();
+		Address customerAddress = new Address();
+		customerAddress.setState(stateRepository.findByAbbreviation("SC"));
+		customer.setCustomerAddress(customerAddress);
+		return customer;
+	}
 
 	@Override
 	protected JpaRepository<Customer, Long> getRepository() {
