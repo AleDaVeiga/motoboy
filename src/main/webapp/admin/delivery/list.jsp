@@ -42,7 +42,7 @@
 	                                <tbody>
 	                                	<c:forEach var="delivery" items="${page.content}" >
 		                                    <tr>
-		                                        <td>${delivery.deliveredBy.fullName}</td>
+		                                        <td>${delivery.customer.fullName}</td>
 		                                        <td>${delivery.deliveryFrom}</td>
 		                                        <td>${delivery.deliveryTo}</td>
 		                                        <td class="text-right">
