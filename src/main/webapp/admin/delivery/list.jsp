@@ -21,8 +21,8 @@
 	                    </h3>
 	                </div>
 	                <div class="panel-body">
-	                    <div class="row">
-	                        <div class="col-md-12">
+	                	<div class="row">
+	                		<div class="col-md-12">
 	                            <table class="table table-condensed table-striped">
 	                                <thead>
 	                                <tr>
@@ -59,8 +59,8 @@
 	                                	</c:forEach>
 	                                </tbody>
 	                            </table>
-	                        </div>
-	                    </div>
+							</div>
+						</div>
 						<jsp:include page="../templates/pagination.jsp">
 							<jsp:param name="paginationUrl" value="${contextPath}/admin/deliveries?"/>
 						</jsp:include>

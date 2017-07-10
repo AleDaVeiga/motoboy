@@ -1,9 +1,5 @@
 package com.wgsistemas.motoboy.service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
+import com.wgsistemas.motoboy.util.DateUtil;
 
 @Service
 public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> implements DeliveryService {
@@ -29,7 +26,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	@Override
 	public Delivery newDelivery() {
 		Delivery delivery = new Delivery();
-		delivery.setDeliveryAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		return delivery;
 	}
 
