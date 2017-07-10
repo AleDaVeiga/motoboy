@@ -11,7 +11,7 @@
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
-		<jsp:include page="../templates/menu.jsp"/>
+		<jsp:include page="../templates/menu_consult.jsp"/>
 		<div class="container">
 	        <div class="row">
 	            <div class="panel panel-default">
@@ -21,8 +21,8 @@
 	                    </h3>
 	                </div>
 	                <div class="panel-body">
-	                    <div class="row">
-	                        <div class="col-md-12">
+	                	<div class="row">
+	                		<div class="col-md-12">
 	                            <table class="table table-condensed table-striped">
 	                                <thead>
 	                                <tr>
@@ -30,36 +30,45 @@
 	                                    <th>Origem</th>
 	                                    <th>Destino</th>
 	                                    <th class="text-right">
-	                                    	<a href="${contextPath}/admin/delivery/" class="btn btn-success">
+	                                    	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
+	                                    		<span class="glyphicon glyphicon-home"></span>
+	                                    	</a>
+	                                    	<a href="${contextPath}/admin/delivery/" class="btn btn-success btn-sm">
 	                                    		<span class="glyphicon glyphicon-plus"></span>
 	                                    	</a>
 	                                    </th>
 	                                </tr>
 	                                </thead>
 	                                <tbody>
-	                                	<c:forEach var="delivery" items="${deliveries}" >
+	                                	<c:forEach var="delivery" items="${page.content}" >
 		                                    <tr>
-		                                        <td>${delivery.deliveredBy.fullName}</td>
+		                                        <td>${delivery.customer.fullName}</td>
 		                                        <td>${delivery.deliveryFrom}</td>
 		                                        <td>${delivery.deliveryTo}</td>
 		                                        <td class="text-right">
-		                                        	<a href="${contextPath}/admin/delivery/${delivery.id}" class="btn btn-warning">
+		                                        	<a href="${contextPath}/admin/delivery/${delivery.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
-		                                        	<a href="#" class="btn btn-danger">
-		                                        		<span class="glyphicon glyphicon-remove"></span>
-		                                        	</a>
+		                                        	<form:form method="DELETE" action="${contextPath}/admin/delivery/${delivery.id}" style="display:inline">
+		                                        		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir corrida" data-message="Deseja realmente excluir esta corrida?">
+		                                        			<span class="glyphicon glyphicon-trash"></span>
+		                                        		</button>
+		                                        	</form:form>
 		                                        </td>
 		                                    </tr>
 	                                	</c:forEach>
 	                                </tbody>
 	                            </table>
-	                        </div>
-	                    </div>
+							</div>
+						</div>
+						<jsp:include page="../templates/pagination.jsp">
+							<jsp:param name="paginationUrl" value="${contextPath}/admin/deliveries?"/>
+						</jsp:include>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
+	    <jsp:include page="../templates/confirm_remove.jsp"/>
 	</body>
 </html>

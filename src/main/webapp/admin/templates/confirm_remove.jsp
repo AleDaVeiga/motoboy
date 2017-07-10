@@ -12,9 +12,11 @@
 				<p>Você está certo disso?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-danger" id="confirm">Excluir</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+				<button type="button" class="btn btn-danger" id="confirm">Sim</button>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- Custom JS - (Remove) -->
+<script src="${contextPath}/resources/js/remove.js"></script>

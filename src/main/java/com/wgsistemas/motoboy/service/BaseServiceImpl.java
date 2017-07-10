@@ -1,9 +1,6 @@
 package com.wgsistemas.motoboy.service;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +11,7 @@ import com.wgsistemas.motoboy.model.BaseEntity;
 import com.wgsistemas.motoboy.model.datatype.Created;
 import com.wgsistemas.motoboy.model.datatype.Updated;
 import com.wgsistemas.motoboy.repository.UserRepository;
+import com.wgsistemas.motoboy.util.DateUtil;
 
 public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializable> {
 	@Autowired
@@ -24,7 +22,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
 	@Transactional
 	public T create(T baseEntity, String username) {
 		Created created = new Created();
-		created.setCreatedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+		created.setCreatedAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		created.setCreatedBy(userRepository.findByUsername(username));
 		baseEntity.setEntityCreated(created);
 		return getRepository().save(baseEntity);
@@ -33,7 +31,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
 	@Transactional
 	public T update(T baseEntity, String username) {
 		Updated updated = new Updated();
-		updated.setUpdatedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+		updated.setUpdatedAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		updated.setUpdatedBy(userRepository.findByUsername(username));
 		baseEntity.setEntityUpdated(updated);
 		return getRepository().save(baseEntity);

@@ -89,12 +89,10 @@
 	                    <hr class="primary">
 	                </div>
 	            </div>
-	        </div>
-	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                        <a href="${contextPath}/admin/customers">
+	                        <a href="${contextPath}/admin/customer/">
 	                        	<i class="fa fa-4x fa-user text-primary sr-icons"></i>
 	                        </a>
 	                        <h3>Clientes</h3>
@@ -103,7 +101,7 @@
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                        <a href="${contextPath}/admin/deliverymans">
+	                        <a href="${contextPath}/admin/deliveryman/">
 	                        	<i class="fa fa-4x fa-motorcycle text-primary sr-icons"></i>
 	                        </a>
                         	<h3>Motoboys</h3>
@@ -112,7 +110,7 @@
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                		<a href="${contextPath}/admin/deliveries">
+	                		<a href="${contextPath}/admin/delivery/">
 	                        	<i class="fa fa-4x fa-list-ol text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>
@@ -122,11 +120,17 @@
 	            </div>
 	        </div>
 	    </section>
-	    <section class="no-padding" id="consult">
+	    <section id="consult">
 	        <div class="container-fluid">
-	            <div class="row no-gutter popup-gallery">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <h2 class="section-heading">Consultas</h2>
+	                    <hr class="primary">
+	                </div>
+	            </div>
+	            <div class="row no-gutter">
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/customer.jpg" class="portfolio-box">
+	                    <a href="${contextPath}/admin/customers" class="portfolio-box">
 	                        <img src="${contextPath}/resources/img/portfolio/customer.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
@@ -141,7 +145,7 @@
 	                    </a>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="portfolio-box">
+	                    <a href="${contextPath}/admin/deliverymans" class="portfolio-box">
 	                        <img src="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
@@ -156,7 +160,7 @@
 	                    </a>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/delivery.jpg" class="portfolio-box">
+	                    <a href="${contextPath}/admin/deliveries" class="portfolio-box">
 	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
@@ -181,8 +185,6 @@
 	                    <hr class="primary">
 	                </div>
 	            </div>
-	        </div>
-	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">

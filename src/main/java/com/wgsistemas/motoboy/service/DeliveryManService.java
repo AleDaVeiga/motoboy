@@ -1,5 +1,8 @@
 package com.wgsistemas.motoboy.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.wgsistemas.motoboy.model.DeliveryMan;
 
 public interface DeliveryManService {
@@ -11,5 +14,8 @@ public interface DeliveryManService {
 
 	DeliveryMan findOne(Long id);
 
+	@Deprecated
 	Iterable<DeliveryMan> findAll();
+
+	Page<DeliveryMan> findAll(Pageable pageable);
 }

@@ -11,7 +11,7 @@
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
-		<jsp:include page="../templates/menu.jsp"/>
+		<jsp:include page="../templates/menu_cadastre.jsp"/>
 		<div class="container">
             <div class="row">
                 <div class="panel panel-default">

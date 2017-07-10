@@ -11,7 +11,7 @@
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
-		<jsp:include page="../templates/menu.jsp"/>
+		<jsp:include page="../templates/menu_consult.jsp"/>
 		<div class="container">
 	        <div class="row">
 	            <div class="panel panel-default">
@@ -29,24 +29,29 @@
 	                                    <th>Nome</th>
 	                                    <th>Telefone</th>
 	                                    <th class="text-right">
-	                                    	<a href="${contextPath}/admin/deliveryman/" class="btn btn-success">
+	                                    	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
+	                                    		<span class="glyphicon glyphicon-home"></span>
+	                                    	</a>
+	                                    	<a href="${contextPath}/admin/deliveryman/" class="btn btn-success btn-sm">
 	                                    		<span class="glyphicon glyphicon-plus"></span>
 	                                    	</a>
 	                                    </th>
 	                                </tr>
 	                                </thead>
 	                                <tbody>
-	                                	<c:forEach var="deliveryMan" items="${deliveryMans}" >
+	                                	<c:forEach var="deliveryMan" items="${page.content}" >
 		                                    <tr>
 		                                        <td>${deliveryMan.fullName}</td>
 		                                        <td>${deliveryMan.phones}</td>
 		                                        <td class="text-right">
-		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning">
+		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>
 		                                        	</a>
-		                                        	<a href="#" class="btn btn-danger">
-		                                        		<span class="glyphicon glyphicon-remove"></span>
-		                                        	</a>
+		                                        	<form:form method="DELETE" action="${contextPath}/admin/deliveryman/${deliveryMan.id}" style="display:inline">
+		                                        		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir motoboy" data-message="Deseja realmente excluir este motoboy">
+		                                        			<span class="glyphicon glyphicon-trash"></span>
+		                                        		</button>
+		                                        	</form:form>
 		                                        </td>
 		                                    </tr>
 	                                	</c:forEach>
@@ -54,10 +59,14 @@
 	                            </table>
 	                        </div>
 	                    </div>
+						<jsp:include page="../templates/pagination.jsp">
+							<jsp:param name="paginationUrl" value="${contextPath}/admin/deliverymans?"/>
+						</jsp:include>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
+	    <jsp:include page="../templates/confirm_remove.jsp"/>
 	</body>
 </html>

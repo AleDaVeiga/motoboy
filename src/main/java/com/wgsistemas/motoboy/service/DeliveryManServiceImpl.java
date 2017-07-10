@@ -1,10 +1,11 @@
 package com.wgsistemas.motoboy.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wgsistemas.motoboy.model.DeliveryMan;
 import com.wgsistemas.motoboy.repository.DeliveryManRepository;
@@ -24,13 +25,18 @@ public class DeliveryManServiceImpl extends BaseServiceImpl<DeliveryMan, Long> i
 		deliveryManRepository.delete(deliveryMan);
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public DeliveryMan findOne(Long id) {
 		return deliveryManRepository.findOne(id);
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Iterable<DeliveryMan> findAll() {
 		return deliveryManRepository.findAll();
+	}
+
+	@Transactional(readOnly=true)
+	public Page<DeliveryMan> findAll(Pageable pageable) {
+		return deliveryManRepository.findAll(pageable);
 	}
 }

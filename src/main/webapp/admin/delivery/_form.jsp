@@ -52,6 +52,16 @@
 		<form:errors path="price"></form:errors>
 	</div>
 </spring:bind>
+<spring:bind path="paymentMethod">
+	<div class="form-group">
+		<label class="control-label">Pagamento</label>
+		<form:select path="paymentMethod" class="form-control">
+			<form:option value="0" label="Selecione" />
+			<form:options items="${paymentMethodList}" itemValue="id" itemLabel="description" />
+		</form:select>
+		<form:errors path="deliveredBy"></form:errors>
+	</div>
+</spring:bind>
 <spring:bind path="deliveryAt">
 	<div class="form-group">
 		<label class="control-label">Data da corrida</label>
@@ -60,7 +70,7 @@
 	</div>
 </spring:bind>
 <div class="text-right">
-	<a href="${contextPath}/admin/" class="btn btn-default">
+	<a href="${contextPath}/admin/#cadastre" class="btn btn-default">
 		<span class="glyphicon glyphicon-home"></span>
 	</a>
 	<a href="${contextPath}/admin/deliveries" class="btn btn-default">

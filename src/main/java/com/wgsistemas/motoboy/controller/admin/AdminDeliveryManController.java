@@ -1,10 +1,11 @@
 package com.wgsistemas.motoboy.controller.admin;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.DeliveryMan;
 import com.wgsistemas.motoboy.service.DeliveryManService;
 
@@ -30,8 +32,8 @@ public class AdminDeliveryManController {
 	@RequestMapping(path = "/deliveryman/", method = RequestMethod.POST)
 	@Transactional
 	public String create(@ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
-		deliveryManService.create(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());		
-		return "redirect:/admin/deliverymans";
+		DeliveryMan deliveryMan = deliveryManService.create(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		return "redirect:/admin/deliveryman/" + deliveryMan.getId();
 	}
 	
 	@RequestMapping(path = "/deliveryman/{id}", method = RequestMethod.GET)
@@ -45,7 +47,7 @@ public class AdminDeliveryManController {
 	@Transactional
 	public String update(@PathVariable Integer id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
 		deliveryManService.update(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());			
-		return "redirect:/admin/deliverymans";
+		return "redirect:/admin/deliveryman/" + id;
 	}
 	
 	@RequestMapping(path = "/deliveryman/{id}", method = RequestMethod.DELETE)
@@ -57,10 +59,10 @@ public class AdminDeliveryManController {
 	}
 
 	@RequestMapping(path = "/deliverymans", method = RequestMethod.GET)
-	@Transactional
-	public String findAll(Model model) {
-		Iterable<DeliveryMan> deliveryMans = deliveryManService.findAll();		
-		model.addAttribute("deliveryMans", deliveryMans);		
+	@Transactional(readOnly=true)
+	public String findAll(@PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
+		PageWrapper<DeliveryMan> page = new PageWrapper<DeliveryMan>(deliveryManService.findAll(pageable));
+		model.addAttribute("page", page);	
 		return "admin/deliveryman/list";
 	}
 }

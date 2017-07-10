@@ -1,8 +1,13 @@
 package com.wgsistemas.motoboy.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.wgsistemas.motoboy.model.Customer;
 
 public interface CustomerService {
+	Customer newCustomer();
+	
 	Customer create(Customer customer, String username);
 
 	Customer update(Customer customer, String username);
@@ -11,7 +16,8 @@ public interface CustomerService {
 
 	Customer findOne(Long id);
 	
+	@Deprecated
 	Iterable<Customer> findAll();
-
-	Iterable<Customer> findAll(String search);
+	
+	Page<Customer> findAllByPage(String search, Pageable pageable);
 }

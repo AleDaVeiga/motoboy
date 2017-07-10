@@ -14,9 +14,9 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${contextPath}/admin/deliveries">Corridas</a></li>
-                <li><a href="${contextPath}/admin/customers">Clientes</a></li>
-                <li><a href="${contextPath}/admin/deliverymans">Motoboys</a></li>
+                <li><a href="${contextPath}/admin/delivery/">Corridas</a></li>
+                <li><a href="${contextPath}/admin/customer/">Clientes</a></li>
+                <li><a href="${contextPath}/admin/deliveryman/">Motoboys</a></li>
                 <li><a href="#">Usuários</a></li>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                 	<li>

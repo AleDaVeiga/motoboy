@@ -1,15 +1,17 @@
 package com.wgsistemas.motoboy.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
+import com.wgsistemas.motoboy.util.DateUtil;
 
 @Service
 public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> implements DeliveryService {
@@ -20,23 +22,35 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	protected JpaRepository<Delivery, Long> getRepository() {
 		return deliveryRepository;
 	}
+	
+	@Override
+	public Delivery newDelivery() {
+		Delivery delivery = new Delivery();
+		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
+		return delivery;
+	}
 
 	@Transactional
 	public void remove(Delivery delivery) {
 		deliveryRepository.delete(delivery);
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Delivery findOne(Long id) {
 		return deliveryRepository.findOne(id);
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Iterable<Delivery> findAll() {
 		return deliveryRepository.findAll();
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
+	public Page<Delivery> findAll(Pageable pageable) {
+		return deliveryRepository.findAll(pageable);
+	}
+
+	@Transactional(readOnly=true)
 	public Iterable<Delivery> findAllOrderByCustomer_FullNameAsc() {
 		return deliveryRepository.findAll(orderByCustomer_FullNameAsc());
 	}
@@ -45,7 +59,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
         return new Sort(Direction.ASC, "customer.fullName");
     }
 
-	@Override
+	@Transactional(readOnly=true)
 	public Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc() {
 		return deliveryRepository.findAll(orderByDeliveredBy_FullNameAsc());
 	}

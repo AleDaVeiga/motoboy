@@ -2,16 +2,20 @@ package com.wgsistemas.motoboy.model.datatype;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.wgsistemas.motoboy.model.State;
 
 @Embeddable
 public class Address {
 	private String street;
 	private String district;
 	private String city;
-	private String state;
+	private State state;
 	private String zipCode;
 
-	@Column(name = "street", nullable = false, length = 250)
+	@Column(name = "street", length = 250)
 	public String getStreet() {
 		return this.street;
 	}
@@ -20,7 +24,7 @@ public class Address {
 		this.street = street;
 	}
 
-	@Column(name = "district", nullable = false, length = 50)
+	@Column(name = "district", length = 50)
 	public String getDistrict() {
 		return district;
 	}
@@ -29,7 +33,7 @@ public class Address {
 		this.district = district;
 	}
 
-	@Column(name = "city", nullable = false, length = 50)
+	@Column(name = "city", length = 50)
 	public String getCity() {
 		return this.city;
 	}
@@ -38,16 +42,17 @@ public class Address {
 		this.city = city;
 	}
 
-	@Column(name = "state", nullable = false, length = 50)
-	public String getState() {
+	@ManyToOne
+	@JoinColumn(name = "state_id")
+	public State getState() {
 		return this.state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 
-	@Column(name = "zip_code", nullable = false, length = 10)
+	@Column(name = "zip_code", length = 10)
 	public String getZipCode() {
 		return this.zipCode;
 	}
