@@ -16,8 +16,16 @@
 	        <div class="row">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
-	                    <h3 class="panel-title">
+	                    <h3 class="panel-title clearfix">
 	                        Administração de clientes
+	                        <span class="pull-right">
+					        	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
+					        		<span class="glyphicon glyphicon-home"></span>
+					        	</a>
+					        	<a href="${contextPath}/admin/customer/" class="btn btn-success btn-sm">
+					        		<span class="glyphicon glyphicon-plus"></span>
+					        	</a>
+					        </span>
 	                    </h3>
 	                </div>
 	                <div class="panel-body">
@@ -40,14 +48,7 @@
 								    <tr>
 								        <th>Nome</th>
 								        <th>Telefone</th>
-								        <th class="text-right">
-								        	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
-								        		<span class="glyphicon glyphicon-home"></span>
-								        	</a>
-								        	<a href="${contextPath}/admin/customer/" class="btn btn-success btn-sm">
-								        		<span class="glyphicon glyphicon-plus"></span>
-								        	</a>
-								        </th>
+								        <th/>
 								    </tr>
 								    </thead>
 								    <tbody>

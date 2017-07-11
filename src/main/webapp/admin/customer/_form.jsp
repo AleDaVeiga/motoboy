@@ -24,28 +24,28 @@
 		<spring:bind path="document">
 			<div class="form-group">
 				<label class="control-label">CNPJ/CPF</label>
-				<form:input path="document" class="form-control" placeholder="CNPJ/CPF" autofocus="true"></form:input>
+				<form:input path="document" class="form-control" placeholder="CNPJ/CPF"></form:input>
 				<form:errors path="document"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="phones">
 			<div class="form-group">
 				<label class="control-label">Telefone</label>
-				<form:input path="phones" class="form-control" placeholder="Telefone" autofocus="true"></form:input>
+				<form:input path="phones" class="form-control" placeholder="Telefone"></form:input>
 				<form:errors path="phones"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="email">
 			<div class="form-group">
 				<label class="control-label">E-mail</label>
-				<form:input path="email" class="form-control" placeholder="E-mail" autofocus="true"></form:input>
+				<form:input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" path="email" class="form-control" placeholder="E-mail"></form:input>
 				<form:errors path="email"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="note">
 			<div class="form-group">
 				<label class="control-label">Observação</label>
-				<form:input path="note" class="form-control" placeholder="Observação" autofocus="true"></form:input>
+				<form:input path="note" class="form-control" placeholder="Observação"></form:input>
 				<form:errors path="note"></form:errors>
 			</div>
 		</spring:bind>
@@ -54,35 +54,35 @@
 		<spring:bind path="customerAddress.street">
 			<div class="form-group">
 				<label class="control-label">Endereço</label>
-				<form:input path="customerAddress.street" class="form-control" placeholder="Endereço" autofocus="true"></form:input>
+				<form:input path="customerAddress.street" class="form-control" placeholder="Endereço"></form:input>
 				<form:errors path="customerAddress.street"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="numberAddress">
 			<div class="form-group">
 				<label class="control-label">Número</label>
-				<form:input path="numberAddress" class="form-control" placeholder="Número" autofocus="true"></form:input>
+				<form:input path="numberAddress" class="form-control" placeholder="Número"></form:input>
 				<form:errors path="numberAddress"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="complementAddress">
 			<div class="form-group">
 				<label class="control-label">Complemento</label>
-				<form:input path="complementAddress" class="form-control" placeholder="Complemento" autofocus="true"></form:input>
+				<form:input path="complementAddress" class="form-control" placeholder="Complemento"></form:input>
 				<form:errors path="complementAddress"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="customerAddress.district">
 			<div class="form-group">
 				<label class="control-label">Bairro</label>
-				<form:input path="customerAddress.district" class="form-control" placeholder="Bairro" autofocus="true"></form:input>
+				<form:input path="customerAddress.district" class="form-control" placeholder="Bairro"></form:input>
 				<form:errors path="customerAddress.district"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="customerAddress.city">
 			<div class="form-group">
 				<label class="control-label">Cidade</label>
-				<form:input path="customerAddress.city" class="form-control" placeholder="Cidade" autofocus="true"></form:input>
+				<form:input path="customerAddress.city" class="form-control" placeholder="Cidade"></form:input>
 				<form:errors path="customerAddress.city"></form:errors>
 			</div>
 		</spring:bind>
@@ -99,7 +99,7 @@
 		<spring:bind path="customerAddress.zipCode">
 			<div class="form-group">
 				<label class="control-label">CEP</label>
-				<form:input path="customerAddress.zipCode" class="form-control" placeholder="CEP" autofocus="true"></form:input>
+				<form:input path="customerAddress.zipCode" class="form-control" placeholder="CEP"></form:input>
 				<form:errors path="customerAddress.zipCode"></form:errors>
 			</div>
 		</spring:bind>

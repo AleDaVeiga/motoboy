@@ -58,8 +58,8 @@ public class Delivery extends BaseEntity {
 	}
 
 	@Column(name = "delivery_at")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getDeliveryAt() {
 		return deliveryAt;
 	}

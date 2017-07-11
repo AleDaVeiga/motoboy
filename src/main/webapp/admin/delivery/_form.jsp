@@ -8,7 +8,7 @@
 		<label class="control-label">Cliente</label>
 		<form:select path="customer" class="form-control">
 			<form:option value="0" label="Selecione" />
-			<form:options items="${customerList}" itemValue="id" itemLabel="fullName" />
+			<form:options items="${customerList}" itemValue="id" itemLabel="fullName" autofocus="true"/>
 		</form:select>
 		<form:errors path="customer"></form:errors>
 	</div>
@@ -24,7 +24,7 @@
 <spring:bind path="deliveryFrom">
 	<div class="form-group">
 		<label class="control-label">Origem</label>
-		<form:input path="deliveryFrom" class="form-control" placeholder="Origem" autofocus="true"></form:input>
+		<form:input path="deliveryFrom" class="form-control" placeholder="Origem"></form:input>
 		<form:errors path="deliveryFrom"></form:errors>
 	</div>
 </spring:bind>
@@ -65,7 +65,7 @@
 <spring:bind path="deliveryAt">
 	<div class="form-group">
 		<label class="control-label">Data da corrida</label>
-		<form:input path="deliveryAt" class="form-control" placeholder="01/12/9999 24:59"></form:input>
+		<form:input path="deliveryAt" class="form-control" placeholder="01/12/9999"></form:input>
 		<form:errors path="deliveryAt"></form:errors>
 	</div>
 </spring:bind>
