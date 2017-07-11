@@ -41,29 +41,25 @@
 				                						<i class="glyphicon glyphicon-user"></i>
 				                						${delivery.customer.fullName}
 				                					</p>
+				                					<p>
+				                						<i class="fa fa-motorcycle sr-icons"></i>
+				                						${delivery.deliveredBy.fullName}
+				                					</p>
 				                				</div>
 				                				<div class="col-xs-8 col-sm-5">
 				                					<p>
 				                						<i class="glyphicon glyphicon-record"></i>
 				                						${delivery.deliveryFrom}
 				                					</p>
+				                					<p>
+				                						<i class="glyphicon glyphicon-map-marker"></i>
+				                						${delivery.deliveryTo}
+				                					</p>
 				                				</div>
 				                				<div class="col-xs-4 col-sm-2 text-right">
 				                					<span class="label label-${delivery.status ? 'success' : 'warning'}">
 				                						<fmt:formatNumber value="${delivery.price}" type="currency"/>
 				                					</span>
-				                				</div>
-				                				<div class="col-xs-8 col-sm-5">
-				                					<small>
-				                						<i class="fa fa-motorcycle sr-icons"></i>
-				                						${delivery.deliveredBy.fullName}
-				                					</small>
-				                				</div>
-				                				<div class="col-xs-8 col-sm-5">
-				                					<p>
-				                						<i class="glyphicon glyphicon-map-marker"></i>
-				                						${delivery.deliveryTo}
-				                					</p>
 				                				</div>
 				                				<div class="col-xs-4 col-sm-2 text-right">
 				                					<span class="badge badge-info">
