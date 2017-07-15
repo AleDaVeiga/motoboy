@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <spring:bind path="customer">
 	<div class="form-group">

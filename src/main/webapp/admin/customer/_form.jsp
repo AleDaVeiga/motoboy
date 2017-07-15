@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <ul class="nav nav-tabs">
 	<li class="active">
@@ -17,7 +19,7 @@
 		<spring:bind path="fullName">
 			<div class="form-group">
 				<label class="control-label">Nome</label>
-				<form:input path="fullName" class="form-control" placeholder="Nome" autofocus="true"></form:input>
+				<form:input path="fullName" class="form-control" placeholder="Nome" autofocus="true" required="true"></form:input>
 				<form:errors path="fullName"></form:errors>
 			</div>
 		</spring:bind>
@@ -38,7 +40,7 @@
 		<spring:bind path="email">
 			<div class="form-group">
 				<label class="control-label">E-mail</label>
-				<form:input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" path="email" class="form-control" placeholder="E-mail"></form:input>
+				<form:input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" path="email" class="form-control" placeholder="E-mail"></form:input>
 				<form:errors path="email"></form:errors>
 			</div>
 		</spring:bind>
@@ -99,7 +101,7 @@
 		<spring:bind path="customerAddress.zipCode">
 			<div class="form-group">
 				<label class="control-label">CEP</label>
-				<form:input path="customerAddress.zipCode" class="form-control" placeholder="CEP"></form:input>
+				<form:input pattern="^\\d{5}[-]\\d{3}$" path="customerAddress.zipCode" class="form-control" placeholder="00000-000"></form:input>
 				<form:errors path="customerAddress.zipCode"></form:errors>
 			</div>
 		</spring:bind>

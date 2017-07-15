@@ -1,5 +1,7 @@
 package com.wgsistemas.motoboy.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	@Override
 	public Delivery newDelivery() {
 		Delivery delivery = new Delivery();
+		delivery.setPrice(BigDecimal.ZERO);
 		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		return delivery;
 	}
