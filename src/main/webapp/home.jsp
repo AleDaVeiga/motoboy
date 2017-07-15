@@ -29,7 +29,7 @@
 	    <link href="${contextPath}/resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 	
 	    <!-- Theme CSS -->
-	    <link href="${contextPath}/resources/css/creative.min.css" rel="stylesheet">
+	    <link href="${contextPath}/resources/css/creative.css" rel="stylesheet">
 	
 	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,7 +84,7 @@
 	            <div class="row">
 	                <div class="col-lg-12 text-center">
 	                    <h2 class="section-heading">Lista de corridas</h2>
-	                    <hr class="primary">
+	                    <hr>
 	                </div>
 	            </div>
 	        </div>
