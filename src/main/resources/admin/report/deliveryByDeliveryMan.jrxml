@@ -24,7 +24,7 @@
 		<variableExpression><![CDATA[$F{price}]]></variableExpression>
 		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
 	</variable>
-	<group name="motoboy">
+	<group name="motoboy" minHeightToStartNewPage="22">
 		<groupExpression><![CDATA[$F{deliveredBy}]]></groupExpression>
 		<groupHeader>
 			<band height="58">
@@ -113,6 +113,33 @@
 				</staticText>
 			</band>
 		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="485" height="20" backcolor="#E6E6E6" uuid="0aaeebd8-fe37-48ff-8081-26b25e2ef539">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField evaluationTime="Report" pattern="¤#,##0.00;¤-#,##0.00">
+					<reportElement mode="Opaque" x="485" y="0" width="70" height="20" backcolor="#E6E6E6" uuid="9bfd0bec-c387-44fb-8655-f82b9f8ee305">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{SUM_PRICE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
 	</group>
 	<background>
 		<band/>
@@ -209,28 +236,6 @@
 	<summary>
 		<band height="25">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<staticText>
-				<reportElement mode="Opaque" x="0" y="4" width="485" height="20" backcolor="#E6E6E6" uuid="0aaeebd8-fe37-48ff-8081-26b25e2ef539">
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total:]]></text>
-			</staticText>
-			<textField evaluationTime="Report" pattern="¤#,##0.00;¤-#,##0.00">
-				<reportElement mode="Opaque" x="485" y="4" width="70" height="20" backcolor="#E6E6E6" uuid="9bfd0bec-c387-44fb-8655-f82b9f8ee305">
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$V{SUM_PRICE}]]></textFieldExpression>
-			</textField>
 		</band>
 	</summary>
 </jasperReport>

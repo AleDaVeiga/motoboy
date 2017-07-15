@@ -20,11 +20,11 @@
 	<field name="price" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[price]]></fieldDescription>
 	</field>
-	<variable name="SUM_PRICE" class="java.math.BigDecimal" calculation="Sum">
+	<variable name="SUM_PRICE" class="java.math.BigDecimal" resetType="Group" resetGroup="cliente" calculation="Sum">
 		<variableExpression><![CDATA[$F{price}]]></variableExpression>
 		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
 	</variable>
-	<group name="cliente" isStartNewPage="true">
+	<group name="cliente" isStartNewPage="true" minHeightToStartNewPage="22">
 		<groupExpression><![CDATA[$F{customer}]]></groupExpression>
 		<groupHeader>
 			<band height="58">
@@ -113,6 +113,33 @@
 				</staticText>
 			</band>
 		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="485" height="20" backcolor="#E6E6E6" uuid="547e3afb-2a21-4118-809d-61791d20a706">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField evaluationTime="Report" pattern="¤#,##0.00;¤-#,##0.00">
+					<reportElement mode="Opaque" x="485" y="0" width="70" height="20" backcolor="#E6E6E6" uuid="e103b0fc-4d3f-452e-b807-b31ef3b77159">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{SUM_PRICE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
 	</group>
 	<background>
 		<band/>
@@ -207,30 +234,8 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="25">
+		<band>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<textField evaluationTime="Report" pattern="¤#,##0.00;¤-#,##0.00">
-				<reportElement mode="Opaque" x="485" y="4" width="70" height="20" backcolor="#E6E6E6" uuid="e103b0fc-4d3f-452e-b807-b31ef3b77159">
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$V{SUM_PRICE}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Opaque" x="0" y="4" width="485" height="20" backcolor="#E6E6E6" uuid="547e3afb-2a21-4118-809d-61791d20a706">
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total:]]></text>
-			</staticText>
 		</band>
 	</summary>
 </jasperReport>
