@@ -15,7 +15,7 @@ public class State {
 	private String stateName;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	public Long getId() {
 		return id;
@@ -41,8 +41,5 @@ public class State {
 
 	public void setStateName(String stateName) {
 		this.stateName = stateName;
-	}
-
-
-	
+	}	
 }

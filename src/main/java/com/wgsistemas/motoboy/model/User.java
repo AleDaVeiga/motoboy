@@ -23,7 +23,7 @@ public class User {
 	private Set<Role> roles;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	public Long getId() {
 		return id;
