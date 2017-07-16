@@ -55,7 +55,11 @@
 								    	<c:forEach var="customer" items="${page.content}" >
 								         <tr>
 								             <td>${customer.fullName}</td>
-								             <td>${customer.phones}</td>
+								             <td>
+								             	<c:forEach var="phone" items="${customer.phones}">
+								             		<span>${phone}</span>
+								             	</c:forEach>
+								             </td>
 								             <td class="text-right">
 								             	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning btn-sm">
 								             		<span class="glyphicon glyphicon-pencil"></span>

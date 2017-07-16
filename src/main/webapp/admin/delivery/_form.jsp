@@ -50,7 +50,7 @@
 <spring:bind path="price">
 	<div class="form-group">
 		<label class="control-label">Valor</label>
-		<form:input path="price" class="form-control" placeholder="0.000,00"></form:input>
+		<form:input path="price" class="form-control"></form:input>
 		<form:errors path="price"></form:errors>
 	</div>
 </spring:bind>
@@ -67,7 +67,7 @@
 <spring:bind path="deliveryAt">
 	<div class="form-group">
 		<label class="control-label">Data da corrida</label>
-		<form:input path="deliveryAt" class="form-control" placeholder="01/12/9999"></form:input>
+		<form:input type="date" path="deliveryAt" class="form-control"></form:input>
 		<form:errors path="deliveryAt"></form:errors>
 	</div>
 </spring:bind>

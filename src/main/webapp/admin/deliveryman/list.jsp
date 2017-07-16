@@ -43,7 +43,11 @@
 	                                	<c:forEach var="deliveryMan" items="${page.content}" >
 		                                    <tr>
 		                                        <td>${deliveryMan.fullName}</td>
-		                                        <td>${deliveryMan.phones}</td>
+		                                        <td>
+		                                        	<c:forEach var="phone" items="${deliveryMan.phones}">
+		                                        		<span>${phone}</span>
+		                                        	</c:forEach>
+		                                        </td>
 		                                        <td class="text-right">
 		                                        	<a href="${contextPath}/admin/deliveryman/${deliveryMan.id}" class="btn btn-warning btn-sm">
 		                                        		<span class="glyphicon glyphicon-pencil"></span>

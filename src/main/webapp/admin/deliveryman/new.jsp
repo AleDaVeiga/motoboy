@@ -29,5 +29,8 @@
             </div>
         </div>
 	    <jsp:include page="../templates/footer.jsp"/>
+		
+		<!-- Custom JavaScript -->
+		<script src="${contextPath}/resources/js/dynamic.form.fields.js"></script>
 	</body>
 </html>

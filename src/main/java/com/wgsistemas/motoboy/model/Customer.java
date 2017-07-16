@@ -1,12 +1,16 @@
 package com.wgsistemas.motoboy.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.wgsistemas.motoboy.model.converter.ListToStringConveter;
 import com.wgsistemas.motoboy.model.datatype.Address;
 
 @Entity
@@ -17,7 +21,7 @@ public class Customer extends BaseEntity {
 	private Address customerAddress;
 	private String numberAddress;
 	private String complementAddress;
-	private String phones;
+	private List<String> phones;
 	private String email;
 	private String note;
 	private User owner;
@@ -66,11 +70,12 @@ public class Customer extends BaseEntity {
 		this.complementAddress = complementAddress;
 	}
 
-	public String getPhones() {
+	@Convert(converter = ListToStringConveter.class)
+	public List<String> getPhones() {
 		return phones;
 	}
 
-	public void setPhones(String phones) {
+	public void setPhones(List<String> phones) {
 		this.phones = phones;
 	}
 

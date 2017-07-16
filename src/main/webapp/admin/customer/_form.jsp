@@ -19,7 +19,7 @@
 		<spring:bind path="fullName">
 			<div class="form-group">
 				<label class="control-label">Nome</label>
-				<form:input path="fullName" class="form-control" placeholder="Nome" autofocus="true" required="true"></form:input>
+				<form:input path="fullName" class="form-control" placeholder="Nome" required="true"></form:input>
 				<form:errors path="fullName"></form:errors>
 			</div>
 		</spring:bind>
@@ -30,13 +30,36 @@
 				<form:errors path="document"></form:errors>
 			</div>
 		</spring:bind>
-		<spring:bind path="phones">
-			<div class="form-group">
-				<label class="control-label">Telefone</label>
-				<form:input path="phones" class="form-control" placeholder="Telefone"></form:input>
-				<form:errors path="phones"></form:errors>
+		<c:set var="count" value="0" scope="page" />
+		<c:forEach var="phone" items="${customerForm.phones}">
+			<spring:bind path="phones[${count}]">
+				<div class="form-group">
+					<label class="control-label">Telefone ${count + 1}</label>
+					<div class="input-group">
+						<form:input data-mask="(00) 90000-0000" path="phones[${count}]" class="form-control" placeholder="Telefone"></form:input>
+						<span class="input-group-btn">
+							<a class="btn btn-danger btn-block exclude-me">
+								<span class="glyphicon glyphicon-minus"></span>
+							</a>
+						</span>
+					</div>
+					<form:errors path="phones[${count}]"></form:errors>
+				</div>
+			</spring:bind>
+			<c:set var="count" value="${count + 1}" scope="page"/>
+		</c:forEach>
+		<div class="form-group">
+			<input type="hidden" name="count" value="${count}" />
+			<label class="control-label">Telefone ${count + 1}</label>
+			<div class="input-group">
+				<input id="phones${count}" name="phones[${count}]" placeholder="Telefone" data-mask="(00) 90000-0000" class="form-control" type="text"/>
+				<span class="input-group-btn">
+					<a class="btn btn-success btn-block add-more">
+						<span class="glyphicon glyphicon-plus"></span>
+					</a>
+				</span>
 			</div>
-		</spring:bind>
+		</div>
 		<spring:bind path="email">
 			<div class="form-group">
 				<label class="control-label">E-mail</label>
@@ -101,7 +124,7 @@
 		<spring:bind path="customerAddress.zipCode">
 			<div class="form-group">
 				<label class="control-label">CEP</label>
-				<form:input pattern="^\\d{5}[-]\\d{3}$" path="customerAddress.zipCode" class="form-control" placeholder="00000-000"></form:input>
+				<form:input pattern="^\\d{5}[-]\\d{3}$" data-mask="00000-000" path="customerAddress.zipCode" class="form-control" placeholder="CEP"></form:input>
 				<form:errors path="customerAddress.zipCode"></form:errors>
 			</div>
 		</spring:bind>

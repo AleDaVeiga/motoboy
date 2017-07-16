@@ -59,7 +59,7 @@ public class Delivery extends BaseEntity {
 
 	@Column(name = "delivery_at")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date getDeliveryAt() {
 		return deliveryAt;
 	}
