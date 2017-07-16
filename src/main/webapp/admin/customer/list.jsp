@@ -41,45 +41,62 @@
 			                	</div>
 		                	</form>
 	                	</div>
-	                    <div class="row">
-	                        <div class="col-md-12">
-								<table class="table table-condensed table-striped">
-								    <thead>
-								    <tr>
-								        <th>Nome</th>
-								        <th>Telefone</th>
-								        <th/>
-								    </tr>
-								    </thead>
-								    <tbody>
-								    	<c:forEach var="customer" items="${page.content}" >
-								         <tr>
-								             <td>${customer.fullName}</td>
-								             <td>
-								             	<c:forEach var="phone" items="${customer.phones}">
-								             		<span>${phone}</span>
-								             	</c:forEach>
-								             </td>
-								             <td class="text-right">
-								             	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning btn-sm">
-								             		<span class="glyphicon glyphicon-pencil"></span>
-								             	</a>
-								             	<form:form method="DELETE" action="${contextPath}/admin/customer/${customer.id}" style="display:inline">
+	                	<ul class="list-group">
+                           	<c:forEach var="customer" items="${page.content}" >
+		                		<li class="list-group-item">
+		                			<div class="row">
+		                				<div class="col-xs-10">
+		                					<div class="row">
+				                				<div class="col-xs-10 col-sm-5">
+				                					<p>
+				                						<i class="glyphicon glyphicon-user"></i>
+				                						${customer.fullName}
+				                					</p>
+				                					<p>
+				                						<i class="glyphicon glyphicon-file"></i>
+				                						${customer.document}
+				                					</p>
+				                				</div>
+				                				<div class="col-xs-10 col-sm-5">
+				                					<p>
+				                						<i class="glyphicon glyphicon-record"></i>
+				                						${customer.customerAddress.street}
+				                					</p>
+				                					<p>
+				                						<i class="glyphicon glyphicon-map-marker"></i>
+				                						${customer.customerAddress.city}
+				                					</p>
+				                				</div>
+				                				<div class="col-xs-10 col-sm-2">
+				                					<c:forEach var="phone" items="${customer.phones}">
+					                					<p>
+					                						<i class="glyphicon glyphicon-earphone"></i>
+					                						${phone}
+						                				</p>
+				                					</c:forEach>
+				                				</div>
+				                			</div>
+			                			</div>
+		                				<div class="col-xs-2 col-sm-2">
+		                					<div class="pull-right">
+	                                        	<a href="${contextPath}/admin/customer/${customer.id}" class="btn btn-warning btn-sm">
+	                                        		<span class="glyphicon glyphicon-pencil"></span>
+	                                        	</a>
+	                                        	<form:form method="DELETE" action="${contextPath}/admin/customer/${customer.id}" style="display:inline">
 								             		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmRemove" data-title="Excluir cliente" data-message="Deseja realmente excluir este cliente?">
-								             			<span class="glyphicon glyphicon-trash"></span>
-								             		</button>
-								             	</form:form>
-								             </td>
-								         </tr>
-								    	</c:forEach>
-								    </tbody>
-								</table>
-							</div>
-						</div>
-						<jsp:include page="../templates/pagination.jsp">
-							<jsp:param name="paginationUrl" value="${contextPath}/admin/customers?search=${param.search}"/>
-						</jsp:include>
+	                                        			<span class="glyphicon glyphicon-trash"></span>
+	                                        		</button>
+	                                        	</form:form>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </li>
+                            </c:forEach>
+						</ul>
 	                </div>
+					<jsp:include page="../templates/pagination.jsp">
+						<jsp:param name="paginationUrl" value="${contextPath}/admin/customers?search=${param.search}"/>
+					</jsp:include>
 	            </div>
 	        </div>
 	    </div>
