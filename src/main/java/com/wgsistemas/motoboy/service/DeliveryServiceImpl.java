@@ -49,8 +49,11 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Page<Delivery> findAll(Pageable pageable) {
-		return deliveryRepository.findAll(pageable);
+	public Page<Delivery> findBySearchTerm(String search, Pageable pageable) {
+		if (search == null || search.trim().isEmpty()) {
+			return deliveryRepository.findAll(pageable);
+		}
+		return deliveryRepository.findBySearchTerm(search, pageable);
 	}
 
 	@Transactional(readOnly=true)

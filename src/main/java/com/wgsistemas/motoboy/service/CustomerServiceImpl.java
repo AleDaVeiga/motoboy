@@ -49,7 +49,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Page<Customer> findAllByPage(String search, Pageable pageable) {
+	public Page<Customer> findBySearchTerm(String search, Pageable pageable) {
 		if (search == null || search.trim().isEmpty()) {
 			return customerRepository.findAll(pageable);
 		}

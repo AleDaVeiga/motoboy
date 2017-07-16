@@ -67,7 +67,7 @@ public class AdminCustomerController {
 	@RequestMapping(path = "/customers", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String findAll(@RequestParam(value = "search", required = false) String search, @PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
-		PageWrapper<Customer> page = new PageWrapper<Customer>(customerService.findAllByPage(search, pageable));
+		PageWrapper<Customer> page = new PageWrapper<Customer>(customerService.findBySearchTerm(search, pageable));
 		model.addAttribute("page", page);
 		return "admin/customer/list";
 	}

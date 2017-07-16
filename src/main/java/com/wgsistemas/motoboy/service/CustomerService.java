@@ -19,5 +19,5 @@ public interface CustomerService {
 	@Deprecated
 	Iterable<Customer> findAll();
 	
-	Page<Customer> findAllByPage(String search, Pageable pageable);
+	Page<Customer> findBySearchTerm(String search, Pageable pageable);
 }

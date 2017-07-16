@@ -33,6 +33,18 @@
 	                    </h3>
 	                </div>
 	                <div class="panel-body">
+	                    <div class="row">
+		                	<form id="deliverySearchForm" method="GET" action="${contextPath}/admin/deliveries">
+			                	<div class="form-group">
+			                		<div class="input-group input-sm">
+			                			<input class="form-control input-md" type="text" placeholder="Buscar por origem, destino, nome do cliente ou nome do motoboy..." name="search" value="${param.search}">
+			                			<a class="input-group-addon" onclick="document.forms['deliverySearchForm'].submit()">
+			                				<span class="glyphicon glyphicon-search"></span>
+			                			</a>
+			                		</div>
+			                	</div>
+		                	</form>
+	                	</div>
 	                	<ul class="list-group">
                            	<c:forEach var="delivery" items="${page.content}" >
 		                		<li class="list-group-item">

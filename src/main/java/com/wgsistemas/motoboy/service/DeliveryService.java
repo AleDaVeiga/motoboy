@@ -19,7 +19,7 @@ public interface DeliveryService {
 	@Deprecated
 	Iterable<Delivery> findAll();
 
-	Page<Delivery> findAll(Pageable pageable);
+	Page<Delivery> findBySearchTerm(String search, Pageable pageable);
 
 	Iterable<Delivery> findAllOrderByCustomer_FullNameAsc();
 

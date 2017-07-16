@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Delivery;
@@ -75,8 +76,8 @@ public class AdminDeliveryController {
 
 	@RequestMapping(path = "/deliveries", method = RequestMethod.GET)
 	@Transactional(readOnly=true)
-	public String findAll(@PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
-		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findAll(pageable));
+	public String findAll(@RequestParam(value = "search", required = false) String search, @PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
+		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findBySearchTerm(search, pageable));
 		model.addAttribute("page", page);	
 		return "admin/delivery/list";
 	}
