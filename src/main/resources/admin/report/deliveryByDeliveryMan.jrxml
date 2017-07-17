@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="deliveryByCustomer" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2553bdf2-5202-4d48-bfa5-cfec1a5fc841">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -20,7 +22,7 @@
 	<field name="price" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[price]]></fieldDescription>
 	</field>
-	<variable name="SUM_PRICE" class="java.math.BigDecimal" calculation="Sum">
+	<variable name="SUM_PRICE" class="java.math.BigDecimal" resetType="Group" resetGroup="motoboy" calculation="Sum">
 		<variableExpression><![CDATA[$F{price}]]></variableExpression>
 		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
 	</variable>
@@ -128,7 +130,7 @@
 					</textElement>
 					<text><![CDATA[Total:]]></text>
 				</staticText>
-				<textField evaluationTime="Report" pattern="¤#,##0.00;¤-#,##0.00">
+				<textField evaluationTime="Group" evaluationGroup="motoboy" pattern="¤#,##0.00;¤-#,##0.00">
 					<reportElement mode="Opaque" x="485" y="0" width="70" height="20" backcolor="#E6E6E6" uuid="9bfd0bec-c387-44fb-8655-f82b9f8ee305">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
