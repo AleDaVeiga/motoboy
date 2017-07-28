@@ -5,7 +5,8 @@
 
 	<groupId>com.wgsistemas</groupId>
 	<artifactId>motoboy</artifactId>
-	<version>0.0.2</version>
+	<version>1.0.1</version>
+	<packaging>war</packaging>
 
 	<name>motoboy</name>
 	<description>Projeto para controle de corridas realizadas por motoboys para clientes.</description>
@@ -66,11 +67,30 @@
         </dependency>
 	</dependencies>
 	<build>
+		<finalName>motoboy-v1</finalName>
 		<plugins>
 			<plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.github.jsimone</groupId>
+									<artifactId>webapp-runner</artifactId>
+									<version>8.5.11.3</version>
+									<destFileName>webapp-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
