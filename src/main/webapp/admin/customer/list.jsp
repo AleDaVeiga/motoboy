@@ -94,11 +94,13 @@
                             </c:forEach>
 						</ul>
 	                </div>
-					<jsp:include page="../templates/pagination.jsp">
-						<jsp:param name="paginationUrl" value="${contextPath}/admin/customers?search=${param.search}"/>
-					</jsp:include>
 	            </div>
 	        </div>
+	        <div class="row">
+				<jsp:include page="../templates/pagination.jsp">
+					<jsp:param name="paginationUrl" value="${contextPath}/admin/customers?search=${param.search}"/>
+				</jsp:include>
+			</div>
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
 	    <jsp:include page="../templates/confirm_remove.jsp"/>

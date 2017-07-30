@@ -64,12 +64,14 @@
 	                            </table>
 	                        </div>
 	                    </div>
-						<jsp:include page="../templates/pagination.jsp">
-							<jsp:param name="paginationUrl" value="${contextPath}/admin/deliverymans?"/>
-						</jsp:include>
 	                </div>
 	            </div>
 	        </div>
+	        <div class="row">
+				<jsp:include page="../templates/pagination.jsp">
+					<jsp:param name="paginationUrl" value="${contextPath}/admin/deliverymans?"/>
+				</jsp:include>
+			</div>
 	    </div>
 	    <jsp:include page="../templates/footer.jsp"/>
 	    <jsp:include page="../templates/confirm_remove.jsp"/>

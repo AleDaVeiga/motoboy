@@ -1,11 +1,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="panel-footer text-center">
+<div class="panel text-center">
 	<nav aria-label="Navegação de páginas">
 		<ul class="pagination pagination-sm">
 			<li class="page-item ${page.firstPage ? 'disabled' : ''}">
-				<a class="page-link" href="${param.paginationUrl}&page=0&size=${page.size}" aria-label="Anterior">
+				<a class="page-link" href="${param.paginationUrl}&page=0&size=${page.size}" aria-label="Anterior" tabindex="-1">
 					<span aria-hidden="true">&laquo;</span>
 					<span class="sr-only">Anterior</span>
 				</a>
