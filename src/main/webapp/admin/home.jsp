@@ -105,7 +105,7 @@
 	                        	<i class="fa fa-4x fa-motorcycle text-primary sr-icons"></i>
 	                        </a>
                         	<h3>Motoboys</h3>
-	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corrigas.</p>
+	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corridas.</p>
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
