@@ -1,5 +1,6 @@
 package com.wgsistemas.motoboy.service;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wgsistemas.motoboy.model.Customer;
+import com.wgsistemas.motoboy.model.User;
 import com.wgsistemas.motoboy.model.datatype.Address;
 import com.wgsistemas.motoboy.repository.CustomerRepository;
 import com.wgsistemas.motoboy.repository.StateRepository;
@@ -18,6 +20,8 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	private CustomerRepository customerRepository;
     @Autowired
     private StateRepository stateRepository;
+	@Autowired
+    private UserService userService;
 	
 	@Override
 	public Customer newCustomer() {
@@ -26,6 +30,21 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 		customerAddress.setState(stateRepository.findByAbbreviation("SC"));
 		customer.setCustomerAddress(customerAddress);
 		return customer;
+	}
+	
+	@Override
+	public Customer create(Customer customer, String username) {
+		customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess()));
+		return super.create(customer, username);
+	}
+
+	private User newCustomerAccess(User customerAccess) {
+		if (StringUtils.isNotBlank(customerAccess.getUsername())) {
+			String passwordDefault = "123motoboy";
+			customerAccess.setPassword(passwordDefault);
+			return userService.save(customerAccess);
+		}
+		return null;
 	}
 
 	@Override

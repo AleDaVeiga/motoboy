@@ -24,10 +24,10 @@ public class UserServiceImpl implements UserService {
     private Md5PasswordEncoder md5PasswordEncoder;
 
 	@Transactional
-	public void save(User user) {
+	public User save(User user) {
 		user.setPassword(md5PasswordEncoder.encodePassword(user.getPassword(), null));
 		user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByName(USER.name()))));
-        userRepository.save(user);
+        return userRepository.save(user);
 	}
 
 	@Transactional(readOnly=true)

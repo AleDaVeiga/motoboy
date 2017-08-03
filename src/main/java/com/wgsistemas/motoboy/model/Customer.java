@@ -6,8 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.wgsistemas.motoboy.model.converter.ListToStringConveter;
@@ -24,6 +26,7 @@ public class Customer extends BaseEntity {
 	private List<String> phones;
 	private String email;
 	private String note;
+	private User customerAccess;
 	private User owner;
 
 	@Column(name="full_name", nullable = false, length = 250)
@@ -93,6 +96,16 @@ public class Customer extends BaseEntity {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "customer_access_id")
+	public User getCustomerAccess() {
+		return customerAccess;
+	}
+
+	public void setCustomerAccess(User customerAccess) {
+		this.customerAccess = customerAccess;
 	}
 
 	@ManyToOne

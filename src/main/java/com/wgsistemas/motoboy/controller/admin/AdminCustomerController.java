@@ -21,6 +21,7 @@ import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.service.CustomerService;
 import com.wgsistemas.motoboy.service.StateService;
+import com.wgsistemas.motoboy.validator.CustomerValidator;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -29,6 +30,9 @@ public class AdminCustomerController {
 	private CustomerService customerService;
 	@Autowired
 	private StateService stateService;
+
+    @Autowired
+    private CustomerValidator customerValidator;
 	
 	@GetMapping(value = "/customer/")
 	public String create(Model model) {
@@ -40,7 +44,13 @@ public class AdminCustomerController {
 	@PostMapping(path = "/customer/")
 	@Transactional
 	public String create(@ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
-		Customer customer = customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		customerValidator.validate(customerForm, bindingResult);
+		
+		if (bindingResult.hasErrors()) {
+			return "admin/customer/new";
+		}
+
+		Customer customer = customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
 		return "redirect:/admin/customer/" + customer.getId();
 	}
 	
