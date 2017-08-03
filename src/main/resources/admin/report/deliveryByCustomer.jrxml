@@ -19,6 +19,9 @@
 	<field name="deliveryTo" class="java.lang.String">
 		<fieldDescription><![CDATA[deliveryTo]]></fieldDescription>
 	</field>
+	<field name="deliveryAt" class="java.util.Date">
+		<fieldDescription><![CDATA[deliveryAt]]></fieldDescription>
+	</field>
 	<field name="price" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[price]]></fieldDescription>
 	</field>
@@ -72,13 +75,8 @@
 					</textElement>
 					<text><![CDATA[Motoboy]]></text>
 				</staticText>
-				<line>
-					<reportElement x="-20" y="53" width="595" height="1" forecolor="#666666" uuid="c4008517-9403-4c58-a93f-83966d608b99">
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					</reportElement>
-				</line>
 				<staticText>
-					<reportElement x="125" y="33" width="180" height="20" uuid="4349196f-29ec-4d10-b54f-e0cae44eb529">
+					<reportElement x="120" y="33" width="150" height="20" uuid="4349196f-29ec-4d10-b54f-e0cae44eb529">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -90,7 +88,7 @@
 					<text><![CDATA[Origem]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="305" y="33" width="180" height="20" uuid="0aad75b3-38bd-4d02-b43d-509238b1acd1">
+					<reportElement x="270" y="33" width="150" height="20" uuid="0aad75b3-38bd-4d02-b43d-509238b1acd1">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -100,6 +98,18 @@
 						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Destino]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="33" width="65" height="20" uuid="cfa500d9-68a0-4b22-b5f5-d6458d4d9761">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="485" y="32" width="70" height="20" uuid="f1eb53ac-2b9b-4de0-aa08-09a34f968d67">
@@ -113,6 +123,11 @@
 					</textElement>
 					<text><![CDATA[Preço]]></text>
 				</staticText>
+				<line>
+					<reportElement x="-20" y="53" width="595" height="1" forecolor="#666666" uuid="c4008517-9403-4c58-a93f-83966d608b99">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+				</line>
 			</band>
 		</groupHeader>
 		<groupFooter>
@@ -186,7 +201,7 @@
 				<textFieldExpression><![CDATA[$F{deliveredBy}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="0" width="180" height="20" uuid="60de739c-f4ad-4b7d-aacd-f0a7d0a7ffb0">
+				<reportElement x="120" y="0" width="150" height="20" uuid="60de739c-f4ad-4b7d-aacd-f0a7d0a7ffb0">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
@@ -194,16 +209,22 @@
 				<textFieldExpression><![CDATA[$F{deliveryFrom}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="305" y="0" width="180" height="20" uuid="ca8fa550-e652-45bb-8a89-79a8e723b4f4">
+				<reportElement x="270" y="0" width="150" height="20" uuid="ca8fa550-e652-45bb-8a89-79a8e723b4f4">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{deliveryTo}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="aad388fa-edff-43c8-948e-62acffc29891"/>
-			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="420" y="0" width="65" height="20" uuid="ca77f86f-7b68-45f7-8bcf-ba6408b73df4">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{deliveryAt}]]></textFieldExpression>
+			</textField>
 			<textField pattern="¤#,##0.00;¤-#,##0.00">
 				<reportElement x="485" y="0" width="70" height="20" uuid="3b11c778-58a4-4250-aafb-08f8d2989444">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -213,6 +234,9 @@
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="aad388fa-edff-43c8-948e-62acffc29891"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
