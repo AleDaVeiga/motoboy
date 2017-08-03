@@ -17,7 +17,16 @@
                 <li><a href="${contextPath}/admin/delivery/">Corridas</a></li>
                 <li><a href="${contextPath}/admin/customer/">Clientes</a></li>
                 <li><a href="${contextPath}/admin/deliveryman/">Motoboys</a></li>
-                <li><a href="#">Usuários</a></li>
+                <li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                		Relatórios<span class="caret"></span>
+                	</a>
+                	<ul class="dropdown-menu">
+                		<li><a href="${contextPath}/admin/report/deliveries" target="_blank">Corridas</a></li>
+                		<li><a href="${contextPath}/admin/report/customers" target="_blank">Clientes</a></li>
+                		<li><a href="${contextPath}/admin/report/deliverymans" target="_blank">Motoboys</a></li>
+                	</ul>
+                </li>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                 	<li>
 						<form id="logoutForm" method="POST" action="${contextPath}/logout">
