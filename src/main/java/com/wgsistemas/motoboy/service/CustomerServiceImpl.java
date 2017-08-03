@@ -4,6 +4,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,8 +66,12 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	
 	@Transactional(readOnly=true)
 	public Iterable<Customer> findAll() {
-		return customerRepository.findAll();
+		return customerRepository.findAll(orderByFullNameAsc());
 	}
+	
+	private Sort orderByFullNameAsc() {
+        return new Sort(Direction.ASC, "fullName");
+    }
 
 	@Transactional(readOnly=true)
 	public Page<Customer> findBySearchTerm(String search, Pageable pageable) {

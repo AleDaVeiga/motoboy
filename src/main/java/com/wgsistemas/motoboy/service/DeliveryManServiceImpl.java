@@ -3,6 +3,8 @@ package com.wgsistemas.motoboy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +34,12 @@ public class DeliveryManServiceImpl extends BaseServiceImpl<DeliveryMan, Long> i
 
 	@Transactional(readOnly=true)
 	public Iterable<DeliveryMan> findAll() {
-		return deliveryManRepository.findAll();
+		return deliveryManRepository.findAll(orderByFullNameAsc());
 	}
+	
+	private Sort orderByFullNameAsc() {
+        return new Sort(Direction.ASC, "fullName");
+    }
 
 	@Transactional(readOnly=true)
 	public Page<DeliveryMan> findAll(Pageable pageable) {
