@@ -49,8 +49,8 @@ public class AdminDeliveryController {
 	@PostMapping(path = "/delivery/")
 	@Transactional
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model) {
-		Delivery delivery = deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());		
-		return "redirect:/admin/delivery/" + delivery.getId();
+		deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		return "redirect:/admin/delivery/";
 	}
 	
 	@GetMapping(path = "/delivery/{id}")
