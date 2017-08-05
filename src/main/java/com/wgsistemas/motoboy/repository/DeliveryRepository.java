@@ -12,6 +12,8 @@ import org.springframework.data.repository.query.Param;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
+	Iterable<Delivery> findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(String username);
+	
 	@Query(value = "select d from Delivery d " +
 			"left join fetch d.customer " +
 			"left join fetch d.deliveredBy " +

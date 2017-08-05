@@ -83,13 +83,18 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
     }
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findLastMounthDeliveryByCustomerAccessOrderByDeliveryAtDesc(String username) {
-		Date startDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().minusDays(30));
-		Date endDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().plusDays(30));
-		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, startDeliveryAt, endDeliveryAt, orderByDeliveryAtDesc());
+	public Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username) {
+		return deliveryRepository.findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(username);
 	}
 	
 	private Sort orderByDeliveryAtDesc() {
         return new Sort(Direction.DESC, "deliveryAt");
     }
+
+	@Transactional(readOnly=true)
+	public Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username) {
+		Date startDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().minusDays(30));
+		Date endDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().plusDays(30));
+		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, startDeliveryAt, endDeliveryAt, orderByDeliveryAtDesc());
+	}
 }

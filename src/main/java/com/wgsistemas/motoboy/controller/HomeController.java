@@ -16,7 +16,7 @@ public class HomeController {
 	
 	@GetMapping(value = { "/", "/home" })
 	public String home(Model model) {
-		Iterable<Delivery> deliveries = deliveryService.findLastMounthDeliveryByCustomerAccessOrderByDeliveryAtDesc(SecurityContextHolder.getContext().getAuthentication().getName());
+		Iterable<Delivery> deliveries = deliveryService.findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("deliveries", deliveries);
 		return "home";
 	}

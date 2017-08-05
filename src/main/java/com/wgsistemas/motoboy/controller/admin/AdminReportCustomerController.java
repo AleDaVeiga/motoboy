@@ -23,9 +23,9 @@ public class AdminReportCustomerController {
 	private DeliveryService deliveryService;
 
 	@GetMapping(value = "/customers")
-	public ModelAndView create(Model model) {
+	public ModelAndView report(Model model) {
 		JasperReportsPdfView view = new JasperReportsPdfView();
-		view.setUrl("classpath:admin/report/deliveryByCustomer.jrxml");
+		view.setUrl("classpath:report/admin/deliveryByCustomer.jrxml");
 		view.setApplicationContext(applicationContext);
 
 		Map<String, Object> params = new HashMap<>();

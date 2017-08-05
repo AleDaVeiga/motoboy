@@ -27,5 +27,7 @@ public interface DeliveryService {
 
 	Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc();
 	
-	Iterable<Delivery> findLastMounthDeliveryByCustomerAccessOrderByDeliveryAtDesc(String username);
+	Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username);
+	
+	Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username);
 }

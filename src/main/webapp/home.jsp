@@ -56,7 +56,7 @@
 	                        <a class="page-scroll" href="#consult">Consulta</a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="#report">Relatório</a>
+	                        <a class="page-scroll" href="${contextPath}/report/deliveries" target="_blank">Relatório</a>
 	                    </li>
 	                    <c:if test="${pageContext.request.userPrincipal.name != null}">
 		                    <li>
