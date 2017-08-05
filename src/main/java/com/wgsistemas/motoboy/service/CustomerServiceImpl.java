@@ -1,6 +1,7 @@
 package com.wgsistemas.motoboy.service;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +49,21 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 		}
 		return null;
 	}
+	
+	@Override
+	public Customer update(Customer customer, String username) {
+		updateCustomerAccess(customer);
+		return super.update(customer, username);
+	}
+
+	private void updateCustomerAccess(Customer customer) {
+		Customer customerOld = findOne(customer.getId());
+		if(customerOld.getCustomerAccess() == null || NumberUtils.LONG_ZERO.compareTo(customerOld.getCustomerAccess().getId()) > 0) {
+			customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess()));
+		} else {
+			customer.setCustomerAccess(customerOld.getCustomerAccess());
+		}
+	}
 
 	@Override
 	protected JpaRepository<Customer, Long> getRepository() {
@@ -55,8 +71,11 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	}
 
 	@Transactional
-	public void remove(Customer deliveryMan) {
-		customerRepository.delete(deliveryMan);
+	public void remove(Customer customer) {
+		if(customer.getCustomerAccess() != null) {
+			userService.remove(customer.getCustomerAccess());
+		}
+		customerRepository.delete(customer);
 	}
 
 	@Transactional(readOnly=true)

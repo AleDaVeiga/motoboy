@@ -48,7 +48,7 @@ public class AdminDeliveryManController {
 	
 	@PutMapping(path = "/deliveryman/{id}")
 	@Transactional
-	public String update(@PathVariable Integer id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
+	public String update(@PathVariable Long id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
 		deliveryManService.update(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());			
 		return "redirect:/admin/deliveryman/" + id;
 	}

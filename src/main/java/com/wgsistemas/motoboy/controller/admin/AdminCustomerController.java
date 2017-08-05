@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Customer;
@@ -56,15 +57,25 @@ public class AdminCustomerController {
 	
 	@GetMapping(path = "/customer/{id}")
 	public String update(@PathVariable Long id, Model model) {
-		Customer customer = customerService.findOne(id);		
-		model.addAttribute("customerForm", customer);	
-		model.addAttribute("stateList", stateService.findAll());	
+		if (!model.containsAttribute("customerForm")) {
+			Customer customer = customerService.findOne(id);
+			model.addAttribute("customerForm", customer);
+		}
+		model.addAttribute("stateList", stateService.findAll());
 		return "admin/customer/edit";
 	}
 	
 	@PutMapping(path = "/customer/{id}")
 	@Transactional
-	public String update(@PathVariable Integer id, @ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
+	public String update(@PathVariable Long id, @ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+		customerValidator.validate(customerForm, bindingResult);
+		
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customerForm", bindingResult);
+            redirectAttributes.addFlashAttribute("customerForm", customerForm);
+            return "redirect:/admin/customer/" + id;
+		}
+
 		customerService.update(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());			
 		return "redirect:/admin/customer/" + id;
 	}

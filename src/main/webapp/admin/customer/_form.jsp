@@ -23,13 +23,15 @@
 				<form:errors path="fullName"></form:errors>
 			</div>
 		</spring:bind>
-		<spring:bind path="customerAccess.username">
-			<div class="form-group">
-				<label class="control-label">Conta de acesso do usuário</label>
-				<form:input path="customerAccess.username" class="form-control" placeholder="Usuário"></form:input>
-				<form:errors path="customerAccess.username"></form:errors>
-			</div>
-		</spring:bind>
+		<fieldset ${0 < customerForm.customerAccess.id ? 'disabled' : ''}>
+			<spring:bind path="customerAccess.username">
+				<div class="form-group">
+					<label class="control-label">Conta de acesso do usuário</label>
+					<form:input path="customerAccess.username" class="form-control" placeholder="Usuário"></form:input>
+					<form:errors path="customerAccess.username"></form:errors>
+				</div>
+			</spring:bind>
+		</fieldset>
 		<spring:bind path="document">
 			<div class="form-group">
 				<label class="control-label">CNPJ/CPF</label>

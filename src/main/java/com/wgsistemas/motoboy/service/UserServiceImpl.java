@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService {
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
+
+	@Transactional
+	public void remove(User user) {
+		userRepository.delete(user);
+	}
 }

@@ -23,13 +23,15 @@ public class CustomerValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Customer customer = (Customer) obj;
 		
-		if (StringUtils.isNotBlank(customer.getCustomerAccess().getUsername())) {
-	        if (customer.getCustomerAccess().getUsername().length() < 6 || customer.getCustomerAccess().getUsername().length() > 32) {
-	            errors.rejectValue("customerAccess.username", "userform.username.size");
-	        }
-	        if (userService.findByUsername(customer.getCustomerAccess().getUsername()) != null) {
-	            errors.rejectValue("customerAccess.username", "userform.username.duplicate");
-	        }
+		if (customer.getCustomerAccess() != null) {
+			if (StringUtils.isNotBlank(customer.getCustomerAccess().getUsername())) {
+				if (customer.getCustomerAccess().getUsername().length() < 6 || customer.getCustomerAccess().getUsername().length() > 32) {
+					errors.rejectValue("customerAccess.username", "userform.username.size");
+				}
+				if (userService.findByUsername(customer.getCustomerAccess().getUsername()) != null) {
+					errors.rejectValue("customerAccess.username", "userform.username.duplicate");
+				}
+			}
 		}
 	}
 }
