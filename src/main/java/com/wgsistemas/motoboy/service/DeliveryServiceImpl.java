@@ -1,6 +1,7 @@
 package com.wgsistemas.motoboy.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,6 +39,13 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 		deliveryRepository.delete(delivery);
 	}
 
+	@Transactional
+	public void accept(Long id) {
+		Delivery delivery = deliveryRepository.findOne(id);
+		delivery.accept();
+		deliveryRepository.save(delivery);
+	}
+
 	@Transactional(readOnly=true)
 	public Delivery findOne(Long id) {
 		return deliveryRepository.findOne(id);
@@ -72,5 +80,16 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	
 	private Sort orderByDeliveredBy_FullNameAsc() {
         return new Sort(Direction.ASC, "deliveredBy.fullName");
+    }
+
+	@Transactional(readOnly=true)
+	public Iterable<Delivery> findLastMounthDeliveryByCustomerAccessOrderByDeliveryAtDesc(String username) {
+		Date startDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().minusDays(30));
+		Date endDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().plusDays(30));
+		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, startDeliveryAt, endDeliveryAt, orderByDeliveryAtDesc());
+	}
+	
+	private Sort orderByDeliveryAtDesc() {
+        return new Sort(Direction.DESC, "deliveryAt");
     }
 }

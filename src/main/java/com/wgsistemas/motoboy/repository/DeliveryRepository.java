@@ -1,7 +1,10 @@
 package com.wgsistemas.motoboy.repository;
 
+import java.util.Date;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -28,4 +31,12 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
                     "upper(d.customer.fullName) like upper(concat('%',:searchTerm, '%')) OR " +
                     "upper(d.deliveredBy.fullName) like upper(concat('%',:searchTerm, '%'))")
 	Page<Delivery> findBySearchTerm(@Param("searchTerm") String searchTerm, Pageable pageable);
+
+	@Query(value = "select d from Delivery d " +
+			"left join fetch d.customer c " +
+			"left join fetch c.customerAccess u " +
+			"where " +
+            "u.username = :username " +
+            "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
+	Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort order);
 }

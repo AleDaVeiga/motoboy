@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -75,71 +76,50 @@
 	                <h1 id="homeHeading">Bem vindo ao Pratiko</h1>
 	                <hr>
 	                <p>Área do cliente</p>
-	                <a href="#cadastre" class="btn btn-success btn-xl page-scroll">Utilizando o sistema</a>
+	                <a href="#consult" class="btn btn-success btn-xl page-scroll">Acessar as corridas</a>
 	            </div>
 	        </div>
 	    </header>
 	    <section id="consult">
 	        <div class="container">
-	            <div class="row">
-	                <div class="col-lg-12 text-center">
+	            <div class="row text-center">
+	                <div class="col-lg-10 col-lg-offset-1">
 	                    <h2 class="section-heading">Lista de corridas</h2>
 	                    <hr>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="container">
-	            <div class="row">
-	            </div>
-	        </div>
-	    </section>
-	    <section class="no-padding" id="consult">
-	        <div class="container-fluid">
-	            <div class="row no-gutter popup-gallery">
-	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/customer.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/customer.jpg" class="img-responsive" alt="">
-	                        <div class="portfolio-box-caption">
-	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Clientes
-	                                </div>
-	                                <div class="project-name">
-	                                    Consultar clientes
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </a>
-	                </div>
-	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="img-responsive" alt="">
-	                        <div class="portfolio-box-caption">
-	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Motoboys
-	                                </div>
-	                                <div class="project-name">
-	                                    Consultar motoboys
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </a>
-	                </div>
-	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/resources/img/portfolio/delivery.jpg" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
-	                        <div class="portfolio-box-caption">
-	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Corridas
-	                                </div>
-	                                <div class="project-name">
-	                                    Consultar corridas
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </a>
+	                    <div class="row">
+	                    	<c:forEach var="delivery" items="${deliveries}" >
+		                    	<div class="col-md-3 col-sm-6">
+		                    		<div class="service-item">
+		                    			<h4>
+		                    				<strong>
+		                    					<span class="label label-default">
+			                    					<fmt:formatDate value="${delivery.deliveryAt}" pattern="dd/MM/yyyy" />
+			                    				</span>
+		                    				</strong>
+		                    				<strong>
+		                    					<span class="label label-${delivery.status ? 'success' : 'danger'}">
+		                    						<fmt:formatNumber value="${delivery.price}" type="currency"/>
+		                    					</span>
+				                			</strong>
+		                    			</h4>
+		                    			<p>
+		                    				<i class="glyphicon glyphicon-record"></i>
+		                    				${delivery.deliveryFrom}
+		                    			</p>
+		                    			<p>
+		                    				<i class="glyphicon glyphicon-map-marker"></i>
+		                    				${delivery.deliveryTo}
+		                    			</p>
+		                    			<c:if test="${!delivery.status}">
+			                    			<a href="${contextPath}/delivery/${delivery.id}/accept#consult" class="btn btn-success">Aceitar</a>
+		                    			</c:if>
+		                    			<c:if test="${delivery.status}">
+			                    			<a class="btn btn-default">Aceito</a>
+		                    			</c:if>
+		                    		</div>
+		                    	</div>
+	                    	</c:forEach>
+	                    </div>
 	                </div>
 	            </div>
 	        </div>

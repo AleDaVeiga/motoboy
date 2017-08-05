@@ -78,6 +78,10 @@ public class Delivery extends BaseEntity {
 		this.status = status;
 	}
 
+	public void accept() {
+		this.status = true;
+	}
+
 	@ManyToOne
     @JoinColumn(name = "customer_id")
 	public Customer getCustomer() {

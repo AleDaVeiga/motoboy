@@ -14,6 +14,8 @@ public interface DeliveryService {
 
 	void remove(Delivery delivery);
 
+	void accept(Long id);
+
 	Delivery findOne(Long id);
 
 	@Deprecated
@@ -24,4 +26,6 @@ public interface DeliveryService {
 	Iterable<Delivery> findAllOrderByCustomer_FullNameAsc();
 
 	Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc();
+	
+	Iterable<Delivery> findLastMounthDeliveryByCustomerAccessOrderByDeliveryAtDesc(String username);
 }
