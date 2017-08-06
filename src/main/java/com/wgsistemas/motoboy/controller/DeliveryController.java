@@ -31,7 +31,7 @@ public class DeliveryController {
 	@GetMapping(value = "/report/deliveries")
 	public ModelAndView report(Model model) {
 		JasperReportsPdfView view = new JasperReportsPdfView();
-		view.setUrl("classpath:report/deliveryByCustomer.jrxml");
+		view.setUrl("classpath:report/deliveries.jrxml");
 		view.setApplicationContext(applicationContext);
 
 		Map<String, Object> params = new HashMap<>();
