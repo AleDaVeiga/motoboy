@@ -92,6 +92,15 @@
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
+	                		<a href="${contextPath}/admin/delivery/">
+	                        	<i class="fa fa-4x fa-list-ol text-primary sr-icons"></i>
+							</a>
+	                        <h3>Corridas</h3>
+	                        <p class="text-muted">Cadastre o que será entregue.</p>
+	                    </div>
+	                </div>
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/customer/">
 	                        	<i class="fa fa-4x fa-user text-primary sr-icons"></i>
 	                        </a>
@@ -108,15 +117,6 @@
 	                        <p class="text-muted">Cadastre as pessoas que irão realizar as corridas.</p>
 	                    </div>
 	                </div>
-	                <div class="col-lg-4 col-md-6 text-center">
-	                    <div class="service-box">
-	                		<a href="${contextPath}/admin/delivery/">
-	                        	<i class="fa fa-4x fa-list-ol text-primary sr-icons"></i>
-							</a>
-	                        <h3>Corridas</h3>
-	                        <p class="text-muted">Cadastre o que será entregue.</p>
-	                    </div>
-	                </div>
 	            </div>
 	        </div>
 	    </section>
@@ -129,6 +129,21 @@
 	                </div>
 	            </div>
 	            <div class="row no-gutter">
+	                <div class="col-lg-4 col-sm-6">
+	                    <a href="${contextPath}/admin/deliveries" class="portfolio-box">
+	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
+	                        <div class="portfolio-box-caption">
+	                            <div class="portfolio-box-caption-content">
+	                                <div class="project-category text-faded">
+	                                    Corridas
+	                                </div>
+	                                <div class="project-name">
+	                                    Consultar corridas
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>
 	                <div class="col-lg-4 col-sm-6">
 	                    <a href="${contextPath}/admin/customers" class="portfolio-box">
 	                        <img src="${contextPath}/resources/img/portfolio/customer.jpg" class="img-responsive" alt="">
@@ -159,21 +174,6 @@
 	                        </div>
 	                    </a>
 	                </div>
-	                <div class="col-lg-4 col-sm-6">
-	                    <a href="${contextPath}/admin/deliveries" class="portfolio-box">
-	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
-	                        <div class="portfolio-box-caption">
-	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Corridas
-	                                </div>
-	                                <div class="project-name">
-	                                    Consultar corridas
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </a>
-	                </div>
 	            </div>
 	        </div>
 	    </section>
@@ -186,6 +186,15 @@
 	                </div>
 	            </div>
 	            <div class="row">
+	                <div class="col-lg-4 col-md-6 text-center">
+	                    <div class="service-box">
+	                		<a href="${contextPath}/admin/report/deliveries" target="_blank">
+	                        	<i class="fa fa-4x fa-file-text text-primary sr-icons"></i>
+							</a>
+	                        <h3>Corridas</h3>
+	                        <p class="text-muted">Veja o que já foi entregue.</p>
+	                    </div>
+	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
 	                        <a href="${contextPath}/admin/report/customers" target="_blank">
@@ -202,15 +211,6 @@
 	                        </a>
                         	<h3>Motoboys</h3>
 	                        <p class="text-muted">Veja as pessoas que realizaram corridas.</p>
-	                    </div>
-	                </div>
-	                <div class="col-lg-4 col-md-6 text-center">
-	                    <div class="service-box">
-	                		<a href="${contextPath}/admin/report/deliveries" target="_blank">
-	                        	<i class="fa fa-4x fa-file-text text-primary sr-icons"></i>
-							</a>
-	                        <h3>Corridas</h3>
-	                        <p class="text-muted">Veja o que já foi entregue.</p>
 	                    </div>
 	                </div>
 	            </div>
