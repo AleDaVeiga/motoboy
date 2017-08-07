@@ -104,7 +104,7 @@
 	        </div>
 	        <div class="row">
 				<jsp:include page="../templates/pagination.jsp">
-					<jsp:param name="paginationUrl" value="${contextPath}/admin/deliveries?"/>
+					<jsp:param name="paginationUrl" value="${contextPath}/admin/deliveries?search=${param.search}"/>
 				</jsp:include>
 			</div>
 	    </div>
