@@ -26,6 +26,7 @@ public class Delivery extends BaseEntity {
 	private BigDecimal price;
 	private Date deliveryAt;
 	private boolean status;
+	private Date confirmedIn;
 	private Customer customer;
 	private DeliveryMan deliveredBy;
 	private PaymentMethod paymentMethod;
@@ -78,8 +79,19 @@ public class Delivery extends BaseEntity {
 		this.status = status;
 	}
 
-	public void accept() {
+	public void accept(Date confirmedIn) {
 		this.status = true;
+		this.confirmedIn = confirmedIn;
+	}
+
+	@Column(name="dt_confirmacao")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getConfirmedIn() {
+		return confirmedIn;
+	}
+
+	public void setConfirmedIn(Date confirmedIn) {
+		this.confirmedIn = confirmedIn;
 	}
 
 	@ManyToOne

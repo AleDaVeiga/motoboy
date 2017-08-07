@@ -111,10 +111,10 @@
 		                    				${delivery.deliveryTo}
 		                    			</p>
 		                    			<c:if test="${!delivery.status}">
-			                    			<a href="${contextPath}/delivery/${delivery.id}/accept#consult" class="btn btn-success">Aceitar</a>
+			                    			<a href="${contextPath}/delivery/${delivery.id}/accept#consult" class="btn btn-danger">Aceitar</a>
 		                    			</c:if>
 		                    			<c:if test="${delivery.status}">
-			                    			<a class="btn btn-default">Aceito</a>
+			                    			<a class="btn btn-success">Confirmado <fmt:formatDate value="${delivery.confirmedIn}" pattern="dd/MM/yyyy" /></a>
 		                    			</c:if>
 		                    		</div>
 		                    	</div>

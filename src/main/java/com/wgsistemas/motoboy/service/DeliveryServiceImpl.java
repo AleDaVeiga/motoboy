@@ -42,7 +42,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	@Transactional
 	public void accept(Long id) {
 		Delivery delivery = deliveryRepository.findOne(id);
-		delivery.accept();
+		delivery.accept(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		deliveryRepository.save(delivery);
 	}
 
