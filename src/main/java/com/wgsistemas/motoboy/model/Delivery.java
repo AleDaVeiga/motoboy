@@ -84,7 +84,7 @@ public class Delivery extends BaseEntity {
 		this.confirmedIn = confirmedIn;
 	}
 
-	@Column(name="dt_confirmacao")
+	@Column(name="confirmed_in")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getConfirmedIn() {
 		return confirmedIn;
