@@ -44,15 +44,17 @@ public class AdminCustomerController {
 	
 	@PostMapping(path = "/customer/")
 	@Transactional
-	public String create(@ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model) {
+	public String create(@ModelAttribute("customerForm") Customer customerForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		customerValidator.validate(customerForm, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Não foi possível inserir o cliente.");
 			return "admin/customer/new";
+		} else {
+			Customer customer = customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
+			redirectAttributes.addFlashAttribute("messageSuccess", "Cliente inserido com sucesso.");
+			return "redirect:/admin/customer/" + customer.getId();
 		}
-
-		Customer customer = customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
-		return "redirect:/admin/customer/" + customer.getId();
 	}
 	
 	@GetMapping(path = "/customer/{id}")
@@ -73,10 +75,11 @@ public class AdminCustomerController {
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customerForm", bindingResult);
             redirectAttributes.addFlashAttribute("customerForm", customerForm);
-            return "redirect:/admin/customer/" + id;
+			redirectAttributes.addFlashAttribute("messageError", "Não foi possível atualizar o cliente.");
+		} else {
+			customerService.update(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
+			redirectAttributes.addFlashAttribute("messageSuccess", "Cliente atualizado com sucesso.");
 		}
-
-		customerService.update(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());			
 		return "redirect:/admin/customer/" + id;
 	}
 	

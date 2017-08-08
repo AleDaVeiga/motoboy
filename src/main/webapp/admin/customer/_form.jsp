@@ -4,6 +4,19 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
+<c:if test="${messageSuccess != null}">
+	<div class="alert alert-success alert-dismissable">
+		<a href="#" class="close" data-dismiss="alert" aria-label="Fecha">&times;</a>
+		<strong>Sucesso!</strong> ${messageSuccess}
+	</div>
+</c:if>
+<c:if test="${messageError != null}">
+	<div class="alert alert-danger alert-dismissable">
+		<a href="#" class="close" data-dismiss="alert" aria-label="Fecha">&times;</a>
+		<strong>Erro!</strong> ${messageError}
+	</div>
+</c:if>
+
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <ul class="nav nav-tabs">
 	<li class="active">
