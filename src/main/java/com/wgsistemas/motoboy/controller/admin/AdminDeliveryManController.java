@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.DeliveryMan;
@@ -34,8 +35,9 @@ public class AdminDeliveryManController {
 	
 	@PostMapping(path = "/deliveryman/")
 	@Transactional
-	public String create(@ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
+	public String create(@ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		DeliveryMan deliveryMan = deliveryManService.create(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		redirectAttributes.addFlashAttribute("messageSuccess", "Motoboy inserido com sucesso.");
 		return "redirect:/admin/deliveryman/" + deliveryMan.getId();
 	}
 	
@@ -48,8 +50,9 @@ public class AdminDeliveryManController {
 	
 	@PutMapping(path = "/deliveryman/{id}")
 	@Transactional
-	public String update(@PathVariable Long id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model) {
+	public String update(@PathVariable Long id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		deliveryManService.update(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());			
+		redirectAttributes.addFlashAttribute("messageSuccess", "Motoboy atualizado com sucesso.");
 		return "redirect:/admin/deliveryman/" + id;
 	}
 	
