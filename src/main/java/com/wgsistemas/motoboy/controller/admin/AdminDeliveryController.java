@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wgsistemas.motoboy.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Delivery;
@@ -48,8 +49,9 @@ public class AdminDeliveryController {
 	
 	@PostMapping(path = "/delivery/")
 	@Transactional
-	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model) {
+	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());		
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.");
 		return "redirect:/admin/delivery/";
 	}
 	
@@ -65,8 +67,9 @@ public class AdminDeliveryController {
 	
 	@PutMapping(path = "/delivery/{id}")
 	@Transactional
-	public String update(@PathVariable Long id, @ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model) {
-		deliveryService.update(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());			
+	public String update(@PathVariable Long id, @ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+		deliveryService.update(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida atualizada com sucesso.");
 		return "redirect:/admin/delivery/" + id;
 	}
 	
