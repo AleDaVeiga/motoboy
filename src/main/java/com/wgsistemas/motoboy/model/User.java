@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 public class User {
 	private Long id;
 	private String username;
+	private String passwordToChange;
 	private String password;
 	private String passwordConfirm;
 	private Set<Role> roles;
@@ -39,6 +40,15 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	@Transient
+	public String getPasswordToChange() {
+		return passwordToChange;
+	}
+
+	public void setPasswordToChange(String passwordToChange) {
+		this.passwordToChange = passwordToChange;
 	}
 
 	public String getPassword() {

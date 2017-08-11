@@ -1,6 +1,7 @@
 package com.wgsistemas.motoboy.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -13,6 +14,8 @@ import com.wgsistemas.motoboy.service.UserService;
 public class UserValidator implements Validator {
 	@Autowired
 	private UserService userService;
+    @Autowired
+    private Md5PasswordEncoder md5PasswordEncoder;
 
 	@Override
     public boolean supports(Class<?> aClass) {
@@ -27,17 +30,25 @@ public class UserValidator implements Validator {
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "userform.username.size");
         }
-        if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "userform.username.duplicate");
-        }
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "notempty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "userform.password.size");
-        }
-
-        if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "userform.passwordconfirm.diff");
-        }
+        User userToChange = userService.findByUsername(user.getUsername());
+		if (userToChange != null) {
+	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordToChange", "notempty");
+	        
+	        if(!userToChange.getPassword().equals(md5PasswordEncoder.encodePassword(user.getPasswordToChange(), null))) {
+	            errors.rejectValue("passwordToChange", "userform.passwordtochange.invalid");
+	        }
+	        
+	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "notempty");
+	        
+	        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+	            errors.rejectValue("password", "userform.password.size");
+	        }
+	
+	        if (!user.getPasswordConfirm().equals(user.getPassword())) {
+	            errors.rejectValue("passwordConfirm", "userform.passwordconfirm.diff");
+	        }
+		} else {
+            errors.rejectValue("username", "userform.username.notfound");
+		}
 	}
 }

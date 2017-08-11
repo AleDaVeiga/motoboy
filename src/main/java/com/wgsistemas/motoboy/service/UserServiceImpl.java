@@ -30,6 +30,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
 	}
 
+	@Transactional
+	public User updatePassword(User user) {
+		User userToChange = findByUsername(user.getUsername());
+		userToChange.setPassword(md5PasswordEncoder.encodePassword(user.getPassword(), null));
+        return userRepository.save(userToChange);
+	}
+
 	@Transactional(readOnly=true)
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);

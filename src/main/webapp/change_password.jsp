@@ -14,7 +14,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		
-		<title>Criar uma conta</title>
+		<title>Trocar senha da conta</title>
 		
 		<!-- Bootstrap Core CSS -->
 	    <!-- Latest compiled and minified CSS -->
@@ -33,17 +33,23 @@
 	</head>
 	<body>
 		<div class="container">
-			<form:form method="POST" modelAttribute="userForm" class="form-signin">
-				<h2 class="form-signin-heading">Criar uma conta</h2>
+			<form:form method="POST" action="${contextPath}/changepassword" modelAttribute="userForm" class="form-signin">
+				<h2 class="form-signin-heading">Trocar senha da conta</h2>
 				<spring:bind path="username">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
 						<form:input type="text" path="username" class="form-control" placeholder="Usuário" autofocus="true"></form:input>
 						<form:errors path="username"></form:errors>
 					</div>
 				</spring:bind>
+				<spring:bind path="passwordToChange">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:input type="password" path="passwordToChange" class="form-control" placeholder="Senha anterior"></form:input>
+						<form:errors path="passwordToChange"></form:errors>
+					</div>
+				</spring:bind>
 				<spring:bind path="password">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
-						<form:input type="password" path="password" class="form-control" placeholder="Senha"></form:input>
+						<form:input type="password" path="password" class="form-control" placeholder="Senha nova"></form:input>
 						<form:errors path="password"></form:errors>
 					</div>
 				</spring:bind>
@@ -53,7 +59,10 @@
 						<form:errors path="passwordConfirm"></form:errors>
 					</div>
 				</spring:bind>
-				<button class="btn btn-lg btn-danger btn-block" type="submit">Criar</button>
+				<button class="btn btn-lg btn-danger btn-block" type="submit">Trocar</button>
+				<h4 class="text-center">
+					<a href="${contextPath}/login">Acessar sua conta</a>
+				</h4>
 			</form:form>
 		</div>
 		<!-- Bootstrap Core JavaScript -->

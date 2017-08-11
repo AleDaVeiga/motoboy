@@ -24,22 +24,22 @@ public class UsersController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping(value = "/registration")
-    public String registration(Model model) {
+    @GetMapping(value = "/changepassword")
+    public String changePassword(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "change_password";
     }
 
-    @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    @PostMapping(value = "/changepassword")
+    public String changePassword(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "change_password";
         }
 
-        userService.save(userForm);
+        userService.updatePassword(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/home";
