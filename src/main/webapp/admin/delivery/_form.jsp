@@ -35,7 +35,7 @@
 		<label class="radio-inline"><form:radiobutton path="status" value="true"/>Aceito</label>
 		<form:errors path="status"></form:errors>
 	</div>
-</spring:bind> 
+</spring:bind>
 <spring:bind path="deliveryFrom">
 	<div class="form-group">
 		<label class="control-label">Origem</label>

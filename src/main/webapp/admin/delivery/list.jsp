@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Motoboy - Controle das informaÃ§Ãµes</title>
+		<title>Motoboy - Controle das informações</title>
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
@@ -18,7 +18,7 @@
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <h3 class="panel-title clearfix">
-	                        AdministraÃ§Ã£o de corridas
+	                        Administração de corridas
 	                        <span class="pull-right">
                                	<a href="${contextPath}/admin/report/deliveries" class="btn btn-default btn-sm" target="_blank">
                                		<span class="glyphicon glyphicon-print"></span>
