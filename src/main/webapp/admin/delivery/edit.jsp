@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Motoboy - Controle das informações</title>
+		<title>Motoboy - Controle das informaÃ§Ãµes</title>
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
