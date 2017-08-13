@@ -77,7 +77,7 @@ public class AdminCustomerController {
             redirectAttributes.addFlashAttribute("customerForm", customerForm);
 			redirectAttributes.addFlashAttribute("messageError", "Não foi possível atualizar o cliente.");
 		} else {
-			customerService.update(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
+			customerService.update(customerForm);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Cliente atualizado com sucesso.");
 		}
 		return "redirect:/admin/customer/" + id;
@@ -94,7 +94,7 @@ public class AdminCustomerController {
 	@GetMapping(path = "/customers")
 	@Transactional(readOnly = true)
 	public String findAll(@RequestParam(value = "search", required = false) String search, @PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
-		PageWrapper<Customer> page = new PageWrapper<Customer>(customerService.findBySearchTerm(search, pageable));
+		PageWrapper<Customer> page = new PageWrapper<Customer>(customerService.findBySearchTerm(search, SecurityContextHolder.getContext().getAuthentication().getName(), pageable));
 		model.addAttribute("page", page);
 		return "admin/customer/list";
 	}

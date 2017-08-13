@@ -5,6 +5,8 @@ import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 import com.wgsistemas.motoboy.model.datatype.Created;
@@ -15,6 +17,7 @@ public abstract class BaseEntity {
 	private Long id;
 	private Created entityCreated;
 	private Updated entityUpdated;
+	private User owner;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +46,15 @@ public abstract class BaseEntity {
 
 	public void setEntityUpdated(Updated entityUpdated) {
 		this.entityUpdated = entityUpdated;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 }

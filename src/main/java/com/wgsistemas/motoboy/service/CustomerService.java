@@ -10,14 +10,14 @@ public interface CustomerService {
 	
 	Customer create(Customer customer, String username);
 
-	Customer update(Customer customer, String username);
+	Customer update(Customer customer);
 
 	void remove(Customer customer);
 
 	Customer findOne(Long id);
 	
 	@Deprecated
-	Iterable<Customer> findAll();
+	Iterable<Customer> findAll(String username);
 	
-	Page<Customer> findBySearchTerm(String search, Pageable pageable);
+	Page<Customer> findBySearchTerm(String search, String username, Pageable pageable);
 }

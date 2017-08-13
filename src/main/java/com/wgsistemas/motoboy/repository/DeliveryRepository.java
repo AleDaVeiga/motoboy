@@ -12,27 +12,37 @@ import org.springframework.data.repository.query.Param;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
+	Iterable<Delivery> findByOwner_Username(String username);
+	
+	Iterable<Delivery> findByOwner_Username(String username, Sort sort);
+	
+	Page<Delivery> findByOwner_Username(String username, Pageable pageable);
+	
 	Iterable<Delivery> findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(String username);
 	
 	@Query(value = "select d from Delivery d " +
+			"left join fetch d.owner o " +
 			"left join fetch d.customer " +
 			"left join fetch d.deliveredBy " +
 			"left join fetch d.paymentMethod " +
 			"where " +
-            "upper(d.deliveryFrom) like upper(concat('%',:searchTerm, '%')) OR " +
+            "o.username = :username AND " +
+            "(upper(d.deliveryFrom) like upper(concat('%',:searchTerm, '%')) OR " +
             "upper(d.deliveryTo) like upper(concat('%',:searchTerm, '%')) OR " +
             "upper(d.customer.fullName) like upper(concat('%',:searchTerm, '%')) OR " +
-            "upper(d.deliveredBy.fullName) like upper(concat('%',:searchTerm, '%'))",
+            "upper(d.deliveredBy.fullName) like upper(concat('%',:searchTerm, '%')))",
             countQuery = "select count(d) from Delivery d " +
+        			"left join d.owner o " +
         			"left join d.customer " +
         			"left join d.deliveredBy " +
         			"left join d.paymentMethod " +
         			"where " +
-                    "upper(d.deliveryFrom) like upper(concat('%',:searchTerm, '%')) OR " +
+                    "o.username = :username AND " +
+                    "(upper(d.deliveryFrom) like upper(concat('%',:searchTerm, '%')) OR " +
                     "upper(d.deliveryTo) like upper(concat('%',:searchTerm, '%')) OR " +
                     "upper(d.customer.fullName) like upper(concat('%',:searchTerm, '%')) OR " +
-                    "upper(d.deliveredBy.fullName) like upper(concat('%',:searchTerm, '%'))")
-	Page<Delivery> findBySearchTerm(@Param("searchTerm") String searchTerm, Pageable pageable);
+                    "upper(d.deliveredBy.fullName) like upper(concat('%',:searchTerm, '%')))")
+	Page<Delivery> findBySearchTermAndOwner_Username(@Param("searchTerm") String searchTerm, @Param("username") String username, Pageable pageable);
 
 	@Query(value = "select d from Delivery d " +
 			"left join fetch d.customer c " +

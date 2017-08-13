@@ -6,18 +6,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.wgsistemas.motoboy.model.User;
-
 @Embeddable
 public class Updated {
 	private Date updatedAt;
-	private User updatedBy;
 
 	@Column(name = "updated_at", insertable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -27,16 +22,6 @@ public class Updated {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "updated_by_id", insertable = false)
-	public User getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(User updatedBy) {
-		this.updatedBy = updatedBy;
 	}
 	
 	@PreUpdate

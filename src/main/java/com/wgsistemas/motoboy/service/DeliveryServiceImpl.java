@@ -52,21 +52,21 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findAll() {
-		return deliveryRepository.findAll();
+	public Iterable<Delivery> findAll(String username) {
+		return deliveryRepository.findByOwner_Username(username);
 	}
 
 	@Transactional(readOnly=true)
-	public Page<Delivery> findBySearchTerm(String search, Pageable pageable) {
+	public Page<Delivery> findBySearchTerm(String search, String username, Pageable pageable) {
 		if (search == null || search.trim().isEmpty()) {
-			return deliveryRepository.findAll(pageable);
+			return deliveryRepository.findByOwner_Username(username, pageable);
 		}
-		return deliveryRepository.findBySearchTerm(search, pageable);
+		return deliveryRepository.findBySearchTermAndOwner_Username(search, username, pageable);
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findAllOrderByCustomer_FullNameAsc() {
-		return deliveryRepository.findAll(orderByCustomer_FullNameAsc());
+	public Iterable<Delivery> findAllOrderByCustomer_FullNameAsc(String username) {
+		return deliveryRepository.findByOwner_Username(username, orderByCustomer_FullNameAsc());
 	}
 	
 	private Sort orderByCustomer_FullNameAsc() {
@@ -74,8 +74,8 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
     }
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc() {
-		return deliveryRepository.findAll(orderByDeliveredBy_FullNameAsc());
+	public Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc(String username) {
+		return deliveryRepository.findByOwner_Username(username, orderByDeliveredBy_FullNameAsc());
 	}
 	
 	private Sort orderByDeliveredBy_FullNameAsc() {

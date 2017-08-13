@@ -8,7 +8,6 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,7 +26,6 @@ public class Customer extends BaseEntity {
 	private String email;
 	private String note;
 	private User customerAccess;
-	private User owner;
 
 	@Column(name="full_name", nullable = false, length = 250)
 	public String getFullName() {
@@ -106,15 +104,5 @@ public class Customer extends BaseEntity {
 
 	public void setCustomerAccess(User customerAccess) {
 		this.customerAccess = customerAccess;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
 	}
 }

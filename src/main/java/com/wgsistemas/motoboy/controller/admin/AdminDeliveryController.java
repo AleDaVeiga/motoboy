@@ -41,8 +41,8 @@ public class AdminDeliveryController {
 	@GetMapping(value = "/delivery/")
 	public String create(Model model) {
 		model.addAttribute("deliveryForm", deliveryService.newDelivery());
-		model.addAttribute("deliveryManList", deliveryManService.findAll());
-		model.addAttribute("customerList", customerService.findAll());
+		model.addAttribute("deliveryManList", deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
+		model.addAttribute("customerList", customerService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
 		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
 		return "admin/delivery/new";
 	}
@@ -59,8 +59,8 @@ public class AdminDeliveryController {
 	public String update(@PathVariable Long id, Model model) {
 		Delivery delivery = deliveryService.findOne(id);		
 		model.addAttribute("deliveryForm", delivery);
-		model.addAttribute("deliveryManList", deliveryManService.findAll());
-		model.addAttribute("customerList", customerService.findAll());	
+		model.addAttribute("deliveryManList", deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
+		model.addAttribute("customerList", customerService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));	
 		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
 		return "admin/delivery/edit";
 	}
@@ -68,7 +68,7 @@ public class AdminDeliveryController {
 	@PutMapping(path = "/delivery/{id}")
 	@Transactional
 	public String update(@PathVariable Long id, @ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		deliveryService.update(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
+		deliveryService.update(deliveryForm);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida atualizada com sucesso.");
 		return "redirect:/admin/delivery/" + id;
 	}
@@ -84,7 +84,7 @@ public class AdminDeliveryController {
 	@GetMapping(path = "/deliveries")
 	@Transactional(readOnly=true)
 	public String findAll(@RequestParam(value = "search", required = false) String search, @PageableDefault(value = 10, page = 0, sort = { "deliveryAt" }, direction = Direction.DESC) Pageable pageable, Model model) {
-		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findBySearchTerm(search, pageable));
+		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findBySearchTerm(search, SecurityContextHolder.getContext().getAuthentication().getName(), pageable));
 		model.addAttribute("page", page);	
 		return "admin/delivery/list";
 	}

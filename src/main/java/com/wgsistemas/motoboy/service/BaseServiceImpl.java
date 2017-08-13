@@ -23,17 +23,19 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
 	public T create(T baseEntity, String username) {
 		Created created = new Created();
 		created.setCreatedAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
-		created.setCreatedBy(userRepository.findByUsername(username));
 		baseEntity.setEntityCreated(created);
+		baseEntity.setOwner(userRepository.findByUsername(username));
 		return getRepository().save(baseEntity);
 	}
 
 	@Transactional
-	public T update(T baseEntity, String username) {
+	public T update(T baseEntity) {
 		Updated updated = new Updated();
 		updated.setUpdatedAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
-		updated.setUpdatedBy(userRepository.findByUsername(username));
 		baseEntity.setEntityUpdated(updated);
+		
+		T baseEntityOld = getRepository().findOne(baseEntity.getId());
+		baseEntity.setOwner(baseEntityOld.getOwner());
 		return getRepository().save(baseEntity);
 	}
 }

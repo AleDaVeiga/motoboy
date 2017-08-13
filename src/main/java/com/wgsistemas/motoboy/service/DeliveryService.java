@@ -10,7 +10,7 @@ public interface DeliveryService {
 	
 	Delivery create(Delivery delivery, String username);
 
-	Delivery update(Delivery delivery, String username);
+	Delivery update(Delivery delivery);
 
 	void remove(Delivery delivery);
 
@@ -19,13 +19,13 @@ public interface DeliveryService {
 	Delivery findOne(Long id);
 
 	@Deprecated
-	Iterable<Delivery> findAll();
+	Iterable<Delivery> findAll(String username);
 
-	Page<Delivery> findBySearchTerm(String search, Pageable pageable);
+	Page<Delivery> findBySearchTerm(String search, String username, Pageable pageable);
 
-	Iterable<Delivery> findAllOrderByCustomer_FullNameAsc();
+	Iterable<Delivery> findAllOrderByCustomer_FullNameAsc(String username);
 
-	Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc();
+	Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc(String username);
 	
 	Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username);
 	

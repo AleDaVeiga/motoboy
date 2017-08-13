@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.wgsistemas.motoboy.model.converter.ListToStringConveter;
@@ -18,7 +16,6 @@ public class DeliveryMan extends BaseEntity {
 	private String document;
 	private String note;
 	private List<String> phones;
-	private User owner;
 
 	@Column(name="full_name", nullable = false, length = 250)
 	public String getFullName() {
@@ -52,15 +49,5 @@ public class DeliveryMan extends BaseEntity {
 
 	public void setPhones(List<String> phones) {
 		this.phones = phones;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
 	}
 }

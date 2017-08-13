@@ -51,7 +51,7 @@ public class AdminDeliveryManController {
 	@PutMapping(path = "/deliveryman/{id}")
 	@Transactional
 	public String update(@PathVariable Long id, @ModelAttribute("deliveryManForm") DeliveryMan deliveryManForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		deliveryManService.update(deliveryManForm, SecurityContextHolder.getContext().getAuthentication().getName());			
+		deliveryManService.update(deliveryManForm);			
 		redirectAttributes.addFlashAttribute("messageSuccess", "Motoboy atualizado com sucesso.");
 		return "redirect:/admin/deliveryman/" + id;
 	}
@@ -67,7 +67,7 @@ public class AdminDeliveryManController {
 	@GetMapping(path = "/deliverymans")
 	@Transactional(readOnly=true)
 	public String findAll(@PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
-		PageWrapper<DeliveryMan> page = new PageWrapper<DeliveryMan>(deliveryManService.findAll(pageable));
+		PageWrapper<DeliveryMan> page = new PageWrapper<DeliveryMan>(deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName(), pageable));
 		model.addAttribute("page", page);	
 		return "admin/deliveryman/list";
 	}

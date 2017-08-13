@@ -51,9 +51,9 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	}
 	
 	@Override
-	public Customer update(Customer customer, String username) {
+	public Customer update(Customer customer) {
 		updateCustomerAccess(customer);
-		return super.update(customer, username);
+		return super.update(customer);
 	}
 
 	private void updateCustomerAccess(Customer customer) {
@@ -84,8 +84,8 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	}
 	
 	@Transactional(readOnly=true)
-	public Iterable<Customer> findAll() {
-		return customerRepository.findAll(orderByFullNameAsc());
+	public Iterable<Customer> findAll(String username) {
+		return customerRepository.findByOwner_Username(username, orderByFullNameAsc());
 	}
 	
 	private Sort orderByFullNameAsc() {
@@ -93,10 +93,10 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
     }
 
 	@Transactional(readOnly=true)
-	public Page<Customer> findBySearchTerm(String search, Pageable pageable) {
+	public Page<Customer> findBySearchTerm(String search, String username, Pageable pageable) {
 		if (search == null || search.trim().isEmpty()) {
-			return customerRepository.findAll(pageable);
+			return customerRepository.findByOwner_Username(username, pageable);
 		}
-		return customerRepository.findByFullNameContainingIgnoreCase(search, pageable);
+		return customerRepository.findByFullNameContainingIgnoreCaseAndOwner_Username(search, username, pageable);
 	}
 }

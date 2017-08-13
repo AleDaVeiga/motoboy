@@ -33,8 +33,8 @@ public class DeliveryManServiceImpl extends BaseServiceImpl<DeliveryMan, Long> i
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<DeliveryMan> findAll() {
-		return deliveryManRepository.findAll(orderByFullNameAsc());
+	public Iterable<DeliveryMan> findAll(String username) {
+		return deliveryManRepository.findByOwner_Username(username, orderByFullNameAsc());
 	}
 	
 	private Sort orderByFullNameAsc() {
@@ -42,7 +42,7 @@ public class DeliveryManServiceImpl extends BaseServiceImpl<DeliveryMan, Long> i
     }
 
 	@Transactional(readOnly=true)
-	public Page<DeliveryMan> findAll(Pageable pageable) {
-		return deliveryManRepository.findAll(pageable);
+	public Page<DeliveryMan> findAll(String username, Pageable pageable) {
+		return deliveryManRepository.findByOwner_Username(username, pageable);
 	}
 }
