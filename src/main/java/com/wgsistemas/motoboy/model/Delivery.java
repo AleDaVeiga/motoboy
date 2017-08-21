@@ -49,7 +49,7 @@ public class Delivery extends BaseEntity {
 		this.deliveryTo = deliveryTo;
 	}
 
-	@NumberFormat(style = Style.NUMBER)
+	@NumberFormat(style = Style.CURRENCY)
 	public BigDecimal getPrice() {
 		return price;
 	}
