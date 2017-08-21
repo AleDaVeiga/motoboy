@@ -63,7 +63,7 @@
 <spring:bind path="price">
 	<div class="form-group">
 		<label class="control-label">Valor R$</label>
-		<form:input type="number" path="price" class="form-control" placeholder="Valor"></form:input>
+		<form:input type="tel" maxlength="15" pattern="[0-9]+$" path="price" class="form-control" placeholder="Valor"></form:input>
 		<form:errors path="price"></form:errors>
 	</div>
 </spring:bind>
