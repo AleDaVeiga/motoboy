@@ -13,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.wgsistemas.motoboy.model.converter.BooleanConverter;
 
@@ -47,6 +49,7 @@ public class Delivery extends BaseEntity {
 		this.deliveryTo = deliveryTo;
 	}
 
+	@NumberFormat(style = Style.NUMBER)
 	public BigDecimal getPrice() {
 		return price;
 	}
