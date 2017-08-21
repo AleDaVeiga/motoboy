@@ -230,7 +230,7 @@
 	                </div>
 	                <div class="col-lg-4 text-center">
 	                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-	                    <p><a href="mailto:contato@pratiko.com">contato@pratiko.com</a></p>
+	                    <p><a href="mailto:contato@pratikoapp.com">contato@pratikoapp.com</a></p>
 	                </div>
 	            </div>
 	        </div>

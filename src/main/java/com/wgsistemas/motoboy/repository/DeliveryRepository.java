@@ -12,8 +12,6 @@ import org.springframework.data.repository.query.Param;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
-	Iterable<Delivery> findByOwner_Username(String username);
-	
 	Iterable<Delivery> findByOwner_Username(String username, Sort sort);
 	
 	Page<Delivery> findByOwner_Username(String username, Pageable pageable);

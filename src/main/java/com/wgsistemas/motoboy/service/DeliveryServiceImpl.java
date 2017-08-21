@@ -53,8 +53,12 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findAll(String username) {
-		return deliveryRepository.findByOwner_Username(username);
+		return deliveryRepository.findByOwner_Username(username, orderByDeliveryAtDesc());
 	}
+	
+	private Sort orderByDeliveryAtDesc() {
+        return new Sort(Direction.DESC, "deliveryAt");
+    }
 
 	@Transactional(readOnly=true)
 	public Page<Delivery> findBySearchTerm(String search, String username, Pageable pageable) {
@@ -86,10 +90,6 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	public Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username) {
 		return deliveryRepository.findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(username);
 	}
-	
-	private Sort orderByDeliveryAtDesc() {
-        return new Sort(Direction.DESC, "deliveryAt");
-    }
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username) {

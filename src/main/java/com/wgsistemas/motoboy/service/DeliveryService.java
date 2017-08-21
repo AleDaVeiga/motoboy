@@ -18,7 +18,6 @@ public interface DeliveryService {
 
 	Delivery findOne(Long id);
 
-	@Deprecated
 	Iterable<Delivery> findAll(String username);
 
 	Page<Delivery> findBySearchTerm(String search, String username, Pageable pageable);
