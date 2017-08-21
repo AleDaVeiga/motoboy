@@ -227,10 +227,17 @@
 	                <div class="col-lg-4 col-lg-offset-2 text-center">
 	                    <i class="fa fa-phone fa-3x sr-contact"></i>
 	                    <p>48 98411 6516</p>
+	                    <p>48 98456 3705</p>
 	                </div>
 	                <div class="col-lg-4 text-center">
 	                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-	                    <p><a href="mailto:contato@pratikoapp.com">contato@pratikoapp.com</a></p>
+	                    <p><a href="mailto:contato@pratikoapp.com">contato@pratikoapp.com.br</a></p>
+	                </div>
+	                <div class="col-lg-8 col-lg-offset-2 text-center">
+	                	<hr class="small">
+	                	<spring:eval expression="@environment.getProperty('application.name')" var="applicationName" />
+	                	<spring:eval expression="@environment.getProperty('build.version')" var="buildVersion" />
+	                	<p class="text-muted">Copyright &copy; WG Sistemas e Sites 2017 (${buildVersion}). All Rights Reserved.</p>
 	                </div>
 	            </div>
 	        </div>
