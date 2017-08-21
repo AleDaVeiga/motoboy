@@ -62,8 +62,8 @@
 </spring:bind>
 <spring:bind path="price">
 	<div class="form-group">
-		<label class="control-label">Valor</label>
-		<form:input path="price" class="form-control"></form:input>
+		<label class="control-label">Valor R$</label>
+		<form:input type="number" path="price" class="form-control" placeholder="Valor"></form:input>
 		<form:errors path="price"></form:errors>
 	</div>
 </spring:bind>
