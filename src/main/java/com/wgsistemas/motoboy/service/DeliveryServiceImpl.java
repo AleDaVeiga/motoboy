@@ -70,7 +70,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findAllOrderByCustomer_FullNameAsc(String username) {
-		return deliveryRepository.findByOwner_Username(username, orderByCustomer_FullNameAsc());
+		return deliveryRepository.findByOwner_Username(username, orderByCustomer_FullNameAsc().and(orderByDeliveryAtDesc()));
 	}
 	
 	private Sort orderByCustomer_FullNameAsc() {
@@ -79,7 +79,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc(String username) {
-		return deliveryRepository.findByOwner_Username(username, orderByDeliveredBy_FullNameAsc());
+		return deliveryRepository.findByOwner_Username(username, orderByDeliveredBy_FullNameAsc().and(orderByDeliveryAtDesc()));
 	}
 	
 	private Sort orderByDeliveredBy_FullNameAsc() {
