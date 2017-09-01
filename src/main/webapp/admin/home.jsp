@@ -188,7 +188,7 @@
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                		<a href="${contextPath}/admin/report/deliveries" target="_blank">
+	                		<a href="${contextPath}/admin/report/deliveries">
 	                        	<i class="fa fa-4x fa-file-text text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>

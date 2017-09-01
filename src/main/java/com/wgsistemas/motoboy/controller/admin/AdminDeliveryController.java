@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.wgsistemas.motoboy.dominio.PageWrapper;
+import com.wgsistemas.motoboy.controller.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.service.CustomerService;
 import com.wgsistemas.motoboy.service.DeliveryManService;
