@@ -1,6 +1,7 @@
 package com.wgsistemas.motoboy.service;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
 import com.wgsistemas.motoboy.util.DateUtil;
@@ -93,8 +95,14 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username) {
-		Date startDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().minusDays(30));
-		Date endDeliveryAt = DateUtil.newDateFrom(DateUtil.newZonedDateTime().plusDays(30));
+		ZonedDateTime today = DateUtil.newZonedDateTime();
+		Date startDeliveryAt = DateUtil.newDateFrom(today.minusDays(30));
+		Date endDeliveryAt = DateUtil.newDateFrom(today.plusDays(30));
 		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, startDeliveryAt, endDeliveryAt, orderByDeliveryAtDesc());
+	}
+
+	@Transactional(readOnly=true)
+	public Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm) {
+		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
 	}
 }

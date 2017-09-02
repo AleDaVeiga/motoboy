@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.wgsistemas.motoboy.dominio.PageWrapper;
+import com.wgsistemas.motoboy.controller.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.DeliveryMan;
 import com.wgsistemas.motoboy.service.DeliveryManService;
 

@@ -134,45 +134,45 @@
 	                        <img src="${contextPath}/resources/img/portfolio/delivery.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Corridas
-	                                </div>
 	                                <div class="project-name">
 	                                    Consultar corridas
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </a>
+	                    <div class="text-center text-muted">
+	                    	Corridas
+	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
 	                    <a href="${contextPath}/admin/customers" class="portfolio-box">
 	                        <img src="${contextPath}/resources/img/portfolio/customer.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Clientes
-	                                </div>
 	                                <div class="project-name">
 	                                    Consultar clientes
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </a>
+	                    <div class="text-center text-muted">
+	                    	Clientes
+	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-sm-6">
 	                    <a href="${contextPath}/admin/deliverymans" class="portfolio-box">
 	                        <img src="${contextPath}/resources/img/portfolio/deliveryman.jpg" class="img-responsive" alt="">
 	                        <div class="portfolio-box-caption">
 	                            <div class="portfolio-box-caption-content">
-	                                <div class="project-category text-faded">
-	                                    Motoboys
-	                                </div>
 	                                <div class="project-name">
 	                                    Consultar motoboys
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </a>
+	                    <div class="text-center text-muted">
+	                    	Motoboys
+	                    </div>
 	                </div>
 	            </div>
 	        </div>
@@ -188,7 +188,7 @@
 	            <div class="row">
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                		<a href="${contextPath}/admin/report/deliveries" target="_blank">
+	                		<a href="${contextPath}/admin/report/deliveries">
 	                        	<i class="fa fa-4x fa-file-text text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>

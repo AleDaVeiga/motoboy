@@ -22,7 +22,7 @@
                 		Relatórios<span class="caret"></span>
                 	</a>
                 	<ul class="dropdown-menu">
-                		<li><a href="${contextPath}/admin/report/deliveries" target="_blank">Corridas</a></li>
+                		<li><a href="${contextPath}/admin/report/deliveries">Corridas</a></li>
                 		<li><a href="${contextPath}/admin/report/customers" target="_blank">Clientes</a></li>
                 		<li><a href="${contextPath}/admin/report/deliverymans" target="_blank">Motoboys</a></li>
                 	</ul>

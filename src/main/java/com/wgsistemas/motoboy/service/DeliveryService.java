@@ -3,6 +3,7 @@ package com.wgsistemas.motoboy.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryService {
@@ -29,4 +30,6 @@ public interface DeliveryService {
 	Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username);
 	
 	Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username);
+
+	Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(String name, ReportDeliveryForm reportDeliveryForm);
 }

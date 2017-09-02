@@ -1,4 +1,4 @@
-package com.wgsistemas.motoboy.dominio;
+package com.wgsistemas.motoboy.controller.dominio;
 
 import java.util.ArrayList;
 import java.util.List;
