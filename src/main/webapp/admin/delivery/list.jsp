@@ -20,7 +20,7 @@
 	                    <h3 class="panel-title clearfix">
 	                        Administração de corridas
 	                        <span class="pull-right">
-                               	<a href="${contextPath}/admin/report/deliveries" class="btn btn-default btn-sm" target="_blank">
+                               	<a href="${contextPath}/admin/report/deliveries" class="btn btn-default btn-sm">
                                		<span class="glyphicon glyphicon-print"></span>
                                	</a>
                                	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">

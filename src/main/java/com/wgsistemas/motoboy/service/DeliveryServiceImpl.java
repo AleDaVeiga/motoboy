@@ -102,7 +102,7 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm) {
-		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
+	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm) {
+		return deliveryRepository.findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
 	}
 }

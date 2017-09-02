@@ -37,6 +37,9 @@
                         		</div>
                         	</spring:bind>
 	                        <div class="text-right">
+	                        	<a href="${contextPath}/admin/#report" class="btn btn-default">
+	                        		<span class="glyphicon glyphicon-home"></span>
+	                        	</a>
 	                        	<button type="submit" class="btn btn-success">
 	                        		<span class="glyphicon glyphicon-print"></span>
 	                        	</button>
