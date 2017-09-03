@@ -23,8 +23,8 @@
                 	</a>
                 	<ul class="dropdown-menu">
                 		<li><a href="${contextPath}/admin/report/deliveries">Corridas</a></li>
-                		<li><a href="${contextPath}/admin/report/customers" target="_blank">Clientes</a></li>
-                		<li><a href="${contextPath}/admin/report/deliverymans" target="_blank">Motoboys</a></li>
+                		<li><a href="${contextPath}/admin/report/deliveries/customers">Clientes</a></li>
+                		<li><a href="${contextPath}/admin/report/deliveries/deliverymans">Motoboys</a></li>
                 	</ul>
                 </li>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">

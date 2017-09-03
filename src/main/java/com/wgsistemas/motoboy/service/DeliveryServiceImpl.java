@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryByCustomerForm;
+import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryByDeliveryManForm;
 import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
@@ -71,24 +73,6 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findAllOrderByCustomer_FullNameAsc(String username) {
-		return deliveryRepository.findByOwner_Username(username, orderByCustomer_FullNameAsc().and(orderByDeliveryAtDesc()));
-	}
-	
-	private Sort orderByCustomer_FullNameAsc() {
-        return new Sort(Direction.ASC, "customer.fullName");
-    }
-
-	@Transactional(readOnly=true)
-	public Iterable<Delivery> findAllOrderByDeliveredBy_FullNameAsc(String username) {
-		return deliveryRepository.findByOwner_Username(username, orderByDeliveredBy_FullNameAsc().and(orderByDeliveryAtDesc()));
-	}
-	
-	private Sort orderByDeliveredBy_FullNameAsc() {
-        return new Sort(Direction.ASC, "deliveredBy.fullName");
-    }
-
-	@Transactional(readOnly=true)
 	public Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username) {
 		return deliveryRepository.findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(username);
 	}
@@ -105,4 +89,22 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm) {
 		return deliveryRepository.findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
 	}
+
+	@Transactional(readOnly=true)
+	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(String username, ReportDeliveryByCustomerForm reportDeliveryByCustomerForm) {
+		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryByCustomerForm.getStartDeliveryAt(), reportDeliveryByCustomerForm.getEndDeliveryAt(), orderByCustomer_FullNameAsc().and(orderByDeliveryAtDesc()));
+	}
+	
+	private Sort orderByCustomer_FullNameAsc() {
+        return new Sort(Direction.ASC, "customer.fullName");
+    }
+
+	@Transactional(readOnly=true)
+	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveredBy_FullNameAsc(String username, ReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm) {
+		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryByDeliveryManForm.getStartDeliveryAt(), reportDeliveryByDeliveryManForm.getEndDeliveryAt(), orderByDeliveredBy_FullNameAsc().and(orderByDeliveryAtDesc()));
+	}
+	
+	private Sort orderByDeliveredBy_FullNameAsc() {
+        return new Sort(Direction.ASC, "deliveredBy.fullName");
+    }
 }

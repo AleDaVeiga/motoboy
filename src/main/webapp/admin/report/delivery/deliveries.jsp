@@ -21,7 +21,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <form:form method="GET" target="_blank" modelAttribute="reportDeliveryForm" class="form-signin" action="${contextPath}/admin/report/deliveries/filter">
+                        <form:form method="POST" target="_blank" modelAttribute="reportDeliveryForm" class="form-signin" action="${contextPath}/admin/report/deliveries">
                         	<spring:bind path="startDeliveryAt">
                         		<div class="form-group">
                         			<label class="control-label">Data inicial</label>

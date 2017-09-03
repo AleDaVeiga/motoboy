@@ -16,36 +16,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
-import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
+import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryByCustomerForm;
 import com.wgsistemas.motoboy.service.DeliveryService;
 import com.wgsistemas.motoboy.util.DateUtil;
 
 @Controller
-@RequestMapping(value = "/admin/report")
-public class AdminReportDeliveryController {
+@RequestMapping(value = "/admin/report/deliveries")
+public class AdminReportDeliveryByCustomerController {
 	@Autowired
 	private ApplicationContext applicationContext;
 	@Autowired
 	private DeliveryService deliveryService;
 	
-	@GetMapping(value = "/deliveries")
+	@GetMapping(value = "/customers")
 	public String report(Model model) {
-		ReportDeliveryForm reportDeliveryForm = new ReportDeliveryForm();
+		ReportDeliveryByCustomerForm reportDeliveryByCustomerForm = new ReportDeliveryByCustomerForm();
 		ZonedDateTime today = DateUtil.newZonedDateTime();
-		reportDeliveryForm.setStartDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1)));
-		reportDeliveryForm.setEndDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1).plusMonths(1).minusDays(1)));
-		model.addAttribute("reportDeliveryForm", reportDeliveryForm);
-		return "admin/report/delivery/deliveries";
+		reportDeliveryByCustomerForm.setStartDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1)));
+		reportDeliveryByCustomerForm.setEndDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1).plusMonths(1).minusDays(1)));
+		model.addAttribute("reportDeliveryByCustomerForm", reportDeliveryByCustomerForm);
+		return "admin/report/delivery/deliveriesByCustomer";
 	}
-	
-	@PostMapping(value = "/deliveries")
-	public ModelAndView filterReport(@ModelAttribute("reportDeliveryForm") ReportDeliveryForm reportDeliveryForm, Model model) {
+
+	@PostMapping(value = "/customers")
+	public ModelAndView filterReport(@ModelAttribute("reportDeliveryByCustomerForm") ReportDeliveryByCustomerForm reportDeliveryByCustomerForm, Model model) {
 		JasperReportsPdfView view = new JasperReportsPdfView();
-		view.setUrl("classpath:report/admin/deliveries.jrxml");
+		view.setUrl("classpath:report/admin/deliveryByCustomer.jrxml");
 		view.setApplicationContext(applicationContext);
 
 		Map<String, Object> params = new HashMap<>();
-		params.put("datasource", deliveryService.findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(SecurityContextHolder.getContext().getAuthentication().getName(), reportDeliveryForm));
+		params.put("datasource", deliveryService.findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(SecurityContextHolder.getContext().getAuthentication().getName(), reportDeliveryByCustomerForm));
 		params.put("format", "pdf");
 
 		return new ModelAndView(view, params);

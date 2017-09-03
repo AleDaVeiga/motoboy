@@ -197,7 +197,7 @@
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                        <a href="${contextPath}/admin/report/customers" target="_blank">
+	                        <a href="${contextPath}/admin/report/deliveries/customers">
 	                        	<i class="fa fa-4x fa-file-pdf-o text-primary sr-icons"></i>
 	                        </a>
 	                        <h3>Clientes</h3>
@@ -206,7 +206,7 @@
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
 	                    <div class="service-box">
-	                        <a href="${contextPath}/admin/report/deliverymans" target="_blank">
+	                        <a href="${contextPath}/admin/report/deliveries/deliverymans">
 	                        	<i class="fa fa-4x fa-file-o text-primary sr-icons"></i>
 	                        </a>
                         	<h3>Motoboys</h3>

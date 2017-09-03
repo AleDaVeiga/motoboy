@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
+	
 	Iterable<Delivery> findByOwner_Username(String username, Sort sort);
 	
 	Page<Delivery> findByOwner_Username(String username, Pageable pageable);
@@ -48,13 +49,23 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
 			"where " +
             "u.username = :username " +
             "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
-	Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort order);
+	Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
 	
 	@Query(value = "select d from Delivery d " +
 			"left join fetch d.customer c " +
+			"left join fetch d.deliveredBy " +
 			"left join fetch d.owner u " +
 			"where " +
             "u.username = :username " +
             "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort order);
+	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
+	
+	@Query(value = "select d from Delivery d " +
+			"left join fetch d.customer c " +
+			"left join fetch d.deliveredBy " +
+			"left join fetch d.owner u " +
+			"where " +
+            "u.username = :username " +
+            "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
+	Iterable<Delivery> findByOwnerAndDeliveryAt(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
 }
