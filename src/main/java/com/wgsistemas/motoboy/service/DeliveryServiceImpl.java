@@ -73,8 +73,8 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username) {
-		return deliveryRepository.findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(username);
+	public Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm) {
+		return deliveryRepository.findByCustomerAccessAndDeliveryAt(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
 	}
 
 	@Transactional(readOnly=true)
@@ -82,12 +82,12 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 		ZonedDateTime today = DateUtil.newZonedDateTime();
 		Date startDeliveryAt = DateUtil.newDateFrom(today.minusDays(30));
 		Date endDeliveryAt = DateUtil.newDateFrom(today.plusDays(30));
-		return deliveryRepository.findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(username, startDeliveryAt, endDeliveryAt, orderByDeliveryAtDesc());
+		return deliveryRepository.findByCustomerAccessAndDeliveryAt(username, startDeliveryAt, endDeliveryAt, orderByDeliveryAtDesc());
 	}
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm) {
-		return deliveryRepository.findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
+		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
 	}
 
 	@Transactional(readOnly=true)

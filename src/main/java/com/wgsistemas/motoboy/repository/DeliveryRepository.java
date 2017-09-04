@@ -17,8 +17,6 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
 	
 	Page<Delivery> findByOwner_Username(String username, Pageable pageable);
 	
-	Iterable<Delivery> findByCustomer_CustomerAccess_UsernameOrderByDeliveryAtDesc(String username);
-	
 	@Query(value = "select d from Delivery d " +
 			"left join fetch d.owner o " +
 			"left join fetch d.customer " +
@@ -49,16 +47,7 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
 			"where " +
             "u.username = :username " +
             "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
-	Iterable<Delivery> findByCustomerAccessAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
-	
-	@Query(value = "select d from Delivery d " +
-			"left join fetch d.customer c " +
-			"left join fetch d.deliveredBy " +
-			"left join fetch d.owner u " +
-			"where " +
-            "u.username = :username " +
-            "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
+	Iterable<Delivery> findByCustomerAccessAndDeliveryAt(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
 	
 	@Query(value = "select d from Delivery d " +
 			"left join fetch d.customer c " +

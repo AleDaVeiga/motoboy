@@ -25,7 +25,7 @@ public interface DeliveryService {
 
 	Page<Delivery> findBySearchTerm(String search, String username, Pageable pageable);
 
-	Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username);
+	Iterable<Delivery> findByCustomerAccessOrderByDeliveryAtDesc(String username, ReportDeliveryForm reportDeliveryForm);
 	
 	Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username);
 

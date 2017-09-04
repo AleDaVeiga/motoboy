@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -56,7 +57,7 @@
 	                        <a class="page-scroll" href="#consult">Consulta</a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="${contextPath}/report/deliveries" target="_blank">Relatório</a>
+	                        <a class="page-scroll" href="#report">Relatório</a>
 	                    </li>
 	                    <c:if test="${pageContext.request.userPrincipal.name != null}">
 		                    <li>
@@ -123,6 +124,40 @@
 	                </div>
 	            </div>
 	        </div>
+	    </section>
+	    
+	    <section id="report" class="call-to-action bg-dark">
+	    	<div class="container">
+	    		<div class="row">
+	    			<div class="col-lg-12 text-center">
+	    				<h2 class="section-heading">Relatório</h2>
+	    				<h3 class="section-subheading text-muted">Filtrar relatório de corridas.</h3>
+	    			</div>
+	    		</div>
+	    		<div class="row">
+	    			<div class="col-lg-12">
+	    				<form:form method="POST" target="_blank" modelAttribute="reportDeliveryForm" class="form-signin" action="${contextPath}/report/deliveries">
+	    					<div class="row">
+	    						<div class="col-md-6">
+	    							<div class="form-group">
+	    								<form:input type="date" path="startDeliveryAt" class="form-control"></form:input>
+	    							</div>
+	    						</div>
+	    						<div class="col-md-6">
+	    							<div class="form-group">
+	    								<form:input type="date" path="endDeliveryAt" class="form-control"></form:input>
+	    							</div>
+	    						</div>
+    							<div class="clearfix"></div>
+    							<div class="col-lg-12 text-center">
+    								<div id="success"></div>
+    								<button class="btn btn-default btn-xl sr-button" type="submit">Download</button>
+    							</div>
+    						</div>
+    					</form:form>
+    				</div>
+    			</div>
+    		</div>	    						
 	    </section>
 		
 		<!-- Bootstrap Core JavaScript -->
