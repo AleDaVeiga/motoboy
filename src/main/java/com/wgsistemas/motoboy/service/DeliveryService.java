@@ -3,8 +3,9 @@ package com.wgsistemas.motoboy.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryByCustomerForm;
-import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryByDeliveryManForm;
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByCustomerForm;
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByDeliveryManForm;
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
 import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 
@@ -29,9 +30,9 @@ public interface DeliveryService {
 	
 	Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username);
 
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String name, ReportDeliveryForm reportDeliveryForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String name, AdminReportDeliveryForm reportDeliveryForm);
 	
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(String username, ReportDeliveryByCustomerForm reportDeliveryByCustomerForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(String username, AdminReportDeliveryByCustomerForm reportDeliveryByCustomerForm);
 	
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveredBy_FullNameAsc(String username, ReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm);
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
-import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
 import com.wgsistemas.motoboy.service.DeliveryService;
 
 @Controller
@@ -28,12 +28,12 @@ public class AdminReportDeliveryController {
 	
 	@GetMapping(value = "/deliveries")
 	public String report(Model model) {
-		model.addAttribute("reportDeliveryForm", ReportDeliveryForm.ofActualMonth());
+		model.addAttribute("reportDeliveryForm", AdminReportDeliveryForm.ofActualMonth());
 		return "admin/report/delivery/deliveries";
 	}
 	
 	@PostMapping(value = "/deliveries")
-	public ModelAndView filterReport(@ModelAttribute("reportDeliveryForm") ReportDeliveryForm reportDeliveryForm, Model model) {
+	public ModelAndView filterReport(@ModelAttribute("reportDeliveryForm") AdminReportDeliveryForm reportDeliveryForm, Model model) {
 		JasperReportsPdfView view = new JasperReportsPdfView();
 		view.setUrl("classpath:report/admin/deliveries.jrxml");
 		view.setApplicationContext(applicationContext);

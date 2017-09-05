@@ -1,4 +1,4 @@
-package com.wgsistemas.motoboy.controller.dominio;
+package com.wgsistemas.motoboy.controller.admin.dominio;
 
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -7,12 +7,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.wgsistemas.motoboy.util.DateUtil;
 
-public class ReportDeliveryForm {
+public class AdminReportDeliveryForm {
 	private Date startDeliveryAt;
 	private Date endDeliveryAt;
 	
-	public static ReportDeliveryForm ofActualMonth() {
-		ReportDeliveryForm reportDeliveryForm = new ReportDeliveryForm();
+	public static AdminReportDeliveryForm ofActualMonth() {
+		AdminReportDeliveryForm reportDeliveryForm = new AdminReportDeliveryForm();
 		ZonedDateTime today = DateUtil.newZonedDateTime();
 		reportDeliveryForm.setStartDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1)));
 		reportDeliveryForm.setEndDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1).plusMonths(1).minusDays(1)));
