@@ -1,5 +1,8 @@
 package com.wgsistemas.motoboy.controller.admin;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -18,7 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.thymeleaf.context.Context;
 
 import com.wgsistemas.motoboy.controller.dominio.PageWrapper;
 import com.wgsistemas.motoboy.mail.EmailHtmlSender;
@@ -57,13 +59,13 @@ public class AdminDeliveryController {
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		Delivery delivery = deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
 		
-		Context context = new Context();
-		context.setVariable("title", "Lorem Ipsum");
-		context.setVariable("description", "Lorem Lorem Lorem");
+		Map<String, Object> context = new HashMap<>();
+		context.put("title", "Lorem Ipsum");
+		context.put("description", "Lorem Lorem Lorem");
 		 
-		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Title of email", "email/delivery", context);
+		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Title of email", "delivery.ftl", context);
 		
-		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso. " + emailStatus.getErrorMessage());
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" + emailStatus.getErrorMessage());
 		return "redirect:/admin/delivery/";
 	}
 	
