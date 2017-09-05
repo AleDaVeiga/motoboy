@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.context.Context;
 
 import com.wgsistemas.motoboy.controller.dominio.PageWrapper;
+import com.wgsistemas.motoboy.mail.EmailHtmlSender;
+import com.wgsistemas.motoboy.mail.EmailStatus;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.service.CustomerService;
 import com.wgsistemas.motoboy.service.DeliveryManService;
@@ -37,6 +40,8 @@ public class AdminDeliveryController {
 	private CustomerService customerService;
 	@Autowired
 	private PaymentMethodService paymentMethodService;
+	@Autowired
+	private EmailHtmlSender emailHtmlSender;
 	
 	@GetMapping(value = "/delivery/")
 	public String create(Model model) {
@@ -50,8 +55,15 @@ public class AdminDeliveryController {
 	@PostMapping(path = "/delivery/")
 	@Transactional
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());		
-		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.");
+		Delivery delivery = deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		Context context = new Context();
+		context.setVariable("title", "Lorem Ipsum");
+		context.setVariable("description", "Lorem Lorem Lorem");
+		 
+		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Title of email", "email/delivery", context);
+		
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso. " + emailStatus.getErrorMessage());
 		return "redirect:/admin/delivery/";
 	}
 	
