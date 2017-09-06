@@ -23,7 +23,7 @@ public class EmailHtmlSender {
  
 	public EmailStatus send(String to, String subject, String templateName, Map<String, Object> model) {
 		try {
-			freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/");
+			freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates/email");
 			Template template = freemarkerConfig.getTemplate(templateName);
 			String body = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
 			return emailSender.sendHtml(to, subject, body);
