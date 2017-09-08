@@ -34,5 +34,5 @@ public interface DeliveryService {
 	
 	Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByCustomer_FullNameAsc(String username, AdminReportDeliveryByCustomerForm reportDeliveryByCustomerForm);
 	
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm);
 }
