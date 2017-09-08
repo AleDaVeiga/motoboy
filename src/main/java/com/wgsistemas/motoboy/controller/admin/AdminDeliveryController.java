@@ -57,15 +57,14 @@ public class AdminDeliveryController {
 	@PostMapping(path = "/delivery/")
 	@Transactional
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		Delivery delivery = deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
+		deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
 		
-		Map<String, Object> context = new HashMap<>();
+		/* Map<String, Object> context = new HashMap<>();
 		context.put("title", "Lorem Ipsum");
 		context.put("description", "Lorem Lorem Lorem");
-		 
-		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Title of email", "delivery.ftl", context);
+		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Title of email", "delivery.ftl", context);*/
 		
-		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" + emailStatus.getErrorMessage());
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" /* + emailStatus.getErrorMessage()*/);
 		return "redirect:/admin/delivery/";
 	}
 	
