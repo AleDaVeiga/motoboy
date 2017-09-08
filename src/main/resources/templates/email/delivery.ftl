@@ -9,7 +9,7 @@
 		<h2>
 			<span>${title}</span>
 		</h2>
-		<p>${description}</p>
+		<p>Prezado (a) ${delivery.customer.fullName}.</p>
 	</div>
 </body>
 </html>

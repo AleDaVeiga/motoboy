@@ -58,13 +58,7 @@ public class AdminDeliveryController {
 	@Transactional
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
-		
-		/* Map<String, Object> context = new HashMap<>();
-		context.put("title", "Lorem Ipsum");
-		context.put("description", "Lorem Lorem Lorem");
-		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Title of email", "delivery.ftl", context);*/
-		
-		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" /* + emailStatus.getErrorMessage()*/);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.");
 		return "redirect:/admin/delivery/";
 	}
 	
@@ -100,5 +94,29 @@ public class AdminDeliveryController {
 		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findBySearchTerm(search, SecurityContextHolder.getContext().getAuthentication().getName(), pageable));
 		model.addAttribute("page", page);	
 		return "admin/delivery/list";
+	}
+	
+	//TODO: Teste de email
+	@GetMapping(value = "/delivery/mail")
+	public String createWithEmail(Model model) {
+		model.addAttribute("deliveryForm", deliveryService.newDelivery());
+		model.addAttribute("deliveryManList", deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
+		model.addAttribute("customerList", customerService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
+		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
+		return "admin/delivery/mail";
+	}
+	
+	@PostMapping(path = "/delivery/mail")
+	@Transactional
+	public String createWithEmail(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+		Delivery delivery = deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		Map<String, Object> context = new HashMap<>();
+		context.put("title", "Solicitação de corrida");
+		context.put("delivery", delivery);
+		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Solicitação de corrida", "delivery.ftl", context);
+		
+		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" + emailStatus.getErrorMessage());
+		return "redirect:/admin/delivery/mail";
 	}
 }

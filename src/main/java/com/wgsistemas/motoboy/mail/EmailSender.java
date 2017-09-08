@@ -28,6 +28,7 @@ public class EmailSender {
 		try {
 			MimeMessage mail = javaMailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+			helper.setFrom("naoresponda@pratikoapp.com.br");
 			helper.setTo(to);
 			helper.setSubject(subject);
 			helper.setText(text, isHtml);
