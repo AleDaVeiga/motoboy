@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByCustomerForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByDeliveryManForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
+import com.wgsistemas.motoboy.controller.admin.dominio.StatusField;
 import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
@@ -88,7 +89,10 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 
 	@Transactional(readOnly=true)
 	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String username, AdminReportDeliveryForm reportDeliveryForm) {
-		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
+		if(StatusField.TODOS.getValue().equals(reportDeliveryForm.getStatus())) {
+			return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
+		}
+		return deliveryRepository.findByOwnerAndDeliveryAtAndStatus(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), StatusField.ACEITO.getValue().equals(reportDeliveryForm.getStatus()), orderByDeliveryAtDesc());
 	}
 
 	@Transactional(readOnly=true)
