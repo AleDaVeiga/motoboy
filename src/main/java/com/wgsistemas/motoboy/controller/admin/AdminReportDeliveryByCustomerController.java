@@ -39,7 +39,7 @@ public class AdminReportDeliveryByCustomerController {
 		view.setApplicationContext(applicationContext);
 
 		Map<String, Object> params = new HashMap<>();
-		params.put("datasource", deliveryService.findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(SecurityContextHolder.getContext().getAuthentication().getName(), reportDeliveryByCustomerForm));
+		params.put("datasource", deliveryService.findByOwnerAndDeliveryAtAndStatusOrderByCustomer_FullNameAsc(SecurityContextHolder.getContext().getAuthentication().getName(), reportDeliveryByCustomerForm));
 		params.put("format", "pdf");
 
 		return new ModelAndView(view, params);
