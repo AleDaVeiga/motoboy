@@ -20,7 +20,7 @@
                             Editar cliente
                             <c:if test="${customerForm.id != null}">
 	                            <span class="pull-right">
-						        	<a href="${contextPath}/admin/delivery/${customerForm.id}" class="btn btn-default btn-sm">
+						        	<a href="${contextPath}/admin/delivery/?customerId=${customerForm.id}" data-method="GET" class="btn btn-default btn-sm">
 						        		<span class="glyphicon glyphicon-send"></span>
 						        	</a>
 						        </span>

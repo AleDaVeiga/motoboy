@@ -38,7 +38,9 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	@Override
 	public Delivery newDelivery(Long customerId) {
 		Delivery delivery = new Delivery();
-		delivery.setCustomer(customerRepository.findOne(customerId));
+		if (customerId != null) {
+			delivery.setCustomer(customerRepository.findOne(customerId));
+		}
 		delivery.setPrice(BigDecimal.ZERO);
 		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		return delivery;
