@@ -19,6 +19,7 @@ import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.StatusField;
 import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
+import com.wgsistemas.motoboy.repository.CustomerRepository;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
 import com.wgsistemas.motoboy.util.DateUtil;
 
@@ -26,6 +27,8 @@ import com.wgsistemas.motoboy.util.DateUtil;
 public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> implements DeliveryService {
 	@Autowired
 	private DeliveryRepository deliveryRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Override
 	protected JpaRepository<Delivery, Long> getRepository() {
@@ -33,8 +36,9 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 	
 	@Override
-	public Delivery newDelivery() {
+	public Delivery newDelivery(Long customerId) {
 		Delivery delivery = new Delivery();
+		delivery.setCustomer(customerRepository.findOne(customerId));
 		delivery.setPrice(BigDecimal.ZERO);
 		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		return delivery;

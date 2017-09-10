@@ -46,8 +46,8 @@ public class AdminDeliveryController {
 	private EmailHtmlSender emailHtmlSender;
 	
 	@GetMapping(value = "/delivery/")
-	public String create(Model model) {
-		model.addAttribute("deliveryForm", deliveryService.newDelivery());
+	public String create(@RequestParam(value = "customerId", required = false) Long customerId, Model model) {
+		model.addAttribute("deliveryForm", deliveryService.newDelivery(customerId));
 		model.addAttribute("deliveryManList", deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
 		model.addAttribute("customerList", customerService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
 		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
@@ -98,8 +98,8 @@ public class AdminDeliveryController {
 	
 	//TODO: Teste de email
 	@GetMapping(value = "/delivery/mail")
-	public String createWithEmail(Model model) {
-		model.addAttribute("deliveryForm", deliveryService.newDelivery());
+	public String createWithEmail(@RequestParam(value = "customerId", required = false) Long customerId, Model model) {
+		model.addAttribute("deliveryForm", deliveryService.newDelivery(customerId));
 		model.addAttribute("deliveryManList", deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
 		model.addAttribute("customerList", customerService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
 		model.addAttribute("paymentMethodList", paymentMethodService.findAll());

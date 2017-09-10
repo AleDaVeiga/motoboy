@@ -10,7 +10,7 @@ import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryService {
-	Delivery newDelivery();
+	Delivery newDelivery(Long customerId);
 	
 	Delivery create(Delivery delivery, String username);
 

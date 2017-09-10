@@ -16,8 +16,15 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">
+                        <h3 class="panel-title clearfix">
                             Editar cliente
+                            <c:if test="${customerForm.id != null}">
+	                            <span class="pull-right">
+						        	<a href="${contextPath}/admin/delivery/${customerForm.id}" class="btn btn-default btn-sm">
+						        		<span class="glyphicon glyphicon-send"></span>
+						        	</a>
+						        </span>
+						    </c:if>
                         </h3>
                     </div>
                     <div class="panel-body">
