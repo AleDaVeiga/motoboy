@@ -57,4 +57,14 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
             "u.username = :username " +
             "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt ")
 	Iterable<Delivery> findByOwnerAndDeliveryAt(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, Sort sort);
+	
+	@Query(value = "select d from Delivery d " +
+			"left join fetch d.customer c " +
+			"left join fetch d.deliveredBy " +
+			"left join fetch d.owner u " +
+			"where " +
+            "u.username = :username " +
+            "and d.deliveryAt between :startDeliveryAt and :endDeliveryAt " +
+            "and d.status = :status ")
+	Iterable<Delivery> findByOwnerAndDeliveryAtAndStatus(@Param("username") String username, @Param("startDeliveryAt") Date startDeliveryAt, @Param("endDeliveryAt") Date endDeliveryAt, @Param("status") Boolean status, Sort sort);
 }

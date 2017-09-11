@@ -16,19 +16,12 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title clearfix">
-                            Editar cliente
-                            <c:if test="${customerForm.id != null}">
-	                            <span class="pull-right">
-						        	<a href="${contextPath}/admin/delivery/?customerId=${customerForm.id}" data-method="GET" class="btn btn-default btn-sm">
-						        		<span class="glyphicon glyphicon-send"></span>
-						        	</a>
-						        </span>
-						    </c:if>
+                        <h3 class="panel-title">
+                            Nova corrida
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <form:form method="PUT" modelAttribute="customerForm" class="form-signin" action="${contextPath}/admin/customer/${customerForm.id}">
+                        <form:form method="POST" modelAttribute="deliveryForm" class="form-signin" action="${contextPath}/admin/delivery/mail">
                         	<jsp:include page="_form.jsp"/>
                         </form:form>
                     </div>
@@ -36,8 +29,5 @@
             </div>
         </div>
 	    <jsp:include page="../templates/footer.jsp"/>
-		
-		<!-- Custom JavaScript -->
-		<script src="${contextPath}/resources/js/dynamic.form.fields.js"></script>
 	</body>
 </html>

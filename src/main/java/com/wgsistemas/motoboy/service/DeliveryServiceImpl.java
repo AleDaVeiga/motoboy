@@ -16,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByCustomerForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByDeliveryManForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
+import com.wgsistemas.motoboy.controller.admin.dominio.StatusField;
 import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
+import com.wgsistemas.motoboy.repository.CustomerRepository;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
 import com.wgsistemas.motoboy.util.DateUtil;
 
@@ -25,6 +27,8 @@ import com.wgsistemas.motoboy.util.DateUtil;
 public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> implements DeliveryService {
 	@Autowired
 	private DeliveryRepository deliveryRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Override
 	protected JpaRepository<Delivery, Long> getRepository() {
@@ -32,8 +36,11 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 	
 	@Override
-	public Delivery newDelivery() {
+	public Delivery newDelivery(Long customerId) {
 		Delivery delivery = new Delivery();
+		if (customerId != null) {
+			delivery.setCustomer(customerRepository.findOne(customerId));
+		}
 		delivery.setPrice(BigDecimal.ZERO);
 		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		return delivery;
@@ -87,13 +94,19 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String username, AdminReportDeliveryForm reportDeliveryForm) {
-		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
+	public Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByDeliveryAtDesc(String username, AdminReportDeliveryForm reportDeliveryForm) {
+		if(StatusField.TODOS.getValue().equals(reportDeliveryForm.getStatus())) {
+			return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), orderByDeliveryAtDesc());
+		}
+		return deliveryRepository.findByOwnerAndDeliveryAtAndStatus(username, reportDeliveryForm.getStartDeliveryAt(), reportDeliveryForm.getEndDeliveryAt(), StatusField.ACEITO.getValue().equals(reportDeliveryForm.getStatus()), orderByDeliveryAtDesc());
 	}
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(String username, AdminReportDeliveryByCustomerForm reportDeliveryByCustomerForm) {
-		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryByCustomerForm.getStartDeliveryAt(), reportDeliveryByCustomerForm.getEndDeliveryAt(), orderByCustomer_FullNameAsc().and(orderByDeliveryAtDesc()));
+	public Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByCustomer_FullNameAsc(String username, AdminReportDeliveryByCustomerForm reportDeliveryByCustomerForm) {
+		if(StatusField.TODOS.getValue().equals(reportDeliveryByCustomerForm.getStatus())) {
+			return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryByCustomerForm.getStartDeliveryAt(), reportDeliveryByCustomerForm.getEndDeliveryAt(), orderByCustomer_FullNameAsc().and(orderByDeliveryAtDesc()));
+		}
+		return deliveryRepository.findByOwnerAndDeliveryAtAndStatus(username, reportDeliveryByCustomerForm.getStartDeliveryAt(), reportDeliveryByCustomerForm.getEndDeliveryAt(), StatusField.ACEITO.getValue().equals(reportDeliveryByCustomerForm.getStatus()), orderByCustomer_FullNameAsc().and(orderByDeliveryAtDesc()));
 	}
 	
 	private Sort orderByCustomer_FullNameAsc() {
@@ -101,8 +114,11 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
     }
 
 	@Transactional(readOnly=true)
-	public Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm) {
-		return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryByDeliveryManForm.getStartDeliveryAt(), reportDeliveryByDeliveryManForm.getEndDeliveryAt(), orderByDeliveredBy_FullNameAsc().and(orderByDeliveryAtDesc()));
+	public Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm) {
+		if(StatusField.TODOS.getValue().equals(reportDeliveryByDeliveryManForm.getStatus())) {
+			return deliveryRepository.findByOwnerAndDeliveryAt(username, reportDeliveryByDeliveryManForm.getStartDeliveryAt(), reportDeliveryByDeliveryManForm.getEndDeliveryAt(), orderByDeliveredBy_FullNameAsc().and(orderByDeliveryAtDesc()));
+		}
+		return deliveryRepository.findByOwnerAndDeliveryAtAndStatus(username, reportDeliveryByDeliveryManForm.getStartDeliveryAt(), reportDeliveryByDeliveryManForm.getEndDeliveryAt(), StatusField.ACEITO.getValue().equals(reportDeliveryByDeliveryManForm.getStatus()), orderByDeliveredBy_FullNameAsc().and(orderByDeliveryAtDesc()));
 	}
 	
 	private Sort orderByDeliveredBy_FullNameAsc() {

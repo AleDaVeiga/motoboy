@@ -10,12 +10,14 @@ import com.wgsistemas.motoboy.util.DateUtil;
 public class AdminReportDeliveryByDeliveryManForm {
 	private Date startDeliveryAt;
 	private Date endDeliveryAt;
+	private Integer status;
 	
 	public static AdminReportDeliveryByDeliveryManForm ofActualMonth() {
 		AdminReportDeliveryByDeliveryManForm reportDeliveryForm = new AdminReportDeliveryByDeliveryManForm();
 		ZonedDateTime today = DateUtil.newZonedDateTime();
 		reportDeliveryForm.setStartDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1)));
 		reportDeliveryForm.setEndDeliveryAt(DateUtil.newDateFrom(today.withDayOfMonth(1).plusMonths(1).minusDays(1)));
+		reportDeliveryForm.setStatus(StatusField.TODOS.getValue());
 		return reportDeliveryForm;
 	}
 
@@ -35,5 +37,13 @@ public class AdminReportDeliveryByDeliveryManForm {
 
 	public void setEndDeliveryAt(Date endDeliveryAt) {
 		this.endDeliveryAt = endDeliveryAt;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

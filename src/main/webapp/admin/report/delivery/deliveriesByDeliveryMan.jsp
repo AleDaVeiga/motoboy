@@ -36,6 +36,15 @@
                         			<form:errors path="endDeliveryAt"></form:errors>
                         		</div>
                         	</spring:bind>
+                        	<spring:bind path="status">
+                        		<div class="form-group">
+                        			<label class="control-label">Tipo</label><br>
+                        			<label class="radio-inline"><form:radiobutton path="status" value="0"/>Todos</label>
+                        			<label class="radio-inline"><form:radiobutton path="status" value="-1"/>Solicitado</label>
+                        			<label class="radio-inline"><form:radiobutton path="status" value="1"/>Aceito</label>
+                        			<form:errors path="status"></form:errors>
+                        		</div>
+                        	</spring:bind>
 	                        <div class="text-right">
 	                        	<a href="${contextPath}/admin/#report" class="btn btn-default">
 	                        		<span class="glyphicon glyphicon-home"></span>

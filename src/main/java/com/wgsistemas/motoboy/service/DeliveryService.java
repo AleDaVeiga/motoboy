@@ -10,7 +10,7 @@ import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
 import com.wgsistemas.motoboy.model.Delivery;
 
 public interface DeliveryService {
-	Delivery newDelivery();
+	Delivery newDelivery(Long customerId);
 	
 	Delivery create(Delivery delivery, String username);
 
@@ -30,9 +30,9 @@ public interface DeliveryService {
 	
 	Iterable<Delivery> findByCustomerAccessAndLastMounthDeliveryOrderByDeliveryAtDesc(String username);
 
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveryAtDesc(String name, AdminReportDeliveryForm reportDeliveryForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByDeliveryAtDesc(String name, AdminReportDeliveryForm reportDeliveryForm);
 	
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByCustomer_FullNameAsc(String username, AdminReportDeliveryByCustomerForm reportDeliveryByCustomerForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByCustomer_FullNameAsc(String username, AdminReportDeliveryByCustomerForm reportDeliveryByCustomerForm);
 	
-	Iterable<Delivery> findByOwnerAndDeliveryAtOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm);
+	Iterable<Delivery> findByOwnerAndDeliveryAtAndStatusOrderByDeliveredBy_FullNameAsc(String username, AdminReportDeliveryByDeliveryManForm reportDeliveryByDeliveryManForm);
 }

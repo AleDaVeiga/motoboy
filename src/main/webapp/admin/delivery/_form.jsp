@@ -21,11 +21,18 @@
 <spring:bind path="customer">
 	<div class="form-group">
 		<label class="control-label">Cliente</label>
-		<form:select path="customer" class="form-control">
-			<form:option value="0" label="Selecione" />
-			<form:options items="${customerList}" itemValue="id" itemLabel="fullName" autofocus="true"/>
-		</form:select>
-		<form:errors path="customer"></form:errors>
+		<div class="input-group">
+			<form:select path="customer" class="selectpicker form-control">
+				<form:option value="0" label="Selecione" />
+				<form:options items="${customerList}" itemValue="id" itemLabel="fullName" autofocus="true"/>
+			</form:select>
+			<span class="input-group-btn">
+				<a href="${contextPath}/admin/customer/" class="btn btn-success">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</a>
+			</span>
+			<form:errors path="customer"></form:errors>
+		</div>
 	</div>
 </spring:bind>
 <spring:bind path="status">
