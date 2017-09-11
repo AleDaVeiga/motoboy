@@ -2,6 +2,7 @@ package com.wgsistemas.motoboy.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -66,7 +67,7 @@ public class AdminDeliveryManController {
 
 	@GetMapping(path = "/deliverymans")
 	@Transactional(readOnly=true)
-	public String findAll(@PageableDefault(value = 10, page = 0) Pageable pageable, Model model) {
+	public String findAll(@PageableDefault(value = 10, page = 0, sort = { "fullName" }, direction = Direction.ASC) Pageable pageable, Model model) {
 		PageWrapper<DeliveryMan> page = new PageWrapper<DeliveryMan>(deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName(), pageable));
 		model.addAttribute("page", page);	
 		return "admin/deliveryman/list";
