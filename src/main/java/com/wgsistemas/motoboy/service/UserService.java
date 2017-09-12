@@ -6,6 +6,8 @@ public interface UserService {
 	User save(User user);
 	
 	User updatePassword(User user);
+	
+	User updateEmail(User user);
 
 	User findByUsername(String username);
 

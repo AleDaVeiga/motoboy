@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.wgsistemas.motoboy.model.User;
 import com.wgsistemas.motoboy.service.SecurityService;
 import com.wgsistemas.motoboy.service.UserService;
-import com.wgsistemas.motoboy.validator.UserValidator;
+import com.wgsistemas.motoboy.validator.UserPasswordValidator;
 
 @Controller
-public class UsersController {
+public class UserController {
     @Autowired
     private UserService userService;
 
@@ -22,7 +22,7 @@ public class UsersController {
     private SecurityService securityService;
 
     @Autowired
-    private UserValidator userValidator;
+    private UserPasswordValidator userValidator;
 
     @GetMapping(value = "/changepassword")
     public String changePassword(Model model) {

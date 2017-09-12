@@ -60,6 +60,9 @@
 	                    <li>
 	                        <a class="page-scroll" href="#contact">Contato</a>
 	                    </li>
+	                    <li>
+	                        <a class="page-scroll" href="${contextPath}/admin/user/changeemail">Usuário</a>
+	                    </li>
 						<c:if test="${pageContext.request.userPrincipal.name != null}">
 							<li>
 								<form id="logoutForm" method="POST" action="${contextPath}/logout">

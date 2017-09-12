@@ -37,6 +37,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userToChange);
 	}
 
+	@Transactional
+	public User updateEmail(User user) {
+		User userToChange = findByUsername(user.getUsername());
+		userToChange.setEmail(user.getEmail());
+        return userRepository.save(userToChange);
+	}
+
 	@Transactional(readOnly=true)
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);

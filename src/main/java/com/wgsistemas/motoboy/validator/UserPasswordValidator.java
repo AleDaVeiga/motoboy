@@ -11,7 +11,7 @@ import com.wgsistemas.motoboy.model.User;
 import com.wgsistemas.motoboy.service.UserService;
 
 @Component
-public class UserValidator implements Validator {
+public class UserPasswordValidator implements Validator {
 	@Autowired
 	private UserService userService;
     @Autowired

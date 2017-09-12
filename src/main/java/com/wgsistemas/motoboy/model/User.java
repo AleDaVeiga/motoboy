@@ -21,6 +21,7 @@ public class User {
 	private String passwordToChange;
 	private String password;
 	private String passwordConfirm;
+	private String email;
 	private Set<Role> roles;
 
 	@Id
@@ -66,6 +67,14 @@ public class User {
 
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@ManyToMany
