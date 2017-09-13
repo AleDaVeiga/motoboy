@@ -37,14 +37,15 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	
 	@Override
 	public Customer create(Customer customer, String username) {
-		customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess()));
+		customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess(), customer.getEmail()));
 		return super.create(customer, username);
 	}
 
-	private User newCustomerAccess(User customerAccess) {
+	private User newCustomerAccess(User customerAccess, String customerEmail) {
 		if (StringUtils.isNotBlank(customerAccess.getUsername())) {
 			String passwordDefault = "123motoboy";
 			customerAccess.setPassword(passwordDefault);
+			customerAccess.setEmail(customerEmail);
 			return userService.save(customerAccess);
 		}
 		return null;
@@ -57,11 +58,13 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	}
 
 	private void updateCustomerAccess(Customer customer) {
-		Customer customerOld = findOne(customer.getId());
+		Customer customerOld = customerRepository.findById(customer.getId());
 		if(customerOld.getCustomerAccess() == null || NumberUtils.LONG_ZERO.compareTo(customerOld.getCustomerAccess().getId()) > 0) {
-			customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess()));
+			customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess(), customer.getEmail()));
 		} else {
-			customer.setCustomerAccess(customerOld.getCustomerAccess());
+			User customerAccess = customerOld.getCustomerAccess();
+			customerAccess.setEmail(customer.getEmail());
+			customer.setCustomerAccess(userService.updateEmail(customerAccess));
 		}
 	}
 
