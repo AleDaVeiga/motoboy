@@ -43,7 +43,8 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<button class="btn btn-lg btn-danger btn-block" type="submit">Acessar</button>
 					<h4 class="text-center">
-						<a href="${contextPath}/changepassword">Trocar senha da conta</a>
+						<a href="${contextPath}/recoveruser">Recuperar senha</a> | 
+						<a href="${contextPath}/changepassword">Trocar senha</a>
 					</h4>
 				</div>
 			</form>

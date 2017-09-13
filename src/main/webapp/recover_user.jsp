@@ -14,7 +14,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		
-		<title>Trocar senha</title>
+		<title>Recuperar senha</title>
 		
 		<!-- Bootstrap Core CSS -->
 	    <!-- Latest compiled and minified CSS -->
@@ -33,33 +33,30 @@
 	</head>
 	<body>
 		<div class="container">
-			<form:form method="POST" action="${contextPath}/changepassword" modelAttribute="userForm" class="form-signin">
-				<h2 class="form-signin-heading">Trocar senha</h2>
+			<form:form method="POST" action="${contextPath}/recoveruser" modelAttribute="userForm" class="form-signin">
+				<h2 class="form-signin-heading">Recuperar senha</h2>
+				<div class="alert alert-info">
+					<strong>Informação!</strong> Somente é possível recuperar uma nova senha, caso exista um e-mail válido cadastrado para o usuário.
+				</div>
+				<c:if test="${messageSuccess != null}">
+					<div class="alert alert-success alert-dismissable">
+						<a href="#" class="close" data-dismiss="alert" aria-label="Fecha">&times;</a>
+						<strong>Sucesso!</strong> ${messageSuccess}
+					</div>
+				</c:if>
+				<c:if test="${messageError != null}">
+					<div class="alert alert-danger alert-dismissable">
+						<a href="#" class="close" data-dismiss="alert" aria-label="Fecha">&times;</a>
+						<strong>Erro!</strong> ${messageError}
+					</div>
+				</c:if>
 				<spring:bind path="username">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
 						<form:input type="text" path="username" class="form-control" placeholder="Usuário" autofocus="true"></form:input>
 						<form:errors path="username"></form:errors>
 					</div>
 				</spring:bind>
-				<spring:bind path="passwordToChange">
-					<div class="form-group ${status.error ? 'has-error' : ''}">
-						<form:input type="password" path="passwordToChange" class="form-control" placeholder="Senha anterior"></form:input>
-						<form:errors path="passwordToChange"></form:errors>
-					</div>
-				</spring:bind>
-				<spring:bind path="password">
-					<div class="form-group ${status.error ? 'has-error' : ''}">
-						<form:input type="password" path="password" class="form-control" placeholder="Senha nova"></form:input>
-						<form:errors path="password"></form:errors>
-					</div>
-				</spring:bind>
-				<spring:bind path="passwordConfirm">
-					<div class="form-group ${status.error ? 'has-error' : ''}">
-						<form:input type="password" path="passwordConfirm" class="form-control" placeholder="Confirmar sua senha"></form:input>
-						<form:errors path="passwordConfirm"></form:errors>
-					</div>
-				</spring:bind>
-				<button class="btn btn-lg btn-danger btn-block" type="submit">Trocar</button>
+				<button class="btn btn-lg btn-danger btn-block" type="submit">Recuperar</button>
 				<h4 class="text-center">
 					<a href="${contextPath}/login">Acessar sua conta</a>
 				</h4>
