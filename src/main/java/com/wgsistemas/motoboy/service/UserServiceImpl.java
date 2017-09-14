@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public EmailStatus recoverUser(User user) {
-		User userToChange = findByUsername(user.getUsername());
-		userToChange.setPassword("123useradmin");
+		User userToChange = findByEmail(user.getEmail());
+		userToChange.setPassword("123senharecuperada");
 		EmailStatus emailStatus = sendEmailRecoverUser(userToChange);
 		if(emailStatus.isSuccess()) {
 			userToChange.setPassword(md5PasswordEncoder.encodePassword(userToChange.getPassword(), null));
@@ -72,6 +72,11 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly=true)
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+
+	@Transactional(readOnly=true)
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 	@Transactional

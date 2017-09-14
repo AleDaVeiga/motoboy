@@ -50,10 +50,10 @@
 						<strong>Erro!</strong> ${messageError}
 					</div>
 				</c:if>
-				<spring:bind path="username">
+				<spring:bind path="email">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
-						<form:input type="text" path="username" class="form-control" placeholder="Usuário" autofocus="true"></form:input>
-						<form:errors path="username"></form:errors>
+						<form:input type="text" path="email" class="form-control" placeholder="E-mail" autofocus="true"></form:input>
+						<form:errors path="email"></form:errors>
 					</div>
 				</spring:bind>
 				<button class="btn btn-lg btn-danger btn-block" type="submit">Recuperar</button>
