@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.wgsistemas.motoboy.model.converter.BooleanConverter;
 import com.wgsistemas.motoboy.model.converter.ListToStringConveter;
 import com.wgsistemas.motoboy.model.datatype.Address;
 
@@ -24,6 +25,7 @@ public class Customer extends BaseEntity {
 	private String complementAddress;
 	private List<String> phones;
 	private String email;
+	private boolean emailNotifications;
 	private String note;
 	private User customerAccess;
 
@@ -86,6 +88,16 @@ public class Customer extends BaseEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Column(name="email_notifications")
+	@Convert(converter = BooleanConverter.class)
+	public boolean isEmailNotifications() {
+		return emailNotifications;
+	}
+
+	public void setEmailNotifications(boolean emailNotifications) {
+		this.emailNotifications = emailNotifications;
 	}
 
 	public String getNote() {

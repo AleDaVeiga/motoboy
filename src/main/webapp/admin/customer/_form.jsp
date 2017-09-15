@@ -89,6 +89,14 @@
 				<form:errors path="email"></form:errors>
 			</div>
 		</spring:bind>
+		<spring:bind path="emailNotifications">
+			<div class="form-group">
+				<label class="control-label">Notificações por e-mail</label><br>
+				<label class="radio-inline"><form:radiobutton path="emailNotifications" value="false"/>Bloquear</label>
+				<label class="radio-inline"><form:radiobutton path="emailNotifications" value="true"/>Enviar</label>
+				<form:errors path="emailNotifications"></form:errors>
+			</div>
+		</spring:bind>
 		<spring:bind path="note">
 			<div class="form-group">
 				<label class="control-label">Observação</label>
