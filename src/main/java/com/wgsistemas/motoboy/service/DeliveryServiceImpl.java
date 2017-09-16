@@ -3,6 +3,8 @@ package com.wgsistemas.motoboy.service;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,11 +15,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminDeliveryReturn;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByCustomerForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByDeliveryManForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.StatusField;
 import com.wgsistemas.motoboy.controller.dominio.ReportDeliveryForm;
+import com.wgsistemas.motoboy.mail.EmailHtmlSender;
+import com.wgsistemas.motoboy.mail.EmailStatus;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.repository.CustomerRepository;
 import com.wgsistemas.motoboy.repository.DeliveryRepository;
@@ -29,6 +34,8 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 	private DeliveryRepository deliveryRepository;
 	@Autowired
 	private CustomerRepository customerRepository;
+	@Autowired
+	private EmailHtmlSender emailHtmlSender;
 
 	@Override
 	protected JpaRepository<Delivery, Long> getRepository() {
@@ -44,6 +51,25 @@ public class DeliveryServiceImpl extends BaseServiceImpl<Delivery, Long> impleme
 		delivery.setPrice(BigDecimal.ZERO);
 		delivery.setDeliveryAt(DateUtil.newDateFrom(DateUtil.newZonedDateTime()));
 		return delivery;
+	}
+	
+	@Override
+	public AdminDeliveryReturn createDelivery(Delivery baseEntity, String username) {
+		AdminDeliveryReturn ret = new AdminDeliveryReturn();
+		Delivery delivery = super.create(baseEntity, username);
+		ret.setDelivery(delivery);
+		ret.setEmailStatus(sendEmailCreateDelivery(delivery));
+		return ret;
+	}
+
+	private EmailStatus sendEmailCreateDelivery(Delivery delivery) {
+		if (delivery.getCustomer() != null && !delivery.getCustomer().getNotBlankEmails().isEmpty() && delivery.getCustomer().isEmailNotifications()) {
+			Map<String, Object> context = new HashMap<>();
+			context.put("title", "Solicitação de corrida");
+			context.put("delivery", delivery);
+			return emailHtmlSender.send(delivery.getCustomer().getNotBlankEmails(), "Solicitação de corrida", "delivery.ftl", context);
+		}
+		return new EmailStatus(delivery.getCustomer().getNotBlankEmails().stream().toArray(String[]::new), "Solicitação de corrida", "");
 	}
 
 	@Transactional

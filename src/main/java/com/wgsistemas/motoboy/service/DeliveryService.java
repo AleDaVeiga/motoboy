@@ -3,6 +3,7 @@ package com.wgsistemas.motoboy.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminDeliveryReturn;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByCustomerForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryByDeliveryManForm;
 import com.wgsistemas.motoboy.controller.admin.dominio.AdminReportDeliveryForm;
@@ -12,7 +13,7 @@ import com.wgsistemas.motoboy.model.Delivery;
 public interface DeliveryService {
 	Delivery newDelivery(Long customerId);
 	
-	Delivery create(Delivery delivery, String username);
+	AdminDeliveryReturn createDelivery(Delivery baseEntity, String username);
 
 	Delivery update(Delivery delivery);
 

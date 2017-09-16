@@ -1,8 +1,5 @@
 package com.wgsistemas.motoboy.controller.admin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -22,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminDeliveryReturn;
 import com.wgsistemas.motoboy.controller.dominio.PageWrapper;
-import com.wgsistemas.motoboy.mail.EmailHtmlSender;
-import com.wgsistemas.motoboy.mail.EmailStatus;
 import com.wgsistemas.motoboy.model.Delivery;
 import com.wgsistemas.motoboy.service.CustomerService;
 import com.wgsistemas.motoboy.service.DeliveryManService;
@@ -42,8 +38,6 @@ public class AdminDeliveryController {
 	private CustomerService customerService;
 	@Autowired
 	private PaymentMethodService paymentMethodService;
-	@Autowired
-	private EmailHtmlSender emailHtmlSender;
 	
 	@GetMapping(value = "/delivery/")
 	public String create(@RequestParam(value = "customerId", required = false) Long customerId, Model model) {
@@ -57,8 +51,17 @@ public class AdminDeliveryController {
 	@PostMapping(path = "/delivery/")
 	@Transactional
 	public String create(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
-		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.");
+		AdminDeliveryReturn createReturn = deliveryService.createDelivery(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		StringBuilder message = new StringBuilder();
+		message.append("Corrida inserida com sucesso.");
+		if (createReturn.getEmailStatus().isSuccess()) {
+			message.append("\nE-mail enviado com sucesso.");
+		} else if(createReturn.getEmailStatus().isError()) {
+			redirectAttributes.addFlashAttribute("messageError", "Não foi possível enviar o e-mail para o cliente.\n" + createReturn.getEmailStatus().getErrorMessage());
+		}
+		
+		redirectAttributes.addFlashAttribute("messageSuccess", message.toString());
 		return "redirect:/admin/delivery/";
 	}
 	
@@ -94,29 +97,5 @@ public class AdminDeliveryController {
 		PageWrapper<Delivery> page = new PageWrapper<Delivery>(deliveryService.findBySearchTerm(search, SecurityContextHolder.getContext().getAuthentication().getName(), pageable));
 		model.addAttribute("page", page);	
 		return "admin/delivery/list";
-	}
-	
-	//TODO: Teste de email
-	@GetMapping(value = "/delivery/mail")
-	public String createWithEmail(@RequestParam(value = "customerId", required = false) Long customerId, Model model) {
-		model.addAttribute("deliveryForm", deliveryService.newDelivery(customerId));
-		model.addAttribute("deliveryManList", deliveryManService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
-		model.addAttribute("customerList", customerService.findAll(SecurityContextHolder.getContext().getAuthentication().getName()));
-		model.addAttribute("paymentMethodList", paymentMethodService.findAll());
-		return "admin/delivery/mail";
-	}
-	
-	@PostMapping(path = "/delivery/mail")
-	@Transactional
-	public String createWithEmail(@ModelAttribute("deliveryForm") Delivery deliveryForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-		Delivery delivery = deliveryService.create(deliveryForm, SecurityContextHolder.getContext().getAuthentication().getName());
-		
-		Map<String, Object> context = new HashMap<>();
-		context.put("title", "Solicitação de corrida");
-		context.put("delivery", delivery);
-		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getFirstEmail(), "Solicitação de corrida", "delivery.ftl", context);
-		
-		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" + emailStatus.getErrorMessage());
-		return "redirect:/admin/delivery/mail";
 	}
 }
