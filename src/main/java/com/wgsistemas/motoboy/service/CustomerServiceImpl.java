@@ -56,24 +56,24 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 		if (StringUtils.isNotBlank(customerAccess.getUsername())) {
 			String passwordDefault = "123motoboy";
 			customerAccess.setPassword(passwordDefault);
-			customerAccess.setEmail(customer.getEmail());
+			customerAccess.setEmail(customer.getFirstEmail());
 			ret.setEmailStatus(sendEmailCreateCustomerAccess(customer));
 			customer.setCustomerAccess(userService.save(customerAccess));
 		} else {
 			customer.setCustomerAccess(null);
-			ret.setEmailStatus(new EmailStatus(customer.getEmail(), "Cadastro de cliente", ""));
+			ret.setEmailStatus(new EmailStatus(customer.getFirstEmail(), "Cadastro de cliente", ""));
 		}
 		return ret;
 	}
 
 	private EmailStatus sendEmailCreateCustomerAccess(Customer customer) {
-		if (customer.getCustomerAccess() != null && StringUtils.isNotBlank(customer.getEmail()) && customer.isEmailNotifications()) {
+		if (customer.getCustomerAccess() != null && !customer.getNotBlankEmails().isEmpty() && customer.isEmailNotifications()) {
 			Map<String, Object> context = new HashMap<>();
 			context.put("title", "Cadastro de cliente");
 			context.put("customer", customer);
-			return emailHtmlSender.send(customer.getEmail(), "Cadastro de cliente", "customer.ftl", context);
+			return emailHtmlSender.send(customer.getNotBlankEmails(), "Cadastro de cliente", "customer.ftl", context);
 		}
-		return new EmailStatus(customer.getEmail(), "Cadastro de cliente", "");
+		return new EmailStatus(customer.getNotBlankEmails().stream().toArray(String[]::new), "Cadastro de cliente", "");
 	}
 	
 	@Override
@@ -91,9 +91,9 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 		} else {
 			ret = new AdminCustomerReturn();
 			User customerAccess = customerOld.getCustomerAccess();
-			customerAccess.setEmail(customer.getEmail());
+			customerAccess.setEmail(customer.getFirstEmail());
 			customer.setCustomerAccess(userService.updateEmail(customerAccess));
-			ret.setEmailStatus(new EmailStatus(customer.getEmail(), "Cadastro de cliente", ""));
+			ret.setEmailStatus(new EmailStatus(customer.getFirstEmail(), "Cadastro de cliente", ""));
 		}
 		return ret;
 	}

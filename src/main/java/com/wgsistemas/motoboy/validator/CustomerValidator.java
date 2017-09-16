@@ -34,9 +34,11 @@ public class CustomerValidator implements Validator {
 				}
 			}
 		}
-		if (StringUtils.isNotBlank(customer.getEmail())) {
-			if (!StringUtil.matchesEmailPattern(customer.getEmail())) {
-				errors.rejectValue("email", "email.invalid");
+		for (String email : customer.getEmails()) {
+			if (StringUtils.isNotBlank(email)) {
+				if (!StringUtil.matchesEmailPattern(email)) {
+					errors.rejectValue("email", "email.invalid");
+				}
 			}
 		}
 	}

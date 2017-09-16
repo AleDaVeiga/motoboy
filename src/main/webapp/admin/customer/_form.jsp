@@ -82,13 +82,36 @@
 				</span>
 			</div>
 		</div>
-		<spring:bind path="email">
-			<div class="form-group">
-				<label class="control-label">E-mail</label>
-				<form:input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" path="email" class="form-control" placeholder="E-mail"></form:input>
-				<form:errors path="email"></form:errors>
+		<c:set var="count" value="0" scope="page" />
+		<c:forEach var="email" items="${customerForm.emails}">
+			<spring:bind path="emails[${count}]">
+				<div class="form-group">
+					<label class="control-label">E-mail ${count + 1}</label>
+					<div class="input-group">
+						<form:input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" path="emails[${count}]" class="form-control" placeholder="E-mail"></form:input>
+						<span class="input-group-btn">
+							<a class="btn btn-danger btn-block exclude-me">
+								<span class="glyphicon glyphicon-minus"></span>
+							</a>
+						</span>
+					</div>
+					<form:errors path="emails[${count}]"></form:errors>
+				</div>
+			</spring:bind>
+			<c:set var="count" value="${count + 1}" scope="page"/>
+		</c:forEach>
+		<div class="form-group">
+			<input type="hidden" name="count" value="${count}" />
+			<label class="control-label">E-mail ${count + 1}</label>
+			<div class="input-group">
+				<input type="email" id="emails${count}" name="emails[${count}]" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control"/>
+				<span class="input-group-btn">
+					<a class="btn btn-success btn-block add-more">
+						<span class="glyphicon glyphicon-plus"></span>
+					</a>
+				</span>
 			</div>
-		</spring:bind>
+		</div>
 		<spring:bind path="emailNotifications">
 			<div class="form-group">
 				<label class="control-label">Notificações por e-mail</label><br>

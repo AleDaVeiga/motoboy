@@ -114,7 +114,7 @@ public class AdminDeliveryController {
 		Map<String, Object> context = new HashMap<>();
 		context.put("title", "Solicitação de corrida");
 		context.put("delivery", delivery);
-		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getEmail(), "Solicitação de corrida", "delivery.ftl", context);
+		EmailStatus emailStatus = emailHtmlSender.send(delivery.getCustomer().getFirstEmail(), "Solicitação de corrida", "delivery.ftl", context);
 		
 		redirectAttributes.addFlashAttribute("messageSuccess", "Corrida inserida com sucesso.\n" + emailStatus.getErrorMessage());
 		return "redirect:/admin/delivery/mail";

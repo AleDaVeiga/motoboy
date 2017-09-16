@@ -14,7 +14,9 @@ $(document).ready(function(){
 		newDivGroup.find("input[name='count']").remove();
 		
 		var newInputField = newDivGroup.find(".input-group input").first();
-		newInputField.mask(newInputField.attr("data-mask"));
+		if(newInputField.attr("data-mask")) {
+			newInputField.mask(newInputField.attr("data-mask"));
+		}
 		
 		var newBtnAction = newDivGroup.find(".input-group-btn a.btn");
 		newBtnAction.removeClass("btn-success");
@@ -34,7 +36,9 @@ $(document).ready(function(){
 		inputField.attr("id", inputField.attr("id").replace(next, next + 1));
 		inputField.attr("name", inputField.attr("name").replace(next, next + 1));
 		inputField.val("").trigger('focus');
-		inputField.mask(newInputField.attr("data-mask"));
+		if(newInputField.attr("data-mask")) {
+			inputField.mask(newInputField.attr("data-mask"));
+		}
 		
 		divGroup.before(newDivGroup);
 		

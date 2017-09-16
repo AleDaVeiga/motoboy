@@ -1,6 +1,7 @@
 package com.wgsistemas.motoboy.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -10,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.wgsistemas.motoboy.model.converter.BooleanConverter;
 import com.wgsistemas.motoboy.model.converter.ListToStringConveter;
@@ -24,7 +28,7 @@ public class Customer extends BaseEntity {
 	private String numberAddress;
 	private String complementAddress;
 	private List<String> phones;
-	private String email;
+	private List<String> emails;
 	private boolean emailNotifications;
 	private String note;
 	private User customerAccess;
@@ -82,12 +86,26 @@ public class Customer extends BaseEntity {
 		this.phones = phones;
 	}
 
-	public String getEmail() {
-		return email;
+	@Convert(converter = ListToStringConveter.class)
+	public List<String> getEmails() {
+		return emails;
+	}
+	
+	@Transient
+	public List<String> getNotBlankEmails() {
+		return emails.stream().filter(StringUtils::isNotBlank).collect(Collectors.toList());
+	}
+	
+	@Transient
+	public String getFirstEmail() {
+		if(emails.isEmpty()) {
+			return null;
+		}
+		return emails.get(0);
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmails(List<String> emails) {
+		this.emails = emails;
 	}
 
 	@Column(name="email_notifications")

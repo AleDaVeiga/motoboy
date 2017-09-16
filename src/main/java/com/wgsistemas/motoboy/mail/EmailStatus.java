@@ -4,14 +4,18 @@ public class EmailStatus {
 	public static final String SUCCESS = "SUCCESS";
 	public static final String ERROR = "ERROR";
 
-	private final String to;
+	private final String[] to;
 	private final String subject;
 	private final String body;
 
 	private String status;
 	private String errorMessage;
-
+	
 	public EmailStatus(String to, String subject, String body) {
+		this(new String[] { to }, subject, body);
+	}
+
+	public EmailStatus(String[] to, String subject, String body) {
 		this.to = to;
 		this.subject = subject;
 		this.body = body;
@@ -36,7 +40,7 @@ public class EmailStatus {
 		return ERROR.equals(this.status);
 	}
 
-	public String getTo() {
+	public String[] getTo() {
 		return to;
 	}
 

@@ -1,5 +1,7 @@
 package com.wgsistemas.motoboy.mail;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -20,8 +22,12 @@ public class EmailHtmlSender {
  
     @Autowired
     private Configuration freemarkerConfig;
+    
+    public EmailStatus send(String to, String subject, String templateName, Map<String, Object> model) {
+    	return this.send(Arrays.asList(to), subject, templateName, model);
+    }
  
-	public EmailStatus send(String to, String subject, String templateName, Map<String, Object> model) {
+	public EmailStatus send(List<String> to, String subject, String templateName, Map<String, Object> model) {
 		try {
 			freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates/email");
 			Template template = freemarkerConfig.getTemplate(templateName);
@@ -29,7 +35,7 @@ public class EmailHtmlSender {
 			return emailSender.sendHtml(to, subject, body);
 		} catch (Exception e) {
 			LOGGER.error(String.format("Problem with template for sending html email to: {}, error message: {}", to, e.getMessage()));
-			return new EmailStatus(to, subject, templateName).error(e.getMessage());
+			return new EmailStatus(to.stream().toArray(String[]::new), subject, templateName).error(e.getMessage());
 		}
 	}
 }

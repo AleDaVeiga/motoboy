@@ -1,13 +1,15 @@
 package com.wgsistemas.motoboy.mail;
 
+import java.util.List;
+
+import javax.mail.internet.MimeMessage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
- 
-import javax.mail.internet.MimeMessage;
 
 @Component
 public class EmailSender {
@@ -17,14 +19,18 @@ public class EmailSender {
 	private JavaMailSender javaMailSender;
 
 	public EmailStatus sendPlainText(String to, String subject, String text) {
-		return sendMessage(to, subject, text, false);
+		return sendMessage(new String[] { to }, subject, text, false);
 	}
 
 	public EmailStatus sendHtml(String to, String subject, String htmlBody) {
-		return sendMessage(to, subject, htmlBody, true);
+		return sendMessage(new String[] { to }, subject, htmlBody, true);
 	}
 
-	private EmailStatus sendMessage(String to, String subject, String text, Boolean isHtml) {
+	public EmailStatus sendHtml(List<String> to, String subject, String htmlBody) {
+		return sendMessage(to.stream().toArray(String[]::new), subject, htmlBody, true);
+	}
+
+	private EmailStatus sendMessage(String[] to, String subject, String text, Boolean isHtml) {
 		try {
 			MimeMessage mail = javaMailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mail, true);
