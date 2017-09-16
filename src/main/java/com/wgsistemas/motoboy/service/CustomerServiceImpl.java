@@ -1,5 +1,8 @@
 package com.wgsistemas.motoboy.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminCustomerReturn;
+import com.wgsistemas.motoboy.mail.EmailHtmlSender;
+import com.wgsistemas.motoboy.mail.EmailStatus;
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.model.User;
 import com.wgsistemas.motoboy.model.datatype.Address;
@@ -25,6 +31,8 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
     private StateRepository stateRepository;
 	@Autowired
     private UserService userService;
+	@Autowired
+	private EmailHtmlSender emailHtmlSender;
 	
 	@Override
 	public Customer newCustomer() {
@@ -36,36 +44,58 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long> impleme
 	}
 	
 	@Override
-	public Customer create(Customer customer, String username) {
-		customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess(), customer.getEmail()));
-		return super.create(customer, username);
+	public AdminCustomerReturn createCustomer(Customer customer, String username) {
+		AdminCustomerReturn ret = newCustomerAccess(customer);
+		ret.setCustomer(super.create(customer, username));
+		return ret;
 	}
 
-	private User newCustomerAccess(User customerAccess, String customerEmail) {
+	private AdminCustomerReturn newCustomerAccess(Customer customer) {
+		AdminCustomerReturn ret = new AdminCustomerReturn();
+		User customerAccess = customer.getCustomerAccess();
 		if (StringUtils.isNotBlank(customerAccess.getUsername())) {
 			String passwordDefault = "123motoboy";
 			customerAccess.setPassword(passwordDefault);
-			customerAccess.setEmail(customerEmail);
-			return userService.save(customerAccess);
+			customerAccess.setEmail(customer.getEmail());
+			ret.setEmailStatus(sendEmailCreateCustomerAccess(customer));
+			customer.setCustomerAccess(userService.save(customerAccess));
+		} else {
+			customer.setCustomerAccess(null);
+			ret.setEmailStatus(new EmailStatus(customer.getEmail(), "Cadastro de cliente", ""));
 		}
-		return null;
+		return ret;
+	}
+
+	private EmailStatus sendEmailCreateCustomerAccess(Customer customer) {
+		if (customer.getCustomerAccess() != null && StringUtils.isNotBlank(customer.getEmail()) && customer.isEmailNotifications()) {
+			Map<String, Object> context = new HashMap<>();
+			context.put("title", "Cadastro de cliente");
+			context.put("customer", customer);
+			return emailHtmlSender.send(customer.getEmail(), "Cadastro de cliente", "customer.ftl", context);
+		}
+		return new EmailStatus(customer.getEmail(), "Cadastro de cliente", "");
 	}
 	
 	@Override
-	public Customer update(Customer customer) {
-		updateCustomerAccess(customer);
-		return super.update(customer);
+	public AdminCustomerReturn updateCustomer(Customer customer) {
+		AdminCustomerReturn ret = updateCustomerAccess(customer);
+		ret.setCustomer(super.update(customer));
+		return ret;
 	}
 
-	private void updateCustomerAccess(Customer customer) {
+	private AdminCustomerReturn updateCustomerAccess(Customer customer) {
+		AdminCustomerReturn ret;
 		Customer customerOld = customerRepository.findById(customer.getId());
 		if(customerOld.getCustomerAccess() == null || NumberUtils.LONG_ZERO.compareTo(customerOld.getCustomerAccess().getId()) > 0) {
-			customer.setCustomerAccess(newCustomerAccess(customer.getCustomerAccess(), customer.getEmail()));
+			ret = newCustomerAccess(customer);
 		} else {
+			ret = new AdminCustomerReturn();
 			User customerAccess = customerOld.getCustomerAccess();
 			customerAccess.setEmail(customer.getEmail());
 			customer.setCustomerAccess(userService.updateEmail(customerAccess));
+			ret.setEmailStatus(new EmailStatus(customer.getEmail(), "Cadastro de cliente", ""));
 		}
+		return ret;
 	}
 
 	@Override

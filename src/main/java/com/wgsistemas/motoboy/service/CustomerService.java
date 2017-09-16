@@ -3,14 +3,15 @@ package com.wgsistemas.motoboy.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminCustomerReturn;
 import com.wgsistemas.motoboy.model.Customer;
 
 public interface CustomerService {
 	Customer newCustomer();
 	
-	Customer create(Customer customer, String username);
+	AdminCustomerReturn createCustomer(Customer customer, String username);
 
-	Customer update(Customer customer);
+	AdminCustomerReturn updateCustomer(Customer customer);
 
 	void remove(Customer customer);
 

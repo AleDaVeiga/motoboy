@@ -6,11 +6,12 @@
 </head>
 <body>
 	<div>
-		<h2>
-			<span>${title}</span>
-		</h2>
-		<p>Prezado (a) usuário (a) ${user.username}</p>
-		<p>Nova senha de acesso: ${user.password}</p>
+		<p>Prezado (a) usuário (a) ${user.username},</p>
+		<p>Foi solicitada uma nova senha de acesso ao sistema PRATIKO®.<br>
+		Favor acessar o sistema PRATIKO® com seu login e a seguinte senha:</p>
+		<dl>
+			<dt><b>Senha:</b></dt> <dd>${user.password}</dd>
+		</dl>
 	</div>
 </body>
 </html>

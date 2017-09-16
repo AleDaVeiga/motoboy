@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.wgsistemas.motoboy.controller.admin.dominio.AdminCustomerReturn;
 import com.wgsistemas.motoboy.controller.dominio.PageWrapper;
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.service.CustomerService;
@@ -32,7 +33,6 @@ public class AdminCustomerController {
 	private CustomerService customerService;
 	@Autowired
 	private StateService stateService;
-
     @Autowired
     private CustomerValidator customerValidator;
 	
@@ -52,9 +52,16 @@ public class AdminCustomerController {
 			redirectAttributes.addFlashAttribute("messageError", "Não foi possível inserir o cliente.");
 			return "admin/customer/new";
 		} else {
-			Customer customer = customerService.create(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
-			redirectAttributes.addFlashAttribute("messageSuccess", "Cliente inserido com sucesso.");
-			return "redirect:/admin/customer/" + customer.getId();
+			AdminCustomerReturn createReturn = customerService.createCustomer(customerForm, SecurityContextHolder.getContext().getAuthentication().getName());
+			StringBuilder message = new StringBuilder();
+			message.append("Cliente inserido com sucesso.");
+			if (createReturn.getEmailStatus().isSuccess()) {
+				message.append("\nE-mail enviado com sucesso.");
+			} else if(createReturn.getEmailStatus().isError()) {
+				redirectAttributes.addFlashAttribute("messageError", "Não foi possível enviar o e-mail para o cliente.\n" + createReturn.getEmailStatus().getErrorMessage());
+			}
+			redirectAttributes.addFlashAttribute("messageSuccess", message.toString());
+			return "redirect:/admin/customer/" + createReturn.getCustomer().getId();
 		}
 	}
 	
@@ -78,8 +85,15 @@ public class AdminCustomerController {
             redirectAttributes.addFlashAttribute("customerForm", customerForm);
 			redirectAttributes.addFlashAttribute("messageError", "Não foi possível atualizar o cliente.");
 		} else {
-			customerService.update(customerForm);
-			redirectAttributes.addFlashAttribute("messageSuccess", "Cliente atualizado com sucesso.");
+			AdminCustomerReturn updateReturn = customerService.updateCustomer(customerForm);
+			StringBuilder message = new StringBuilder();
+			message.append("Cliente atualizado com sucesso.");
+			if (updateReturn.getEmailStatus().isSuccess()) {
+				message.append("\nE-mail enviado com sucesso.");
+			} else if(updateReturn.getEmailStatus().isError()) {
+				redirectAttributes.addFlashAttribute("messageError", "Não foi possível enviar o e-mail para o cliente.\n" + updateReturn.getEmailStatus().getErrorMessage());
+			}
+			redirectAttributes.addFlashAttribute("messageSuccess", message.toString());
 		}
 		return "redirect:/admin/customer/" + id;
 	}

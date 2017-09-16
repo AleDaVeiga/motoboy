@@ -8,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import com.wgsistemas.motoboy.model.Customer;
 import com.wgsistemas.motoboy.service.UserService;
+import com.wgsistemas.motoboy.util.StringUtil;
 
 @Component
 public class CustomerValidator implements Validator {
@@ -22,7 +23,7 @@ public class CustomerValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Customer customer = (Customer) obj;
-		
+
 		if (customer.getCustomerAccess() != null) {
 			if (StringUtils.isNotBlank(customer.getCustomerAccess().getUsername())) {
 				if (customer.getCustomerAccess().getUsername().length() < 6 || customer.getCustomerAccess().getUsername().length() > 32) {
@@ -31,6 +32,11 @@ public class CustomerValidator implements Validator {
 				if (userService.findByUsername(customer.getCustomerAccess().getUsername()) != null) {
 					errors.rejectValue("customerAccess.username", "userform.username.duplicate");
 				}
+			}
+		}
+		if (StringUtils.isNotBlank(customer.getEmail())) {
+			if (!StringUtil.matchesEmailPattern(customer.getEmail())) {
+				errors.rejectValue("email", "email.invalid");
 			}
 		}
 	}
