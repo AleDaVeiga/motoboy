@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -7,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Motoboy - Controle das informaÁıes</title>
+		<title>Motoboy - Controle das informa√ß√µes</title>
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
@@ -17,12 +18,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title clearfix">
-                            Editar usu·rio
+                            Editar usu√°rio
                         </h3>
                     </div>
                     <div class="panel-body">
                    		<div class="alert alert-info">
-                   			<strong>InformaÁ„o!</strong> Utilize um e-mail v·lido para recuperar uma nova senha de acesso, caso esqueÁa a mesma.
+                   			<strong>Informa√ß√£o!</strong> Utilize um e-mail v√°lido para recuperar uma nova senha de acesso, caso esque√ßa a mesma.
                    		</div>
                        	<c:if test="${messageSuccess != null}">
                        		<div class="alert alert-success alert-dismissable">
@@ -41,8 +42,8 @@
                         	<fieldset disabled>
 	                        	<spring:bind path="username">
 	                        		<div class="form-group">
-	                        			<label class="control-label">Conta de acesso do usu·rio</label>
-	                        			<form:input path="username" class="form-control" placeholder="Usu·rio"></form:input>
+	                        			<label class="control-label">Conta de acesso do usu√°rio</label>
+	                        			<form:input path="username" class="form-control" placeholder="Usu√°rio"></form:input>
 	                        			<form:errors path="username"></form:errors>
 	                        		</div>
 	                        	</spring:bind>

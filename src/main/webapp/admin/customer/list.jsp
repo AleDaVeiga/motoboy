@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -7,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Motoboy - Controle das informações</title>
+		<title>Motoboy - Controle das informaÃ§Ãµes</title>
 		<jsp:include page="../templates/header.jsp"/>
 	</head>
     <body>
@@ -17,7 +18,7 @@
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <h3 class="panel-title clearfix">
-	                        Administração de clientes
+	                        AdministraÃ§Ã£o de clientes
 	                        <span class="pull-right">
 					        	<a href="${contextPath}/admin/#consult" class="btn btn-default btn-sm">
 					        		<span class="glyphicon glyphicon-home"></span>

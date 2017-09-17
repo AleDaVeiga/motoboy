@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -34,8 +35,8 @@
 </spring:bind>
 <spring:bind path="note">
 	<div class="form-group">
-		<label class="control-label">Observação</label>
-		<form:input path="note" class="form-control" placeholder="Observação"></form:input>
+		<label class="control-label">ObservaÃ§Ã£o</label>
+		<form:input path="note" class="form-control" placeholder="ObservaÃ§Ã£o"></form:input>
 		<form:errors path="note"></form:errors>
 	</div>
 </spring:bind>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -20,10 +21,10 @@
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <ul class="nav nav-tabs">
 	<li class="active">
-		<a href="#customerFormInfo" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> Informações</a>
+		<a href="#customerFormInfo" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> InformaÃ§Ãµes</a>
 	</li>
 	<li>
-		<a href="#customerFormAdd" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> Endereço</a>
+		<a href="#customerFormAdd" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> EndereÃ§o</a>
 	</li>		
 </ul>
 <div class="tab-content clearfix">
@@ -39,8 +40,8 @@
 		<fieldset ${0 < customerForm.customerAccess.id ? 'disabled' : ''}>
 			<spring:bind path="customerAccess.username">
 				<div class="form-group">
-					<label class="control-label">Conta de acesso do usuário</label>
-					<form:input path="customerAccess.username" class="form-control" placeholder="Usuário"></form:input>
+					<label class="control-label">Conta de acesso do usuÃ¡rio</label>
+					<form:input path="customerAccess.username" class="form-control" placeholder="UsuÃ¡rio"></form:input>
 					<form:errors path="customerAccess.username"></form:errors>
 				</div>
 			</spring:bind>
@@ -114,7 +115,7 @@
 		</div>
 		<spring:bind path="emailNotifications">
 			<div class="form-group">
-				<label class="control-label">Notificações por e-mail</label><br>
+				<label class="control-label">NotificaÃ§Ãµes por e-mail</label><br>
 				<label class="radio-inline"><form:radiobutton path="emailNotifications" value="false"/>Bloquear</label>
 				<label class="radio-inline"><form:radiobutton path="emailNotifications" value="true"/>Enviar</label>
 				<form:errors path="emailNotifications"></form:errors>
@@ -122,8 +123,8 @@
 		</spring:bind>
 		<spring:bind path="note">
 			<div class="form-group">
-				<label class="control-label">Observação</label>
-				<form:input path="note" class="form-control" placeholder="Observação"></form:input>
+				<label class="control-label">ObservaÃ§Ã£o</label>
+				<form:input path="note" class="form-control" placeholder="ObservaÃ§Ã£o"></form:input>
 				<form:errors path="note"></form:errors>
 			</div>
 		</spring:bind>
@@ -131,15 +132,15 @@
 	<div class="tab-pane" id="customerFormAdd">
 		<spring:bind path="customerAddress.street">
 			<div class="form-group">
-				<label class="control-label">Endereço</label>
-				<form:input path="customerAddress.street" class="form-control" placeholder="Endereço"></form:input>
+				<label class="control-label">EndereÃ§o</label>
+				<form:input path="customerAddress.street" class="form-control" placeholder="EndereÃ§o"></form:input>
 				<form:errors path="customerAddress.street"></form:errors>
 			</div>
 		</spring:bind>
 		<spring:bind path="numberAddress">
 			<div class="form-group">
-				<label class="control-label">Número</label>
-				<form:input path="numberAddress" class="form-control" placeholder="Número"></form:input>
+				<label class="control-label">NÃºmero</label>
+				<form:input path="numberAddress" class="form-control" placeholder="NÃºmero"></form:input>
 				<form:errors path="numberAddress"></form:errors>
 			</div>
 		</spring:bind>

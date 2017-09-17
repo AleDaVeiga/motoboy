@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -57,7 +58,7 @@
 	                        <a class="page-scroll" href="#consult">Consulta</a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="#report">RelatÛrio</a>
+	                        <a class="page-scroll" href="#report">Relat√≥rio</a>
 	                    </li>
 	                    <c:if test="${pageContext.request.userPrincipal.name != null}">
 		                    <li>
@@ -76,7 +77,7 @@
 	            <div class="header-content-inner">
 	                <h1 id="homeHeading">Bem vindo ao Pratiko</h1>
 	                <hr>
-	                <p>¡rea do cliente</p>
+	                <p>√Årea do cliente</p>
 	                <a href="#consult" class="btn btn-success btn-xl page-scroll">Acessar as corridas</a>
 	            </div>
 	        </div>
@@ -130,8 +131,8 @@
 	    	<div class="container">
 	    		<div class="row">
 	    			<div class="col-lg-12 text-center">
-	    				<h2 class="section-heading">RelatÛrio</h2>
-	    				<h3 class="section-subheading text-muted">Filtrar relatÛrio de corridas.</h3>
+	    				<h2 class="section-heading">Relat√≥rio</h2>
+	    				<h3 class="section-subheading text-muted">Filtrar relat√≥rio de corridas.</h3>
 	    			</div>
 	    		</div>
 	    		<div class="row">

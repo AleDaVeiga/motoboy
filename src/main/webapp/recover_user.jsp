@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -36,7 +37,7 @@
 			<form:form method="POST" action="${contextPath}/recoveruser" modelAttribute="userForm" class="form-signin">
 				<h2 class="form-signin-heading">Recuperar senha</h2>
 				<div class="alert alert-info">
-					<strong>InformaÁ„o!</strong> Somente È possÌvel recuperar uma nova senha, caso exista um e-mail v·lido cadastrado para o usu·rio.
+					<strong>Informa√ß√£o!</strong> Somente √© poss√≠vel recuperar uma nova senha, caso exista um e-mail v√°lido cadastrado para o usu√°rio.
 				</div>
 				<c:if test="${messageSuccess != null}">
 					<div class="alert alert-success alert-dismissable">

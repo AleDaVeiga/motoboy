@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -6,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Motoboy - Controle das informaÁıes</title>
+		<title>Motoboy - Controle das informa√ß√µes</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,13 +56,13 @@
 		                    <a class="page-scroll" href="#consult">Consulta</a>
 		                </li>
 		                <li>
-		                    <a class="page-scroll" href="#report">RelatÛrio</a>
+		                    <a class="page-scroll" href="#report">Relat√≥rio</a>
 		                </li>
 	                    <li>
 	                        <a class="page-scroll" href="#contact">Contato</a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="${contextPath}/admin/user/changeemail">Usu·rio</a>
+	                        <a class="page-scroll" href="${contextPath}/admin/user/changeemail">Usu√°rio</a>
 	                    </li>
 						<c:if test="${pageContext.request.userPrincipal.name != null}">
 							<li>
@@ -99,7 +100,7 @@
 	                        	<i class="fa fa-4x fa-list-ol text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>
-	                        <p class="text-muted">Cadastre o que ser· entregue.</p>
+	                        <p class="text-muted">Cadastre o que ser√° entregue.</p>
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
@@ -117,7 +118,7 @@
 	                        	<i class="fa fa-4x fa-motorcycle text-primary sr-icons"></i>
 	                        </a>
                         	<h3>Motoboys</h3>
-	                        <p class="text-muted">Cadastre as pessoas que ir„o realizar as corridas.</p>
+	                        <p class="text-muted">Cadastre as pessoas que ir√£o realizar as corridas.</p>
 	                    </div>
 	                </div>
 	            </div>
@@ -184,7 +185,7 @@
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-lg-12 text-center">
-	                    <h2 class="section-heading">RelatÛrios</h2>
+	                    <h2 class="section-heading">Relat√≥rios</h2>
 	                    <hr class="primary">
 	                </div>
 	            </div>
@@ -195,7 +196,7 @@
 	                        	<i class="fa fa-4x fa-file-text text-primary sr-icons"></i>
 							</a>
 	                        <h3>Corridas</h3>
-	                        <p class="text-muted">Veja o que j· foi entregue.</p>
+	                        <p class="text-muted">Veja o que j√° foi entregue.</p>
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-md-6 text-center">
@@ -225,7 +226,7 @@
 	                <div class="col-lg-8 col-lg-offset-2 text-center">
 	                    <h2 class="section-heading">Vamos entrar em contato</h2>
 	                    <hr class="primary">
-	                    <p>Pronto para iniciar uma entrega conosco? Muito bem! DÍ-nos um telefonema ou envie um e-mail que nÛs daremos um retorno assim que possÌvel!</p>
+	                    <p>Pronto para iniciar uma entrega conosco? Muito bem! D√™-nos um telefonema ou envie um e-mail que n√≥s daremos um retorno assim que poss√≠vel!</p>
 	                </div>
 	                <div class="col-lg-4 col-lg-offset-2 text-center">
 	                    <i class="fa fa-phone fa-3x sr-contact"></i>

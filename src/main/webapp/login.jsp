@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -37,7 +38,7 @@
 				<h2 class="form-heading">Acessar</h2>
 				<div class="form-group ${error != null ? 'has-error' : ''}">
 					<span>${message}</span>
-					<input name="username" type="text" class="form-control" placeholder="Usuário" autofocus="true" />
+					<input name="username" type="text" class="form-control" placeholder="UsuÃ¡rio" autofocus="true" />
 					<input name="password" type="password" class="form-control" placeholder="Senha" />
 					<span>${error}</span>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

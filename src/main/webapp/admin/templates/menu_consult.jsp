@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -19,7 +20,7 @@
                 <li><a href="${contextPath}/admin/deliverymans">Motoboys</a></li>
                 <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                		Relatórios<span class="caret"></span>
+                		RelatÃ³rios<span class="caret"></span>
                 	</a>
                 	<ul class="dropdown-menu">
                 		<li><a href="${contextPath}/admin/report/deliveries">Corridas</a></li>

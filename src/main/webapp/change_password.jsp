@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -37,7 +38,7 @@
 				<h2 class="form-signin-heading">Trocar senha</h2>
 				<spring:bind path="username">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
-						<form:input type="text" path="username" class="form-control" placeholder="Usuário" autofocus="true"></form:input>
+						<form:input type="text" path="username" class="form-control" placeholder="UsuÃ¡rio" autofocus="true"></form:input>
 						<form:errors path="username"></form:errors>
 					</div>
 				</spring:bind>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -14,10 +15,10 @@
 				<h4 class="modal-title">Excluir permanentemente</h4>
 			</div>
 			<div class="modal-body">
-				<p>Você está certo disso?</p>
+				<p>VocÃª estÃ¡ certo disso?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">NÃ£o</button>
 				<button type="button" class="btn btn-danger" id="confirm">Sim</button>
 			</div>
 		</div>
