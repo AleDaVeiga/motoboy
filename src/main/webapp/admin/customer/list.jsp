@@ -60,7 +60,7 @@
 				                				<div class="col-xs-10 col-sm-5">
 				                					<p>
 				                						<i class="glyphicon glyphicon-record"></i>
-				                						${customer.customerAddress.street}
+				                						${customer.customerAddress.street} ${customer.numberAddress} ${customer.complementAddress}
 				                					</p>
 				                					<p>
 				                						<i class="glyphicon glyphicon-map-marker"></i>
