@@ -9,8 +9,8 @@
 <body>
 	<div>
 		<p>Prezado (a) ${delivery.customer.fullName},</p>
-		<p>Foi solicitada uma corrida para você através do PRATIKO®.<br>
-		Favor acessar o sistema PRATIKO® com seu login e senha para confirmar a corrida.</p>
+		<p>Foi solicitada uma corrida para você através do PRATIKO.<br>
+		Favor acessar o sistema PRATIKO com seu login e senha para confirmar a corrida.</p>
 		<h4><ins>Informações da corrida:</ins></h4>
 		<dl>
 			<dt><b>Origem:</b></dt> <dd>${delivery.deliveryFrom}</dd>

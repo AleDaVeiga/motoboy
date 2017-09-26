@@ -7,8 +7,8 @@
 <body>
 	<div>
 		<p>Prezado (a) usuário (a) ${user.username},</p>
-		<p>Foi solicitada uma nova senha de acesso ao sistema PRATIKO®.<br>
-		Favor acessar o sistema PRATIKO® com seu login e a seguinte senha:</p>
+		<p>Foi solicitada uma nova senha de acesso ao sistema PRATIKO.<br>
+		Favor acessar o sistema PRATIKO com seu login e a seguinte senha:</p>
 		<dl>
 			<dt><b>Senha:</b></dt> <dd>${user.password}</dd>
 		</dl>
